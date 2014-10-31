@@ -46,12 +46,10 @@ class Bitcoind < Formula
     ENV.prepend_path "PATH", "#{prefix}/berkeley-db4/4.8.30/bin"
     system "./autogen.sh"
 
-    inreplace "configure", "bdb_prefix=`$BREW --prefix berkeley-db4`", "bdb_prefix='$#{prefix}/berkeley-db4/4.8.30'" if build.stable?
-    inreplace "configure", "bdb_prefix=`$BREW --prefix berkeley-db4 2>/dev/null`", "bdb_prefix=`$#{prefix}/berkeley-db4/4.8.30 2>/dev/null`" if build.head?
-
     args = ["--prefix=#{prefix}",
             "--disable-dependency-tracking",
-            "--with-incompatible-bdb"]
+            "CPPFLAGS=-I#{prefix}/berkeley-db4/4.8.30/include",
+            "LDFLAGS=-L#{prefix}/berkeley-db4/4.8.30/lib"]
 
     args << "--with-qrencode" if build.with? "qrencode"
     args << "--with-gui" if build.with? "qt"
