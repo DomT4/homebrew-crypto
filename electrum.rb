@@ -73,6 +73,8 @@ class Electrum < Formula
     system "pyrcc4", "icons.qrc", "-o", "gui/qt/icons_rc.py"
     system "python", "setup.py", "install", "--prefix=#{prefix}",
            "--single-version-externally-managed", "--record=installed.txt"
+
+    bin.env_script_all_files(libexec+"bin", :PYTHONPATH => ENV["PYTHONPATH"])
   end
 
   def caveats; <<-EOS.undent
