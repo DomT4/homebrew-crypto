@@ -1,6 +1,6 @@
 require "formula"
 
-class Openssh < Formula
+class Bopenssh < Formula
   homepage "http://www.openssh.com/"
   url "http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-6.7p1.tar.gz"
   mirror "http://ftp.eu.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-6.7p1.tar.gz"
