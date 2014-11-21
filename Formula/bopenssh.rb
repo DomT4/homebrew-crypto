@@ -7,6 +7,11 @@ class Bopenssh < Formula
   version "6.7p1"
   sha256 "b2f8394eae858dabbdef7dac10b99aec00c95462753e80342e530bbb6f725507"
 
+  bottle do
+    root_url "https://raw.githubusercontent.com/DomT4/LibreMirror/master/Homebrew/Tap_Bottles"
+    sha1 "efc24d7d013e63597adaea1ac38811f9d5595af1" => :yosemite
+  end
+
   option "with-ldns", "build with ldns"
 
   depends_on "openssl"
