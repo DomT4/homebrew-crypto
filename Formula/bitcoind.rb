@@ -36,7 +36,7 @@ class Bitcoind < Formula
             "--disable-replication",
             "--enable-cxx"]
 
-      cd 'build_unix' do
+      cd "build_unix" do
         system "../dist/configure", *args
         system "make"
         system "make", "install"
