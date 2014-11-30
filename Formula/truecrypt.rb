@@ -8,8 +8,11 @@ require "formula"
 
 class Truecrypt < Formula
    homepage "https://github.com/DomT4/truecrypt-homebrew"
-   url "https://github.com/DomT4/truecrypt-homebrew/archive/v1.0.tar.gz"
-   sha256 "c2b33ef523325d0e1d9eb78baffab6e59f0cff510c017ff4f8a038796caf538b"
+   url "https://github.com/DomT4/truecrypt-homebrew/releases/download/v1.1/Truecryptv1-1.tar.gz"
+   sha256 "8c302dde0c126eebd45cf3d0e886688b6d2668b055ce37ab7690ec69af70acd6"
+   version "1.1"
+
+   option "with-cli-only", "Build only the Truecrypt CLI"
 
    depends_on "pkg-config" => :build
    depends_on "nasm" => :build
@@ -17,8 +20,18 @@ class Truecrypt < Formula
    depends_on :osxfuse
 
   def install
-    system "make"
+    args = ["-j#{ENV.make_jobs}"]
+
+    args << "NOGUI=1" if build.with? "cli-only"
+
+    system "make", *args
     bin.install "main/TrueCrypt"
-    prefix.install "main/TrueCrypt.app"
+    share.install "TrueCrypt_User_Guide.pdf"
+    share.install "License.txt"
+    prefix.install "main/TrueCrypt.app" if build.without? "cli-only"
+  end
+
+  test do
+    system "#{bin}/truecrypt", "--version" if build.with? "cli-only"
   end
 end
