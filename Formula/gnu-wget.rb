@@ -5,9 +5,9 @@ require "formula"
 
 class GnuWget < Formula
   homepage "https://www.gnu.org/software/wget/"
-  url "http://ftpmirror.gnu.org/wget/wget-1.16.tar.xz"
-  mirror "https://ftp.gnu.org/gnu/wget/wget-1.16.tar.xz"
-  sha1 "08d991acc80726abe57043a278f9da469c454503"
+  url "http://ftpmirror.gnu.org/wget/wget-1.16.1.tar.xz"
+  mirror "https://ftp.gnu.org/gnu/wget/wget-1.16.1.tar.xz"
+  sha1 "21cd7eee08ab5e5a14fccde22a7aec55b5fcd6fc"
 
   head do
     url "git://git.savannah.gnu.org/wget.git"
@@ -56,7 +56,7 @@ class GnuWget < Formula
   end
 
   test do
-    system "#{bin}/wget", "-O", "-", "www.google.com"
+    system "#{bin}/wget", "-O", "-", "https://duckduckgo.com"
   end
 end
 
