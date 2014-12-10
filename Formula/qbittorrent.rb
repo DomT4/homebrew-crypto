@@ -43,13 +43,12 @@ class Qbittorrent < Formula
 
   head do
     url "https://github.com/qbittorrent/qBittorrent.git"
-    depends_on "automake" => :build
-    depends_on "autoconf" => :build
-    depends_on "libtool" => :build
   end
 
   depends_on "pkg-config" => :build
-  # Once migrated to qt5 upstream the qt requirement will package easier
+  depends_on "automake" => :build
+  depends_on "autoconf" => :build
+  depends_on "libtool" => :build
   depends_on "qt" => "with-d-bus"
   depends_on "openssl"
   depends_on "libtorrent-rasterbar"
@@ -57,9 +56,11 @@ class Qbittorrent < Formula
   depends_on :python
 
   # It wants the .dat version, so just deliver it in resource form. Like Pizza. Yum.
+  # Ugh. Upstream use a dynamically changing link. I hate those.
+  # Use Debian's versioned link for now. People trust Debian, and I trust Debian.
   resource "geoip" do
-    url "http://geolite.maxmind.com/download/geoip/database/GeoLiteCountry/GeoIP.dat.gz"
-    sha1 "58817a3b6a2206c28cdcd00a87b5bc7bcb944820"
+    url "https://mirrors.kernel.org/debian/pool/main/g/geoip/geoip_1.6.3.orig.tar.gz"
+    sha1 "7561dcb5ba928a3f190426709063829093283c32"
   end
 
   # Doesn't like OS X's native zlib, and won't accept appropriate ENV flags.
@@ -70,7 +71,9 @@ class Qbittorrent < Formula
 
   def install
     resource("geoip").stage do
-      (buildpath/"src"/"geoip").install resource("geoip")
+      ENV["GEOIP_ARCH"] = "-arch x86_64"
+      system "./bootstrap"
+      mv "data/geoip.dat", buildpath/"src/geoip"
     end
 
     resource("zlib").stage do
@@ -82,16 +85,24 @@ class Qbittorrent < Formula
     # Never use the system OpenSSL. It is depreciated and insecure.
     inreplace "macxconf.pri" do |s|
       s.gsub! "/usr/include/openssl /usr/include /opt/local/include/boost /opt/local/include",
-              "/usr/local/opt/openssl/include/openssl /usr/local/include/boost /usr/local/include"
+              "/usr/local/opt/openssl/include/openssl /usr/local/opt/boost/include/boost /usr/local/include"
       s.gsub! "-L/opt/local/lib", "-L/usr/local/opt/openssl/lib -L/usr/local/opt/boost/lib -L/usr/local/lib"
     end
 
     args = [ "--prefix=#{prefix}",
              "--with-geoip-database-embedded"]
 
-    args << "--disable-silent-rules" if build.head?
+    if build.head?
+      args << "--disable-silent-rules"
+      system "./bootstrap.sh"
+    end
 
-    system "./bootstrap.sh" if build.head?
+    if build.stable?
+      inreplace "configure", "*.so", "*.dylib"
+      args << "--with-libboost-inc=#{Formula["boost"].opt_prefix}/include/boost"
+      args << "--with-libboost-lib=#{Formula["boost"].opt_prefix}/lib"
+    end
+
     system "./configure", *args
     system "make", "-j#{ENV.make_jobs}"
 
