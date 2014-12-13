@@ -1,35 +1,5 @@
 require "formula"
 
-# This is a completely made up requirement to stop people installing
-# stable for now. This is required because 3.1.1 won't build on OS X.
-# This should be safe to remove when the current 3.2.0 branch is stable
-# This is because the stable 3.1.11 release has no mechanism for finding
-# libboost successfully on OS X, for some reason. The two configure flags
-# seem to be ignored even when explicitly invoked. The stable build also
-# makes calls to libtorrent that are declared fatal errors on OS X.
-# This should be easy enough to build statically rather than dynamically
-# though so creating an app bundle for 3.1.11 upwards is relatively doable.
-require 'requirement'
-
-class Lateststablereleaseisdead < Requirement
-  fatal true
-
-  def initialize(tags)
-    @version = MacOS::Version.from_symbol(tags.first)
-    super
-  end
-
-  satisfy { MacOS.version <= @version }
-
-  def message
-    <<-EOS.undent
-      3.1.11 fails to build on OS X via dynamic linking.
-      Please build HEAD instead for now.
-      HEAD will land you on the latest 3.2.0 Alpha from the Git.
-    EOS
-  end
-end
-
 class Qbittorrent < Formula
   homepage "http://www.qbittorrent.org/"
 
@@ -37,12 +7,23 @@ class Qbittorrent < Formula
     url "https://github.com/qbittorrent/qBittorrent/archive/release-3.1.11.tar.gz"
     sha1 "cda0a01e158dc3b91b66e05c47232255c9663763"
 
-    # Stable is dead. Force HEAD for now - That actually builds fine.
-    depends_on Lateststablereleaseisdead => :tiger
+    # Till 3.20.x is released, qb needs no higher than 0.16.x, so resource it out for now.
+    resource "libtorrent-rasterbar" do
+      url "https://downloads.sourceforge.net/project/libtorrent/libtorrent/libtorrent-rasterbar-0.16.17.tar.gz"
+      sha1 "e713b5dfc45194bfc50fa21096ab67c374ae3740"
+    end
+  end
+
+  bottle do
+    root_url "https://raw.githubusercontent.com/DomT4/LibreMirror/master/Homebrew/Tap_Bottles"
+    sha1 "ecf183e8ccb929a77ef715d971238f2d5b7867ef" => :yosemite
   end
 
   head do
     url "https://github.com/qbittorrent/qBittorrent.git"
+
+    # Make this a dep for all again once 3.20.x is stable.
+    depends_on "libtorrent-rasterbar"
   end
 
   depends_on "pkg-config" => :build
@@ -51,7 +32,6 @@ class Qbittorrent < Formula
   depends_on "libtool" => :build
   depends_on "qt" => "with-d-bus"
   depends_on "openssl"
-  depends_on "libtorrent-rasterbar"
   depends_on "boost"
   depends_on :python
 
@@ -82,11 +62,20 @@ class Qbittorrent < Formula
       ENV.append_path "PKG_CONFIG_PATH", "#{buildpath}/zlib/lib/pkgconfig"
     end
 
+    if build.stable?
+      resource("libtorrent-rasterbar").stage do
+        system "./configure", "--prefix=#{libexec}/libtorrent-rasterbar", "--disable-debug",
+                              "--disable-dependency-tracking", "--with-boost=#{Formula["boost"].opt_prefix}"
+        system "make", "install"
+        ENV.append_path "PKG_CONFIG_PATH", "#{libexec}/libtorrent-rasterbar/lib/pkgconfig"
+      end
+    end
+
     # Never use the system OpenSSL. It is depreciated and insecure.
     inreplace "macxconf.pri" do |s|
       s.gsub! "/usr/include/openssl /usr/include /opt/local/include/boost /opt/local/include",
-              "/usr/local/opt/openssl/include/openssl /usr/local/opt/boost/include/boost /usr/local/include"
-      s.gsub! "-L/opt/local/lib", "-L/usr/local/opt/openssl/lib -L/usr/local/opt/boost/lib -L/usr/local/lib"
+              "#{Formula["openssl"].opt_prefix}/include/openssl #{Formula["boost"].opt_prefix}/include/boost /usr/local/include #{libexec}/libtorrent-rasterbar/include"
+      s.gsub! "-L/opt/local/lib", "-L#{Formula["openssl"].opt_prefix}/lib -L#{Formula["boost"].opt_prefix}/lib -L/usr/local/lib -L#{libexec}/libtorrent-rasterbar/lib"
     end
 
     args = [ "--prefix=#{prefix}",
