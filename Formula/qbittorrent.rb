@@ -16,7 +16,8 @@ class Qbittorrent < Formula
 
   bottle do
     root_url "https://raw.githubusercontent.com/DomT4/LibreMirror/master/Homebrew/Tap_Bottles"
-    sha1 "ecf183e8ccb929a77ef715d971238f2d5b7867ef" => :yosemite
+    revision 1
+    sha1 "a457b2ab71c75079fcff077a9dd8e6e9c2dce436" => :yosemite
   end
 
   head do
@@ -43,23 +44,11 @@ class Qbittorrent < Formula
     sha1 "7561dcb5ba928a3f190426709063829093283c32"
   end
 
-  # Doesn't like OS X's native zlib, and won't accept appropriate ENV flags.
-  resource "zlib" do
-    url "http://zlib.net/zlib-1.2.8.tar.gz"
-    sha1 "a4d316c404ff54ca545ea71a27af7dbc29817088"
-  end
-
   def install
     resource("geoip").stage do
       ENV["GEOIP_ARCH"] = "-arch x86_64"
       system "./bootstrap"
       mv "data/geoip.dat", buildpath/"src/geoip"
-    end
-
-    resource("zlib").stage do
-      system "./configure", "--prefix=#{buildpath}/zlib", "--static"
-      system "make", "install"
-      ENV.append_path "PKG_CONFIG_PATH", "#{buildpath}/zlib/lib/pkgconfig"
     end
 
     if build.stable?
@@ -74,8 +63,8 @@ class Qbittorrent < Formula
     # Never use the system OpenSSL. It is depreciated and insecure.
     inreplace "macxconf.pri" do |s|
       s.gsub! "/usr/include/openssl /usr/include /opt/local/include/boost /opt/local/include",
-              "#{Formula["openssl"].opt_prefix}/include/openssl #{Formula["boost"].opt_prefix}/include/boost /usr/local/include #{libexec}/libtorrent-rasterbar/include"
-      s.gsub! "-L/opt/local/lib", "-L#{Formula["openssl"].opt_prefix}/lib -L#{Formula["boost"].opt_prefix}/lib -L/usr/local/lib -L#{libexec}/libtorrent-rasterbar/lib"
+              "#{libexec}/libtorrent-rasterbar/include #{Formula["openssl"].opt_prefix}/include/openssl #{Formula["boost"].opt_prefix}/include/boost /usr/local/include"
+      s.gsub! "-L/opt/local/lib", "-L#{libexec}/libtorrent-rasterbar/lib -L#{Formula["openssl"].opt_prefix}/lib -L#{Formula["boost"].opt_prefix}/lib -L/usr/local/lib"
     end
 
     args = [ "--prefix=#{prefix}",
@@ -84,18 +73,13 @@ class Qbittorrent < Formula
     if build.head?
       args << "--disable-silent-rules"
       system "./bootstrap.sh"
+      system "./configure", *args
     end
 
-    if build.stable?
-      inreplace "configure", "*.so", "*.dylib"
-      args << "--with-libboost-inc=#{Formula["boost"].opt_prefix}/include/boost"
-      args << "--with-libboost-lib=#{Formula["boost"].opt_prefix}/lib"
-    end
-
-    system "./configure", *args
+    system "qmake", "qbittorrent.pro" if build.stable?
     system "make", "-j#{ENV.make_jobs}"
 
-    # Install the app bundle into Homebrew's prefix
+    # Install the app bundle into qBittorrent's Cellar
     prefix.install "src/qBittorrent.app"
   end
 end
