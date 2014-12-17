@@ -62,6 +62,8 @@ class Qbittorrent < Formula
 
     # Never use the system OpenSSL. It is depreciated and insecure.
     inreplace "macxconf.pri" do |s|
+      s.gsub! "# OpenSSL lib", ""
+      s.gsub! "LIBS += -lssl -lcrypto", ""
       s.gsub! "/usr/include/openssl /usr/include /opt/local/include/boost /opt/local/include",
               "#{libexec}/libtorrent-rasterbar/include #{Formula["openssl"].opt_prefix}/include/openssl #{Formula["boost"].opt_prefix}/include/boost /usr/local/include"
       s.gsub! "-L/opt/local/lib", "-L#{libexec}/libtorrent-rasterbar/lib -L#{Formula["openssl"].opt_prefix}/lib -L#{Formula["boost"].opt_prefix}/lib -L/usr/local/lib"
