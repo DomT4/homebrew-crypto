@@ -8,13 +8,16 @@ class GnuWget < Formula
   url "http://ftpmirror.gnu.org/wget/wget-1.16.1.tar.xz"
   mirror "https://ftp.gnu.org/gnu/wget/wget-1.16.1.tar.xz"
   sha1 "21cd7eee08ab5e5a14fccde22a7aec55b5fcd6fc"
-  revision 1
+  revision 2
+
+  option "with-default-names", "Do not prepend 'l' to the binary"
 
   head do
     url "git://git.savannah.gnu.org/wget.git"
 
     depends_on "autoconf" => :build
     depends_on "automake" => :build
+    depends_on "xz" => :build
     depends_on "gettext"
   end
 
@@ -23,7 +26,7 @@ class GnuWget < Formula
 
   depends_on "libressl"
   depends_on "libidn" if build.with? "iri"
-  depends_on "prce" => :optional
+  depends_on "pcre" => :optional
 
   # To remove the LibreSSL-unsupported RAND-egd option from wget
   # This patch originates from the OpenBSD team.
@@ -42,16 +45,24 @@ class GnuWget < Formula
       --with-libssl-prefix=#{Formula["libressl"].opt_prefix}
     ]
 
+    args << "--program-prefix=l" if build.without? "default-names"
     args << "--disable-debug" if build.without? "debug"
     args << "--disable-iri" if build.without? "iri"
     args << "--disable-pcre" if build.without? "pcre"
 
     system "./configure", *args
     system "make", "install"
+    rm_rf "#{share}/info"
+
+    mv "#{man1}/wget.1", "#{man1}/lwget.1" if build.without? "default-names"
   end
 
   def caveats; <<-EOS.undent
     This wget exists as a test-bed for using LibreSSL for wget.
+
+    The binary is prepended with a 'l' so this can be used
+    alongside Homebrew/Homebrew's wget without conflict.
+
     If you wish to build wget with OpenSSL, as per usual, use the normal
     Homebrew one found with `brew install wget`.
     Once wget with LibreSSL is in Homebrew-core, this file will cease to exist.
@@ -59,7 +70,8 @@ class GnuWget < Formula
   end
 
   test do
-    system "#{bin}/wget", "-O", "-", "https://duckduckgo.com"
+    system "#{bin}/lwget", "-O", "-", "https://duckduckgo.com" if build.without? "default-names"
+    system "#{bin}/wget", "-O", "-", "https://duckduckgo.com" if build.with? "default-names"
   end
 end
 
