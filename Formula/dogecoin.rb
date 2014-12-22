@@ -4,7 +4,7 @@ class Dogecoin < Formula
   sha256 "a2ef769fe582f065f1682db9cfb858918141f9e9aa92f602edd8c80600b17240"
   head "https://github.com/dogecoin/dogecoin.git"
 
-  option "without-gui", "Build with only the CLI & Daemon enabled"
+  option "with-gui", "Build with the GUI enabled in addition to the Daemon/CLI"
 
   depends_on "pkg-config" => :build
   depends_on "autoconf" => :build
