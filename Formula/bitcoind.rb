@@ -1,21 +1,26 @@
-require "formula"
-
 class Bitcoind < Formula
   homepage "https://bitcoin.org/en/"
   url "https://github.com/bitcoin/bitcoin/archive/v0.9.3.tar.gz"
   sha256 "3ed92e8323cb4187cae015457c7c5920a5c658438f01c6c45f0ce3aabf9bd428"
   head "https://github.com/bitcoin/bitcoin.git"
 
+  option "with-gui", "Build with the GUI enabled in addition to the Daemon/CLI"
+
   depends_on "pkg-config" => :build
   depends_on "autoconf" => :build
   depends_on "automake" => :build
   depends_on "libtool" => :build
+  depends_on :xcode => :build
   depends_on "openssl"
   depends_on "boost"
-  depends_on "protobuf"
-  depends_on "qt" => :recommended
   depends_on "miniupnpc" => :recommended
-  depends_on "qrencode" => :recommended
+
+  if build.with? "gui"
+    depends_on "protobuf"
+    depends_on "qt"
+    depends_on "qrencode"
+    depends_on "gettext" => :recommended
+  end
 
   resource "berkeleydb4" do
     url "http://download.oracle.com/berkeley-db/db-4.8.30.tar.gz"
@@ -30,8 +35,8 @@ class Bitcoind < Formula
     inreplace "dbinc/atomic.h", "static inline int __atomic_compare_exchange(", "static inline int __atomic_compare_exchange_db("
 
     args = ["--disable-debug",
-            "--prefix=#{prefix}/berkeley-db4/4.8.30",
-            "--mandir=#{man}/berkeley-db4/4.8.30",
+            "--prefix=#{libexec}/berkeley-db4/4.8.30",
+            "--mandir=#{libexec}/share/man/berkeley-db4/4.8.30",
             "--disable-shared",
             "--disable-replication",
             "--enable-cxx"]
@@ -43,22 +48,27 @@ class Bitcoind < Formula
       end
     end
 
-    ENV.prepend_path "PATH", "#{prefix}/berkeley-db4/4.8.30/bin"
+    ENV.prepend_path "PATH", "#{libexec}/berkeley-db4/4.8.30/bin"
+    ENV.prepend "CPPFLAGS", "-I#{libexec}/berkeley-db4/4.8.30/include"
+    ENV.prepend "LDFLAGS", "-L#{libexec}/berkeley-db4/4.8.30/lib"
     system "./autogen.sh"
 
-    args = ["--prefix=#{prefix}",
-            "--disable-dependency-tracking",
-            "CPPFLAGS=-I#{prefix}/berkeley-db4/4.8.30/include",
-            "LDFLAGS=-L#{prefix}/berkeley-db4/4.8.30/lib"]
+    args = ["--prefix=#{libexec}",
+            "--disable-dependency-tracking"]
 
-    args << "--with-qrencode" if build.with? "qrencode"
-    args << "--with-gui" if build.with? "qt"
+
+    if build.with? "gui"
+      args << "--with-qrencode"
+      args << "--with-gui"
+    end
+
     args << "--with-miniupnpc" if build.with? "miniupnpc"
 
     system "./configure", *args
     system "make"
     system "make", "check"
     system "make", "install"
+    bin.write_exec_script Dir["#{libexec}/bin/*"]
   end
 
   def caveats; <<-EOS.undent
