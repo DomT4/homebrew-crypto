@@ -2,7 +2,6 @@ class Bitcoind < Formula
   homepage "https://bitcoin.org/en/"
   url "https://github.com/bitcoin/bitcoin/archive/v0.9.3.tar.gz"
   sha256 "3ed92e8323cb4187cae015457c7c5920a5c658438f01c6c45f0ce3aabf9bd428"
-  head "https://github.com/bitcoin/bitcoin.git"
 
   option "with-gui", "Build with the GUI enabled in addition to the Daemon/CLI"
 
@@ -20,6 +19,12 @@ class Bitcoind < Formula
     depends_on "qt"
     depends_on "qrencode"
     depends_on "gettext" => :recommended
+  end
+
+  head do
+    url "https://github.com/bitcoin/bitcoin.git"
+
+    depends_on "gmp"
   end
 
   resource "berkeleydb4" do
@@ -51,7 +56,6 @@ class Bitcoind < Formula
     ENV.prepend_path "PATH", "#{libexec}/berkeley-db4/4.8.30/bin"
     ENV.prepend "CPPFLAGS", "-I#{libexec}/berkeley-db4/4.8.30/include"
     ENV.prepend "LDFLAGS", "-L#{libexec}/berkeley-db4/4.8.30/lib"
-    system "./autogen.sh"
 
     args = ["--prefix=#{libexec}",
             "--disable-dependency-tracking"]
@@ -64,6 +68,7 @@ class Bitcoind < Formula
 
     args << "--with-miniupnpc" if build.with? "miniupnpc"
 
+    system "./autogen.sh"
     system "./configure", *args
     system "make"
     system "make", "check"
