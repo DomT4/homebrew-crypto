@@ -1,8 +1,8 @@
 class Secp256k1  < Formula
   homepage "https://github.com/bitcoin/secp256k1"
   # Deps are moving around so much specify a commit to build up to, and refresh manually every few days.
-  url "https://github.com/bitcoin/secp256k1.git", :revision => "b450c34843b5de9a61ce2e42d6ca9fe40a571bb1"
-  version "0.0.0.1" # Fake version number to make updates easier.
+  url "https://github.com/bitcoin/secp256k1.git", :revision => "7767b4d25bfc13263e17377e5ce3d628c3d3433a"
+  version "0.0.0.2" # Fake version number to make updates easier.
   head "https://github.com/bitcoin/secp256k1.git"
 
   depends_on "automake" => :build
