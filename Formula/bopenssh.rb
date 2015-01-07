@@ -13,7 +13,7 @@ class Bopenssh < Formula
   depends_on "pkg-config" => :build if build.with? "ldns"
   depends_on "libressl" => :recommended
   depends_on "openssl" => :optional
-  depends_on "ldns"
+  depends_on "ldns" => :optional
 
   if build.with? "keychain-support"
     patch do
