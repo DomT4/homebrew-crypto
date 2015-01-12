@@ -4,9 +4,11 @@ class Bitcoind < Formula
   sha256 "3ed92e8323cb4187cae015457c7c5920a5c658438f01c6c45f0ce3aabf9bd428"
 
   devel do
-    url "https://github.com/bitcoin/bitcoin/archive/v0.10.0rc1.tar.gz"
-    sha256 "596c03e8a1820db3ef901ed209178504b858c6b24496ba6dd53197584737f857"
-    version "0.10.0.rc1"
+    url "https://github.com/bitcoin/bitcoin/archive/v0.10.0rc3.tar.gz"
+    sha256 "862df879e8e462449619cc40e43dd632b6d4fa5ab4167cd5dccf158aff081114"
+    version "0.10.0.rc3"
+
+    depends_on "gmp"
   end
 
   option "with-gui", "Build with the GUI enabled in addition to the Daemon/CLI"
