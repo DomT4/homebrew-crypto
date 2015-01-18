@@ -1,4 +1,4 @@
-class Openssl < Formula
+class Copenssl < Formula
   homepage "https://openssl.org"
   url "https://www.openssl.org/source/openssl-1.0.1l.tar.gz"
   mirror "https://raw.githubusercontent.com/DomT4/LibreMirror/master/OpenSSL/openssl-1.0.1l.tar.gz"
@@ -96,7 +96,7 @@ class Openssl < Formula
   end
 
   def openssldir
-    etc/"openssl"
+    etc/"copenssl"
   end
 
   def post_install
