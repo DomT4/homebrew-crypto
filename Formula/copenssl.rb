@@ -20,18 +20,18 @@ class Copenssl < Formula
   end
 
   def configure_args; %W[
-      --prefix=#{prefix}
-      --openssldir=#{openssldir}
-      no-ssl2
-      no-ssl3
-      no-idea
-      no-mdc2
-      no-rc5
-      enable-tlsext
-      zlib-dynamic
-      shared
-      enable-cms
-    ]
+    --prefix=#{prefix}
+    --openssldir=#{openssldir}
+    no-ssl2
+    no-ssl3
+    no-idea
+    no-mdc2
+    no-rc5
+    enable-tlsext
+    zlib-dynamic
+    shared
+    enable-cms
+  ]
   end
 
   def install
@@ -110,6 +110,9 @@ class Copenssl < Formula
   end
 
   def caveats; <<-EOS.undent
+    This is the same OpenSSL you can find in Homebrew/Homebrew, except
+    IDEA and SSLv3 have been disabled completely.
+
     A CA file has been bootstrapped using certificates from the system
     keychain. To add additional certificates, place .pem files in
       #{openssldir}/certs
