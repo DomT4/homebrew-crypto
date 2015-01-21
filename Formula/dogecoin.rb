@@ -1,7 +1,7 @@
 class Dogecoin < Formula
   homepage "http://dogecoin.com/"
-  url "https://github.com/dogecoin/dogecoin/archive/v1.8.1.tar.gz"
-  sha256 "a2ef769fe582f065f1682db9cfb858918141f9e9aa92f602edd8c80600b17240"
+  url "https://github.com/dogecoin/dogecoin/archive/v1.8.2.tar.gz"
+  sha256 "87060dfe6d9770f8af17c447120cb6a059bbd84687dfd6a1f0787c9d75d75d9e"
   head "https://github.com/dogecoin/dogecoin.git"
 
   option "with-gui", "Build with the GUI enabled in addition to the Daemon/CLI"
