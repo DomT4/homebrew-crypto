@@ -1,7 +1,7 @@
 class Boringssl < Formula
   homepage "https://boringssl.googlesource.com"
-  url "https://boringssl.googlesource.com/boringssl.git", :revision => "a307dfd29fccb830b1c59b25060ded9a11254db4"
-  version "0.0.0.3" # Fake version so we can update the formula regularly & easily.
+  url "https://boringssl.googlesource.com/boringssl.git", :revision => "07100c6e69061738f48481e2d42ad403248b24a6"
+  version "0.0.0.4" # Fake version so we can update the formula regularly & easily.
 
   keg_only :provided_by_osx, <<-EOS.undent
     "Apple provides a deprecated OpenSSL, which conflicts with this.
