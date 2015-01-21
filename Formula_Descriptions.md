@@ -7,6 +7,8 @@ Formula Descriptions
 
 * boringssl - Google’s SSL Library.
 
+* cloudflare-openssl - OpenSSL 1.0.2-stable compiled with Cloudflare’s ChaCha20 & Poly1305 patch, the link of which you can find in the formula.
+
 * copenssl - OpenSSL. Same formula as in Homebrew/Homebrew, except this one disables IDEA and SSLv3 by default.
 
 * deluge - Popular open-source bittorrent client. Debian distributes itself optionally through Torrent links - Torrenting in itself is not a crime, I am not facilitating crime. If you think I am, get a grip.
@@ -26,3 +28,10 @@ Formula Descriptions
 * secp256k1 - Bitcoin’s experimental curves library.
 
 * truecrypt - My fork of the 7.1a Truecrypt source code. All modifications, of which there are none to the source code itself, are documented by commits in the upstream repo.
+
+
+**Standard Boring Disclaimer**
+
+Although I’ve glanced over both Peter Mosman’s OpenSSL changes and Cloudflare’s ChaCha-Poly patch, I hate C with a burning passion and have yet to muster the courage to learn it to an acceptable level; Thus, don’t presume that because they are included here they are “safe”. That determination is your’s to make, not mine.
+
+The same applies more broadly to the entire repo. Be paranoid. Check things yourself. Decide what to trust from your own determination. You can see all the changes I’ve made to the formulae through commits, but you may wish to (and should) check any patches used in addition.
