@@ -1,5 +1,3 @@
-require "formula"
-
 # NOTE: Configure will fail if using awk 20110810 from dupes.
 # Upstream issue: https://savannah.gnu.org/bugs/index.php?37063
 
@@ -8,7 +6,7 @@ class GnuWget < Formula
   url "http://ftpmirror.gnu.org/wget/wget-1.16.1.tar.xz"
   mirror "https://ftp.gnu.org/gnu/wget/wget-1.16.1.tar.xz"
   sha1 "21cd7eee08ab5e5a14fccde22a7aec55b5fcd6fc"
-  revision 2
+  revision 3
 
   option "with-default-names", "Do not prepend 'l' to the binary"
 
