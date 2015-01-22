@@ -4,7 +4,7 @@ class Bopenssh < Formula
   mirror "http://ftp.eu.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-6.7p1.tar.gz"
   version "6.7p1"
   sha256 "b2f8394eae858dabbdef7dac10b99aec00c95462753e80342e530bbb6f725507"
-  revision 3
+  revision 4
 
   option "with-ldns", "build with ldns"
   option "with-keychain-support", "Add native OS X Keychain and Launch Daemon support to ssh-agent"
