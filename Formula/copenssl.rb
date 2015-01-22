@@ -1,8 +1,8 @@
 class Copenssl < Formula
   homepage "https://openssl.org"
-  url "https://www.openssl.org/source/openssl-1.0.1l.tar.gz"
-  mirror "https://raw.githubusercontent.com/DomT4/LibreMirror/master/OpenSSL/openssl-1.0.1l.tar.gz"
-  sha256 "b2cf4d48fe5d49f240c61c9e624193a6f232b5ed0baf010681e725963c40d1d4"
+  url "https://www.openssl.org/source/openssl-1.0.2.tar.gz"
+  mirror "https://raw.githubusercontent.com/DomT4/LibreMirror/master/OpenSSL/openssl-1.0.2.tar.gz"
+  sha256 "8c48baf3babe0d505d16cfc0cf272589c66d3624264098213db0fb00034728e9"
 
   option :universal
   option "without-check", "Skip build-time tests (not recommended)"
