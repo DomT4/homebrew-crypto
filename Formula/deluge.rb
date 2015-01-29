@@ -3,6 +3,8 @@ class Deluge < Formula
   url "http://download.deluge-torrent.org/source/deluge-1.3.11.tar.gz"
   sha256 "80b0a2a3460d52a5f53df26a9ce314e3e792f2e3f45b7c389140fd830bdee1b0"
 
+  head "git://deluge-torrent.org/deluge.git", :branch => "develop"
+
   depends_on :python if MacOS.version <= :snow_leopard
   depends_on "intltool" => :build
   depends_on "gettext"
@@ -49,8 +51,8 @@ class Deluge < Formula
 
   # For Web UI
   resource "mako" do
-    url "https://pypi.python.org/packages/source/M/Mako/Mako-1.0.0.tar.gz"
-    sha256 "a3cd72cfef507204b50f74ffcbfcfde7e856437891d3f6cfe780866986d006fe"
+    url "https://pypi.python.org/packages/source/M/Mako/Mako-1.0.1.tar.gz"
+    sha256 "45f0869febea59dab7efd256fb451c377cbb7947bef386ff0bb44627c31a8d1c"
   end
 
   def install
