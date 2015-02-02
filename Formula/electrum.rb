@@ -1,10 +1,14 @@
-require "formula"
-
 class Electrum < Formula
   homepage "https://electrum.org/"
   url "https://download.electrum.org/Electrum-1.9.8.tar.gz"
   sha256 "8fc144a32013e4a747fea27fff981762a6b9e14cde9ffb405c4c721975d846ff"
   head "https://github.com/spesmilo/electrum.git"
+
+  devel do
+    url "https://github.com/spesmilo/electrum/archive/2.0-beta.tar.gz"
+    sha256 "29b31453548e733fb70f5ba338f57b2330829452c9165a0cc9109711b24ec5f2"
+    version "2.0-beta"
+  end
 
   depends_on :python if MacOS.version <= :snow_leopard
   depends_on "pkg-config" => :build
@@ -12,6 +16,7 @@ class Electrum < Formula
   depends_on "sip"
   depends_on "qt"
   depends_on "gettext"
+  depends_on "protobuf" => "with-python"
 
   resource "slowaes" do
     url "https://pypi.python.org/packages/source/s/slowaes/slowaes-0.1a1.tar.gz"
@@ -24,8 +29,8 @@ class Electrum < Formula
   end
 
   resource "requests" do
-    url "https://pypi.python.org/packages/source/r/requests/requests-2.4.3.tar.gz"
-    sha256 "53c68313c5c6149b1a899234c000296e60a8900682accf73d6f0c6d608afc6b1"
+    url "https://pypi.python.org/packages/source/r/requests/requests-2.5.1.tar.gz"
+    sha256 "7b7735efd3b1e2323dc9fcef060b380d05f5f18bd0f247f5e9e74a628279de66"
   end
 
   resource "pyasn" do
@@ -49,37 +54,39 @@ class Electrum < Formula
   end
 
   resource "tlslite" do
-    url "https://pypi.python.org/packages/source/t/tlslite/tlslite-0.4.6.tar.gz"
-    sha256 "5a707af9afbd27cf99c87697ce2f7e87752cf160f20384212bc2d1d42ea7dd08"
+    url "https://pypi.python.org/packages/source/t/tlslite/tlslite-0.4.8.tar.gz"
+    sha256 "d9b447048a322c70df800f540ab577c93ecf20de52c0a02c8621176e4733bdbb"
   end
 
   resource "pycurl" do
-    url "https://pypi.python.org/packages/source/p/pycurl/pycurl-7.19.5.tar.gz"
-    sha256 "69a0aa7c9dddbfe4cebf4d1f674c490faccf739fc930d85d8990ce2fd0551a43"
+    url "https://pypi.python.org/packages/source/p/pycurl/pycurl-7.19.5.1.tar.gz"
+    sha256 "6e9770f80459757f73bd71af82fbb29cd398b38388cdf1beab31ea91a331bc6c"
   end
 
   def install
-    ENV.prepend_create_path "PYTHONPATH", "#{libexec}/lib/python2.7/site-packages"
+    ENV.prepend_create_path "PYTHONPATH", libexec/"vendor/lib/python2.7/site-packages"
     %w[slowaes pbkdf2 requests pyasn pyasn1modules qrcode socksipy tlslite pycurl].each do |r|
       resource(r).stage do
-        pyargs = ["setup.py", "install", "--prefix=#{libexec}"]
+        pyargs = ["setup.py", "install", "--prefix=#{libexec}/vendor"]
           unless %w[socksipy tlslite pycurl].include? r
             pyargs << "--single-version-externally-managed" << "--record=installed.txt"
           end
         system "python", *pyargs
       end
     end
+
+    ENV.prepend_create_path "PYTHONPATH", libexec/"lib/python2.7/site-packages"
     system "python", "mki18n.py"
     system "pyrcc4", "icons.qrc", "-o", "gui/qt/icons_rc.py"
-    system "python", "setup.py", "install", "--prefix=#{prefix}",
-           "--single-version-externally-managed", "--record=installed.txt"
+    system "python", *Language::Python.setup_install_args(libexec)
 
+    bin.install Dir["#{libexec}/bin/*"]
     bin.env_script_all_files(libexec+"bin", :PYTHONPATH => ENV["PYTHONPATH"])
   end
 
   def caveats; <<-EOS.undent
     To finish installation you must do:
-      sudo pip install ecdsa
+      pip install ecdsa
     EOS
   end
 end
