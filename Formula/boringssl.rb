@@ -1,7 +1,7 @@
 class Boringssl < Formula
   homepage "https://boringssl.googlesource.com"
-  url "https://boringssl.googlesource.com/boringssl.git", :revision => "36eb7d5fbc841987be3d6272884c07c90328dbb1"
-  version "0.0.0.5" # Fake version so we can update the formula regularly & easily.
+  url "https://boringssl.googlesource.com/boringssl.git", :revision => "3fd1fbd1c80fdeff474b468308f47284c98f7f00"
+  version "0.0.0.6" # Fake version so we can update the formula regularly & easily.
 
   keg_only :provided_by_osx, <<-EOS.undent
     "Apple provides a deprecated OpenSSL, which conflicts with this.
@@ -16,7 +16,7 @@ class Boringssl < Formula
 
   def install
     if build.with? "documentation"
-      mkdir_p "#{share}/doc"
+      mkdir_p share/"doc"
       cd "util" do
         system "go", "build", "doc.go"
         system buildpath/"util/doc", "--config", buildpath/"util/doc.config", "--out", "#{share}/doc"
