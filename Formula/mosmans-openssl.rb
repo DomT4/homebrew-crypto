@@ -1,8 +1,8 @@
 class MosmansOpenssl < Formula
   homepage "https://www.onwebsecurity.com/cryptography/openssl"
   url "https://github.com/PeterMosmans/openssl.git",
-      :branch => "1.0.2-chacha", :revision => "a68fbb0a6b42189980d226575a381e0bd605cbb0"
-  version "1.0.2_chacha_m1"
+      :branch => "1.0.2-chacha", :revision => "56fc479407ed6291de82130aa425601f4fc99f02"
+  version "1.0.2_chacha_m2"
 
   option :universal
   option "without-check", "Skip build-time tests (not recommended)"
@@ -23,6 +23,8 @@ class MosmansOpenssl < Formula
     --prefix=#{prefix}
     --openssldir=#{openssldir}
     no-ssl2
+    no-ssl3
+    no-ssl3-method
     enable-tlsext
     zlib-dynamic
     shared
