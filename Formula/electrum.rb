@@ -5,9 +5,9 @@ class Electrum < Formula
   head "https://github.com/spesmilo/electrum.git"
 
   devel do
-    url "https://github.com/spesmilo/electrum/archive/2.0-beta.tar.gz"
-    sha256 "29b31453548e733fb70f5ba338f57b2330829452c9165a0cc9109711b24ec5f2"
-    version "2.0-beta"
+    url "https://github.com/spesmilo/electrum/archive/2.0b2.tar.gz"
+    sha256 "2380b99c81ee25b4cc7591bea778c8d53b54782c2b2d499904ebcc99cd515916"
+    version "2.0-beta2"
   end
 
   depends_on :python if MacOS.version <= :snow_leopard
@@ -67,16 +67,11 @@ class Electrum < Formula
     ENV.prepend_create_path "PYTHONPATH", libexec/"vendor/lib/python2.7/site-packages"
     %w[slowaes pbkdf2 requests pyasn pyasn1modules qrcode socksipy tlslite pycurl].each do |r|
       resource(r).stage do
-        pyargs = ["setup.py", "install", "--prefix=#{libexec}/vendor"]
-          unless %w[socksipy tlslite pycurl].include? r
-            pyargs << "--single-version-externally-managed" << "--record=installed.txt"
-          end
-        system "python", *pyargs
+        system "python", *Language::Python.setup_install_args(libexec/"vendor")
       end
     end
 
     ENV.prepend_create_path "PYTHONPATH", libexec/"lib/python2.7/site-packages"
-    system "python", "mki18n.py"
     system "pyrcc4", "icons.qrc", "-o", "gui/qt/icons_rc.py"
     system "python", *Language::Python.setup_install_args(libexec)
 
