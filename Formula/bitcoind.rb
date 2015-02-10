@@ -4,9 +4,9 @@ class Bitcoind < Formula
   sha256 "3ed92e8323cb4187cae015457c7c5920a5c658438f01c6c45f0ce3aabf9bd428"
 
   devel do
-    url "https://github.com/bitcoin/bitcoin/archive/v0.10.0rc3.tar.gz"
-    sha256 "862df879e8e462449619cc40e43dd632b6d4fa5ab4167cd5dccf158aff081114"
-    version "0.10.0.rc3"
+    url "https://github.com/bitcoin/bitcoin/archive/v0.10.0rc4.tar.gz"
+    sha256 "c2bee75b6dc5f8a88e286676b1ebbc4bfd9c86caffe1c10f7599d3ef89e38856"
+    version "0.10.0.rc4"
 
     depends_on "gmp"
   end
