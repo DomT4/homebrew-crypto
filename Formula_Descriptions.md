@@ -7,6 +7,8 @@ Formula Descriptions
 
 * boringssl - Google’s SSL Library.
 
+* ca-bundle - Uses [cURL’s CA Bundle script](https://github.com/bagder/curl/blob/master/lib/mk-ca-bundle.pl) to install up-to-date certs for use with Homebrew’s OpenSSL, but the certs are portable, so feel free to move the generated bundle anywhere.
+
 * copenssl - OpenSSL. Same formula as in Homebrew/Homebrew, except this one disables IDEA and SSLv3 by default.
 
 * deluge - Popular open-source bittorrent client. Debian distributes itself optionally through Torrent links - Torrenting in itself is not a crime, I am not facilitating crime. If you think I am, get a grip.
