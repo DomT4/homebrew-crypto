@@ -7,8 +7,6 @@ Formula Descriptions
 
 * boringssl - Google’s SSL Library.
 
-* cloudflare-openssl - OpenSSL 1.0.2-stable compiled with Cloudflare’s ChaCha20 & Poly1305 patch, the link of which you can find in the formula.
-
 * copenssl - OpenSSL. Same formula as in Homebrew/Homebrew, except this one disables IDEA and SSLv3 by default.
 
 * deluge - Popular open-source bittorrent client. Debian distributes itself optionally through Torrent links - Torrenting in itself is not a crime, I am not facilitating crime. If you think I am, get a grip.
