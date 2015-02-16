@@ -1,15 +1,8 @@
 class Bitcoind < Formula
   homepage "https://bitcoin.org/en/"
-  url "https://github.com/bitcoin/bitcoin/archive/v0.9.3.tar.gz"
-  sha256 "3ed92e8323cb4187cae015457c7c5920a5c658438f01c6c45f0ce3aabf9bd428"
-
-  devel do
-    url "https://github.com/bitcoin/bitcoin/archive/v0.10.0rc4.tar.gz"
-    sha256 "c2bee75b6dc5f8a88e286676b1ebbc4bfd9c86caffe1c10f7599d3ef89e38856"
-    version "0.10.0.rc4"
-
-    depends_on "gmp"
-  end
+  url "https://github.com/bitcoin/bitcoin/archive/v0.10.0.tar.gz"
+  sha256 "be57f3b0d64a797873189e45851f3b3510832e14ff18b5f563e1ba8911d145ac"
+  head "https://github.com/bitcoin/bitcoin.git"
 
   option "with-gui", "Build with the GUI enabled in addition to the Daemon/CLI"
 
@@ -20,19 +13,14 @@ class Bitcoind < Formula
   depends_on :xcode => :build
   depends_on "openssl"
   depends_on "boost"
+  depends_on "gmp"
   depends_on "miniupnpc" => :recommended
 
   if build.with? "gui"
     depends_on "protobuf"
-    depends_on "qt"
+    depends_on "qt5"
     depends_on "qrencode"
     depends_on "gettext" => :recommended
-  end
-
-  head do
-    url "https://github.com/bitcoin/bitcoin.git"
-
-    depends_on "gmp"
   end
 
   resource "berkeleydb4" do
@@ -44,15 +32,15 @@ class Bitcoind < Formula
     resource("berkeleydb4").stage do
       ENV.deparallelize
 
-    inreplace "dbinc/atomic.h", "__atomic_compare_exchange((p), (o), (n))", "__atomic_compare_exchange_db((p), (o), (n))"
-    inreplace "dbinc/atomic.h", "static inline int __atomic_compare_exchange(", "static inline int __atomic_compare_exchange_db("
+      inreplace "dbinc/atomic.h", "__atomic_compare_exchange((p), (o), (n))", "__atomic_compare_exchange_db((p), (o), (n))"
+      inreplace "dbinc/atomic.h", "static inline int __atomic_compare_exchange(", "static inline int __atomic_compare_exchange_db("
 
-    args = ["--disable-debug",
-            "--prefix=#{libexec}/berkeley-db4/4.8.30",
-            "--mandir=#{libexec}/share/man/berkeley-db4/4.8.30",
-            "--disable-shared",
-            "--disable-replication",
-            "--enable-cxx"]
+      args = ["--disable-debug",
+              "--prefix=#{libexec}/berkeley-db4/4.8.30",
+              "--mandir=#{libexec}/share/man/berkeley-db4/4.8.30",
+              "--disable-shared",
+              "--disable-replication",
+              "--enable-cxx"]
 
       cd "build_unix" do
         system "../dist/configure", *args
@@ -68,10 +56,9 @@ class Bitcoind < Formula
     args = ["--prefix=#{libexec}",
             "--disable-dependency-tracking"]
 
-
     if build.with? "gui"
       args << "--with-qrencode"
-      args << "--with-gui"
+      args << "--with-gui=qt5"
     end
 
     args << "--with-miniupnpc" if build.with? "miniupnpc"
@@ -86,10 +73,11 @@ class Bitcoind < Formula
 
   def caveats; <<-EOS.undent
     Bitcoind will need to set up bitcoin.conf on first-run. You can manually do this with:
+
       echo -e "rpcuser=bitcoinrpc\\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > ~/Library/Application\\ Support/Bitcoin/bitcoin.conf
       chmod 600 ~/Library/Application\\ Support/Bitcoin/bitcoin.conf
 
-      Or automatically by running 'bitcoind' in your Terminal application, which will provide you instructions.
+    Or automatically by running 'bitcoind' in your Terminal application, which will provide you instructions.
     EOS
   end
 end
