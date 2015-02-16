@@ -1,7 +1,7 @@
 Formula Descriptions
 ===============
 
-* bitcoind - The Bitcoin Client. GUI Optional. Currently building against Qt4 but will be switched to Qt5 in the near future.
+* bitcoind - The Bitcoin Client. GUI Optional.
 
 * bopenssh - OpenSSH, builds using LibreSSL instead of OpenSSL.
 
