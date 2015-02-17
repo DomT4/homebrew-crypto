@@ -17,6 +17,8 @@ Formula Descriptions
 
 * electrum - Popular “Lite” Bitcoin Wallet.
 
+* gnupg21x - The GnuPG 2.1.x (Modern) branch with ECC Key support. Please don’t ignore the formula caveats around backing up your `.gnupg` folder prior to installation.
+
 * gnu-wget - Same formula as in Homebrew/Homebrew, except this builds against LibreSSL rather than OpenSSL. Consequently, unless you choose otherwise with the applicable option, the binary is called `lwget` to prevent conflict with the normal `wget`.
 
 * mosmans-openssl - Peter Mosman’s OpenSSL fork with enabled ChaCha20 & Poly1305 support. Based off the 1.0.2-stable branch.
