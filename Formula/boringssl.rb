@@ -2,6 +2,7 @@ class Boringssl < Formula
   homepage "https://boringssl.googlesource.com"
   url "https://boringssl.googlesource.com/boringssl.git", :revision => "26c2b929ba8d298950c502d0cf3af7f08a94d853"
   version "0.0.0.8" # Fake version so we can update the formula regularly & easily.
+  revision 1
 
   keg_only :provided_by_osx, <<-EOS.undent
     "Apple provides a deprecated OpenSSL, which conflicts with this.
@@ -24,7 +25,6 @@ class Boringssl < Formula
     end
 
     mkdir "build"
-    # Use Ninja instead of CMake directly because it's quicker, and less messy.
     cd "build" do
       system "cmake", "-GNinja", ".."
       system "ninja"
@@ -33,6 +33,6 @@ class Boringssl < Formula
       bin.install "tool/bssl"
       lib.install "crypto/libcrypto.a", "ssl/libssl.a"
     end
-    include.install "include"
+    include.install Dir["include/*"]
   end
 end
