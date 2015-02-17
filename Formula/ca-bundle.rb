@@ -1,6 +1,6 @@
 class CaBundle < Formula
   homepage "https://github.com/bagder/curl"
-  url "https://raw.githubusercontent.com/bagder/curl/master/lib/mk-ca-bundle.pl"
+  url "https://raw.githubusercontent.com/bagder/curl/834608c39d24b211011aa420adf566113149b888/lib/mk-ca-bundle.pl"
   sha256 "cee55d80113aac663d15dfb10fdd770f94ee04c09888368d721bc75e026a830f"
   version "02_2015"
 
