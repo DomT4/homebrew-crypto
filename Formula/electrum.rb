@@ -5,9 +5,9 @@ class Electrum < Formula
   head "https://github.com/spesmilo/electrum.git"
 
   devel do
-    url "https://github.com/spesmilo/electrum/archive/2.0b2.tar.gz"
-    sha256 "2380b99c81ee25b4cc7591bea778c8d53b54782c2b2d499904ebcc99cd515916"
-    version "2.0-beta2"
+    url "https://github.com/spesmilo/electrum/archive/2.0b3.tar.gz"
+    sha256 "a4b0eff9b976cafd11e6fdb5b21226af027f99e19c101d4e61e3183d67f0435d"
+    version "2.0-beta3"
   end
 
   depends_on :python if MacOS.version <= :snow_leopard
@@ -64,6 +64,16 @@ class Electrum < Formula
   end
 
   def install
+    if build.devel?
+      ohai <<-EOS.undent
+       The 2.0 devel branch changes your wallet format irreversibly.
+       You should halt this build now if you want to keep using your Electrum
+       wallet with the 1.9.8 branch.
+
+       https://github.com/spesmilo/electrum/issues/1001
+      EOS
+    end
+
     ENV.prepend_create_path "PYTHONPATH", libexec/"vendor/lib/python2.7/site-packages"
     %w[slowaes pbkdf2 requests pyasn pyasn1modules qrcode socksipy tlslite pycurl].each do |r|
       resource(r).stage do
