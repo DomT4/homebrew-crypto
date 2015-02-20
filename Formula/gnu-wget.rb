@@ -19,11 +19,10 @@ class GnuWget < Formula
     depends_on "gettext"
   end
 
-  option "with-iri", "Enable iri support"
   option "with-debug", "Build with debug support"
 
   depends_on "libressl"
-  depends_on "libidn" if build.with? "iri"
+  depends_on "libidn" => :optional
   depends_on "pcre" => :optional
 
   # To remove the LibreSSL-unsupported RAND-egd option from wget
@@ -31,11 +30,6 @@ class GnuWget < Formula
   patch :DATA
 
   def install
-    if build.head?
-      ln_s cached_download/".git", ".git"
-      system "./bootstrap"
-    end
-
     args = %W[
       --prefix=#{prefix}
       --sysconfdir=#{etc}
@@ -45,12 +39,13 @@ class GnuWget < Formula
 
     args << "--program-prefix=l" if build.without? "default-names"
     args << "--disable-debug" if build.without? "debug"
-    args << "--disable-iri" if build.without? "iri"
+    args << "--disable-iri" if build.without? "libidn"
     args << "--disable-pcre" if build.without? "pcre"
 
+    system "./bootstrap" if build.head?
     system "./configure", *args
     system "make", "install"
-    rm_rf "#{share}/info"
+    rm_rf share/"info"
 
     mv "#{man1}/wget.1", "#{man1}/lwget.1" if build.without? "default-names"
   end
@@ -68,8 +63,7 @@ class GnuWget < Formula
   end
 
   test do
-    system "#{bin}/lwget", "-O", "-", "https://duckduckgo.com" if build.without? "default-names"
-    system "#{bin}/wget", "-O", "-", "https://duckduckgo.com" if build.with? "default-names"
+    system "#{bin}/lwget", "-O", "-", "https://duckduckgo.com"
   end
 end
 
