@@ -25,8 +25,6 @@ Formula Descriptions
 
 * poly1305aes - Implementation of Poly1305 for MAC released into the public domain by D. J. Bernstein.
 
-* qbittorrent - Popular Bittorrent client. Not super-stable yet; waiting on the next release to fix several outstanding major issues.
-
 * secp256k1 - Bitcoin’s experimental curves library.
 
 * truecrypt - My fork of the 7.1a Truecrypt source code. All modifications, of which there are none to the source code itself, are documented by commits in the upstream repo.
@@ -34,6 +32,6 @@ Formula Descriptions
 
 **Standard Boring Disclaimer**
 
-Although I’ve glanced over both Peter Mosman’s OpenSSL changes and Cloudflare’s ChaCha-Poly patch, I hate C with a burning passion and have yet to muster the courage to learn it to an acceptable level; Thus, don’t presume that because they are included here they are “safe”. That determination is your’s to make, not mine.
+Although I’ve glanced over Peter Mosman’s OpenSSL changes I hate C with a burning passion and have yet to muster the courage to learn it to an acceptable level; Thus, don’t presume that because certain formulae are included here they are “safe”. That determination is your’s to make, not mine.
 
 The same applies more broadly to the entire repo. Be paranoid. Check things yourself. Decide what to trust from your own determination. You can see all the changes I’ve made to the formulae through commits, but you may wish to (and should) check any patches used in addition.
