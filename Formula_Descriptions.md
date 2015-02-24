@@ -23,6 +23,8 @@ Formula Descriptions
 
 * mosmans-openssl - Peter Mosman’s OpenSSL fork with enabled ChaCha20 & Poly1305 support. Based off the 1.0.2-stable branch.
 
+* parcimonie-sh - parcimonie, rewritten in one simple, single Bash script. See [here](https://github.com/EtiennePerot/parcimonie.sh).
+
 * poly1305aes - Implementation of Poly1305 for MAC released into the public domain by D. J. Bernstein.
 
 * secp256k1 - Bitcoin’s experimental curves library.
