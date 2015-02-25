@@ -3,22 +3,16 @@ class ParcimonieSh < Formula
   url "https://github.com/EtiennePerot/parcimonie.sh.git", :revision => "328bd84f1be4baa498410e969aff0bf39589e48d"
   head "https://github.com/EtiennePerot/parcimonie.sh.git"
   version "14012015"
+  revision 1
 
-  option "with-secure-keyserver", "Default the keyserver to hkps://hkps.pool.sks-keyservers.net:443"
-
-  depends_on "gnupg2"
-  depends_on "torsocks"
-  depends_on "tor"
+  depends_on "gnupg2" => :recommended
+  depends_on "torsocks" => :recommended
+  depends_on "tor" => :recommended
 
   def install
     inreplace "parcimonie.sh" do |s|
-      s.gsub! "${GNUPG_BINARY:-gpg}", "${GNUPG_BINARY:-#{Formula["gnupg2"].opt_bin}/gpg2}"
-      s.gsub! "${TORSOCKS_BINARY:-torsocks}", "${TORSOCKS_BINARY:-#{Formula["torsocks"].opt_bin}/torsocks}"
+      s.gsub! "${GNUPG_BINARY:-gpg}", "${GNUPG_BINARY:-gpg2}"
       s.gsub! "${TMP_PREFIX:-/tmp/parcimonie}", "${TMP_PREFIX:-#{var}/parcimonie}"
-    end
-
-    if build.with? "secure-keyserver"
-      inreplace "parcimonie.sh", "${GNUPG_KEYSERVER:-}", "${GNUPG_KEYSERVER:-hkps://hkps.pool.sks-keyservers.net}"
     end
 
     mkdir_p var/"parcimonie"
@@ -40,7 +34,7 @@ class ParcimonieSh < Formula
         <true/>
         <key>ProgramArguments</key>
         <array>
-            <string>/usr/bin/env bash</string>
+            <string>/bin/sh</string>
             <string>-c</string>
             <string>#{opt_bin}/parcimonie</string>
         </array>
