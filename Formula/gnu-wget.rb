@@ -3,10 +3,9 @@
 
 class GnuWget < Formula
   homepage "https://www.gnu.org/software/wget/"
-  url "http://ftpmirror.gnu.org/wget/wget-1.16.1.tar.xz"
-  mirror "https://ftp.gnu.org/gnu/wget/wget-1.16.1.tar.xz"
-  sha1 "21cd7eee08ab5e5a14fccde22a7aec55b5fcd6fc"
-  revision 3
+  url "http://ftpmirror.gnu.org/wget/wget-1.16.2.tar.xz"
+  mirror "https://ftp.gnu.org/gnu/wget/wget-1.16.2.tar.xz"
+  sha256 "a7dfde1bcb0eb135addf587a649fd0e47c1a876edef359b9197cdffd1fdcd7d5"
 
   option "with-default-names", "Do not prepend 'l' to the binary"
 
@@ -24,10 +23,6 @@ class GnuWget < Formula
   depends_on "libressl"
   depends_on "libidn" => :optional
   depends_on "pcre" => :optional
-
-  # To remove the LibreSSL-unsupported RAND-egd option from wget
-  # This patch originates from the OpenBSD team.
-  patch :DATA
 
   def install
     args = %W[
@@ -58,28 +53,10 @@ class GnuWget < Formula
 
     If you wish to build wget with OpenSSL, as per usual, use the normal
     Homebrew one found with `brew install wget`.
-    Once wget with LibreSSL is in Homebrew-core, this file will cease to exist.
     EOS
   end
 
   test do
-    system "#{bin}/lwget", "-O", "-", "https://duckduckgo.com"
+    system bin/"lwget", "-O", "-", "https://duckduckgo.com"
   end
 end
-
-__END__
-
---- a/src/openssl.c Sat Apr 19 06:12:48 2014
-+++ b/src/openssl.c Sat Apr 19 06:13:18 2014
-@@ -86,9 +86,11 @@ init_prng (void)
-   if (RAND_status ())
-     return;
- 
-+#ifdef HAVE_SSL_RAND_EGD
-   /* Get random data from EGD if opt.egd_file was used.  */
-   if (opt.egd_file && *opt.egd_file)
-     RAND_egd (opt.egd_file);
-+#endif
- 
-   if (RAND_status ())
-     return;
