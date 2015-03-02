@@ -1,14 +1,8 @@
 class Electrum < Formula
   homepage "https://electrum.org/"
-  url "https://download.electrum.org/Electrum-1.9.8.tar.gz"
-  sha256 "8fc144a32013e4a747fea27fff981762a6b9e14cde9ffb405c4c721975d846ff"
+  url "https://electrum.org/download/Electrum-2.0.tar.gz"
+  sha256 "69942f9edf4067e4a9b6cb66e7a5ae17215bab295f83647999656f847481bdcf"
   head "https://github.com/spesmilo/electrum.git"
-
-  devel do
-    url "https://github.com/spesmilo/electrum/archive/2.0b3.tar.gz"
-    sha256 "a4b0eff9b976cafd11e6fdb5b21226af027f99e19c101d4e61e3183d67f0435d"
-    version "2.0-beta3"
-  end
 
   depends_on :python if MacOS.version <= :snow_leopard
   depends_on "pkg-config" => :build
@@ -29,11 +23,11 @@ class Electrum < Formula
   end
 
   resource "requests" do
-    url "https://pypi.python.org/packages/source/r/requests/requests-2.5.1.tar.gz"
-    sha256 "7b7735efd3b1e2323dc9fcef060b380d05f5f18bd0f247f5e9e74a628279de66"
+    url "https://pypi.python.org/packages/source/r/requests/requests-2.5.3.tar.gz"
+    sha256 "55d7f5619daae94ec49ee81ed8c865e5a2a47f0bbf8e06cf94636bee103eaf65"
   end
 
-  resource "pyasn" do
+  resource "pyasn1" do
     url "https://pypi.python.org/packages/source/p/pyasn1/pyasn1-0.1.7.tar.gz"
     sha256 "e4f81d53c533f6bd9526b047f047f7b101c24ab17339c1a7ad8f98b25c101eab"
   end
@@ -63,19 +57,14 @@ class Electrum < Formula
     sha256 "6e9770f80459757f73bd71af82fbb29cd398b38388cdf1beab31ea91a331bc6c"
   end
 
+  resource "dnspython" do
+    url "https://pypi.python.org/packages/source/d/dnspython/dnspython-1.12.0.zip"
+    sha256 "63bd1fae61809eedb91f84b2185816fac1270ae51494fbdd36ea25f904a8502f"
+  end
+
   def install
-    if build.devel?
-      ohai <<-EOS.undent
-       The 2.0 devel branch changes your wallet format irreversibly.
-       You should halt this build now if you want to keep using your Electrum
-       wallet with the 1.9.8 branch.
-
-       https://github.com/spesmilo/electrum/issues/1001
-      EOS
-    end
-
     ENV.prepend_create_path "PYTHONPATH", libexec/"vendor/lib/python2.7/site-packages"
-    %w[slowaes pbkdf2 requests pyasn pyasn1modules qrcode socksipy tlslite pycurl].each do |r|
+    %w[slowaes pbkdf2 requests pyasn1 pyasn1modules qrcode socksipy tlslite pycurl dnspython].each do |r|
       resource(r).stage do
         system "python", *Language::Python.setup_install_args(libexec/"vendor")
       end
