@@ -1,3 +1,9 @@
+class HasGnuPG2 < Requirement
+  fatal true
+  default_formula "gnupg2"
+  satisfy { which("gpg2") }
+end
+
 class ParcimonieSh < Formula
   homepage "https://github.com/EtiennePerot/parcimonie.sh"
   url "https://github.com/EtiennePerot/parcimonie.sh.git", :revision => "328bd84f1be4baa498410e969aff0bf39589e48d"
@@ -5,15 +11,22 @@ class ParcimonieSh < Formula
   version "14012015"
   revision 2
 
-  depends_on "gnupg2" => :recommended
+  depends_on HasGnuPG2
+  depends_on "gnupg2" => :optional
+  depends_on "homebrew/versions/gnupg21" => :optional
   depends_on "torsocks" => :recommended
-  depends_on "tor" => :recommended
+  depends_on "tor" => :optional
 
   def install
     inreplace "parcimonie.sh" do |s|
-      s.gsub! "${GNUPG_BINARY:-gpg}", "${GNUPG_BINARY:-#{Formula["gnupg2"].opt_bin}/gpg2}"
       s.gsub! "${TORSOCKS_BINARY:-torsocks}", "${TORSOCKS_BINARY:-#{Formula["torsocks"].opt_bin}/torsocks}"
       s.gsub! "${TMP_PREFIX:-/tmp/parcimonie}", "${TMP_PREFIX:-#{var}/parcimonie}"
+    end
+
+    if build.with? "gnupg21"
+      inreplace "parcimonie.sh", "${GNUPG_BINARY:-gpg}", "${GNUPG_BINARY:-#{Formula["gnupg21"].opt_bin}/gpg2}"
+    else
+      inreplace "parcimonie.sh", "${GNUPG_BINARY:-gpg}", "${GNUPG_BINARY:-#{Formula["gnupg2"].opt_bin}/gpg2}"
     end
 
     mkdir_p var/"parcimonie"
