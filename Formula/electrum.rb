@@ -12,6 +12,11 @@ class Electrum < Formula
   depends_on "gettext"
   depends_on "protobuf" => "with-python"
 
+  resource "six" do
+    url "https://pypi.python.org/packages/source/s/six/six-1.9.0.tar.gz"
+    sha256 "e24052411fc4fbd1f672635537c3fc2330d9481b18c0317695b46259512c91d5"
+  end
+
   resource "slowaes" do
     url "https://pypi.python.org/packages/source/s/slowaes/slowaes-0.1a1.tar.gz"
     sha256 "83658ae54cc116b96f7fdb12fdd0efac3a4e8c7c7064e3fac3f4a881aa54bf09"
@@ -64,7 +69,7 @@ class Electrum < Formula
 
   def install
     ENV.prepend_create_path "PYTHONPATH", libexec/"vendor/lib/python2.7/site-packages"
-    %w[slowaes pbkdf2 requests pyasn1 pyasn1modules qrcode socksipy tlslite pycurl dnspython].each do |r|
+    %w[six slowaes pbkdf2 requests pyasn1 pyasn1modules qrcode socksipy tlslite pycurl dnspython].each do |r|
       resource(r).stage do
         system "python", *Language::Python.setup_install_args(libexec/"vendor")
       end
