@@ -6,8 +6,10 @@ class GnuWget < Formula
   url "http://ftpmirror.gnu.org/wget/wget-1.16.2.tar.xz"
   mirror "https://ftp.gnu.org/gnu/wget/wget-1.16.2.tar.xz"
   sha256 "a7dfde1bcb0eb135addf587a649fd0e47c1a876edef359b9197cdffd1fdcd7d5"
+  revision 1
 
   option "with-default-names", "Do not prepend 'l' to the binary"
+  option "with-debug", "Build with debug support"
 
   head do
     url "git://git.savannah.gnu.org/wget.git"
@@ -17,8 +19,6 @@ class GnuWget < Formula
     depends_on "xz" => :build
     depends_on "gettext"
   end
-
-  option "with-debug", "Build with debug support"
 
   depends_on "libressl"
   depends_on "libidn" => :optional
@@ -46,13 +46,8 @@ class GnuWget < Formula
   end
 
   def caveats; <<-EOS.undent
-    This wget exists as a test-bed for using LibreSSL for wget.
-
     The binary is prepended with a 'l' so this can be used
     alongside Homebrew/Homebrew's wget without conflict.
-
-    If you wish to build wget with OpenSSL, as per usual, use the normal
-    Homebrew one found with `brew install wget`.
     EOS
   end
 
