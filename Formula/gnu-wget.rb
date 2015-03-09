@@ -3,10 +3,9 @@
 
 class GnuWget < Formula
   homepage "https://www.gnu.org/software/wget/"
-  url "http://ftpmirror.gnu.org/wget/wget-1.16.2.tar.xz"
-  mirror "https://ftp.gnu.org/gnu/wget/wget-1.16.2.tar.xz"
-  sha256 "a7dfde1bcb0eb135addf587a649fd0e47c1a876edef359b9197cdffd1fdcd7d5"
-  revision 1
+  url "http://ftpmirror.gnu.org/wget/wget-1.16.3.tar.xz"
+  mirror "https://ftp.gnu.org/gnu/wget/wget-1.16.3.tar.xz"
+  sha256 "67f7b7b0f5c14db633e3b18f53172786c001e153d545cfc85d82759c5c2ffb37"
 
   option "with-default-names", "Do not prepend 'l' to the binary"
   option "with-debug", "Build with debug support"
