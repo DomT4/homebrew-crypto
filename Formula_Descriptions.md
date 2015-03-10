@@ -1,6 +1,8 @@
 Formula Descriptions
 ===============
 
+* bfgminer - Popular cryptocurrency mining software.
+
 * bitcoind - The Bitcoin Client. GUI Optional.
 
 * bopenssh - OpenSSH, builds using LibreSSL instead of OpenSSL.
