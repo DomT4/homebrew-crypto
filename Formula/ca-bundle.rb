@@ -2,7 +2,8 @@ class CaBundle < Formula
   homepage "https://github.com/bagder/curl"
   url "https://raw.githubusercontent.com/bagder/curl/143acd6222319e9cf2e355fdc27c07e4e955e403/lib/mk-ca-bundle.pl"
   sha256 "7f28e9e99846b2001b05e682bbdec7c2a270dfa9e32451c17462e9f1b01ea277"
-  version "03_2015"
+  version "032015"
+  revision 1
 
   depends_on "openssl"
   depends_on "curl" => :recommended
