@@ -3,6 +3,7 @@ class Electrum < Formula
   url "https://electrum.org/download/Electrum-2.0.tar.gz"
   sha256 "69942f9edf4067e4a9b6cb66e7a5ae17215bab295f83647999656f847481bdcf"
   head "https://github.com/spesmilo/electrum.git"
+  revision 1
 
   depends_on :python if MacOS.version <= :snow_leopard
   depends_on "pkg-config" => :build
@@ -28,8 +29,8 @@ class Electrum < Formula
   end
 
   resource "requests" do
-    url "https://pypi.python.org/packages/source/r/requests/requests-2.5.3.tar.gz"
-    sha256 "55d7f5619daae94ec49ee81ed8c865e5a2a47f0bbf8e06cf94636bee103eaf65"
+    url "https://pypi.python.org/packages/source/r/requests/requests-2.6.0.tar.gz"
+    sha256 "1cdbed1f0e236f35ef54e919982c7a338e4fea3786310933d3a7887a04b74d75"
   end
 
   resource "pyasn1" do
