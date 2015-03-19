@@ -1,14 +1,14 @@
 class Boringssl < Formula
   homepage "https://boringssl.googlesource.com"
-  url "https://boringssl.googlesource.com/boringssl.git", :revision => "bf0df92964565f819881e78ff3bfb5343e95e130"
-  version "0.0.0.13" # Fake version so we can update the formula regularly & easily.
+  url "https://boringssl.googlesource.com/boringssl.git", :revision => "078abceb29077f9204db3dfca16de646e94c9014"
+  version "0.0.0.15" # Fake version so we can update the formula regularly & easily.
 
   keg_only :provided_by_osx, <<-EOS.undent
     "Apple provides a deprecated OpenSSL, which conflicts with this.
     It also conflicts with our shipped OpenSSL and LibreSSL"
   EOS
 
-  option "without-documentation", "Skip building the documentation."
+  option "with-documentation", "Build the documentation."
 
   depends_on "ninja" => :build
   depends_on "cmake" => :build
