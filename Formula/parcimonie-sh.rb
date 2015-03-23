@@ -1,17 +1,17 @@
-class HasGnuPG2 < Requirement
+class HasGnuPG < Requirement
   fatal true
-  default_formula "gnupg2"
-  satisfy { which("gpg2") }
+  default_formula "gnupg"
+  satisfy { which("gpg") || which("gpg2") }
 end
 
 class ParcimonieSh < Formula
   homepage "https://github.com/EtiennePerot/parcimonie.sh"
-  url "https://github.com/EtiennePerot/parcimonie.sh.git", :revision => "328bd84f1be4baa498410e969aff0bf39589e48d"
+  url "https://github.com/EtiennePerot/parcimonie.sh.git", :revision => "ea857e66720b91aa3c6eed2fc214d587149ca034"
   head "https://github.com/EtiennePerot/parcimonie.sh.git"
-  version "14012015"
-  revision 2
+  version "15032015"
 
-  depends_on HasGnuPG2
+  depends_on HasGnuPG
+  depends_on "gnupg" => :recommended
   depends_on "gnupg2" => :optional
   depends_on "homebrew/versions/gnupg21" => :optional
   depends_on "torsocks" => :recommended
@@ -25,8 +25,10 @@ class ParcimonieSh < Formula
 
     if build.with? "gnupg21"
       inreplace "parcimonie.sh", "${GNUPG_BINARY:-gpg}", "${GNUPG_BINARY:-#{Formula["gnupg21"].opt_bin}/gpg2}"
-    else
+    elsif build.with? "gnupg2"
       inreplace "parcimonie.sh", "${GNUPG_BINARY:-gpg}", "${GNUPG_BINARY:-#{Formula["gnupg2"].opt_bin}/gpg2}"
+    else
+      inreplace "parcimonie.sh", "${GNUPG_BINARY:-gpg}", "${GNUPG_BINARY:-#{Formula["gnupg"].opt_bin}/gpg}"
     end
 
     mkdir_p var/"parcimonie"
