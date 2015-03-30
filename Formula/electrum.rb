@@ -1,9 +1,8 @@
 class Electrum < Formula
   homepage "https://electrum.org/"
-  url "https://electrum.org/download/Electrum-2.0.tar.gz"
-  sha256 "69942f9edf4067e4a9b6cb66e7a5ae17215bab295f83647999656f847481bdcf"
+  url "https://download.electrum.org/Electrum-2.0.4.tar.gz"
+  sha256 "b77f70efbe337387dd9654c660b96dc5608ff7a76fe8fdc573d747e17fce3b61"
   head "https://github.com/spesmilo/electrum.git"
-  revision 1
 
   depends_on :python if MacOS.version <= :snow_leopard
   depends_on "pkg-config" => :build
