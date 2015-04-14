@@ -6,9 +6,9 @@ end
 
 class ParcimonieSh < Formula
   homepage "https://github.com/EtiennePerot/parcimonie.sh"
-  url "https://github.com/EtiennePerot/parcimonie.sh.git", :revision => "ea857e66720b91aa3c6eed2fc214d587149ca034"
+  url "https://github.com/EtiennePerot/parcimonie.sh.git", :revision => "d7d83f0da29d5880da6e8f060fa5e52738e8ae17"
   head "https://github.com/EtiennePerot/parcimonie.sh.git"
-  version "15032015"
+  version "23032015"
 
   depends_on HasGnuPG
   depends_on "gnupg" => :recommended
