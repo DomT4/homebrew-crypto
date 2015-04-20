@@ -12,14 +12,14 @@ class Bopenssh < Formula
   depends_on "ldns" => :optional
 
   patch do
-    url "https://gist.githubusercontent.com/sigkate/fca7ee9fe1cdbe77ba03/raw/6894261e7838d81c76ef4b329e77e80d5ad25afc/patch-openssl-darwin-sandbox.diff"
-    sha1 "332a1831bad9f2ae0f507f7ea0aecc093829b1c4"
+    url "https://gist.githubusercontent.com/jacknagel/e4d68a979dca7f968bdb/raw/f07f00f9d5e4eafcba42cc0be44a47b6e1a8dd2a/sandbox.diff"
+    sha256 "82c287053eed12ce064f0b180eac2ae995a2b97c6cc38ad1bdd7626016204205"
   end
 
   # Patch for SSH tunnelling issues caused by launchd changes on Yosemite
   patch do
-    url "https://trac.macports.org/export/131258/trunk/dports/net/openssh/files/launchd.patch"
-    sha1 "e35731b6d0e999fb1d58362cda2574c0d1efed78"
+    url "https://trac.macports.org/export/135165/trunk/dports/net/openssh/files/launchd.patch"
+    sha1 "02e76c153d2d51bb0b4b0e51dd7b302469bd24deac487f7cca4ee536928bceef"
   end
 
   def install
