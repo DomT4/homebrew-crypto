@@ -1,7 +1,7 @@
 class Secp256k1 < Formula
   homepage "https://github.com/bitcoin/secp256k1"
-  url "https://github.com/bitcoin/secp256k1.git", :revision => "14aacdc5e5a5a3562e3b61d318d33818cbd7fac0"
-  version "0.0.0.13" # Fake version number to make updates easier.
+  url "https://github.com/bitcoin/secp256k1.git", :revision => "f3d3519ce00dd0de59750001d65d6d233c966af0"
+  version "0.0.0.14" # Fake version number to make updates easier.
   head "https://github.com/bitcoin/secp256k1.git"
 
   depends_on "automake" => :build
