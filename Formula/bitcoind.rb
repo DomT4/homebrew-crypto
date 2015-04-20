@@ -4,6 +4,12 @@ class Bitcoind < Formula
   sha256 "be57f3b0d64a797873189e45851f3b3510832e14ff18b5f563e1ba8911d145ac"
   head "https://github.com/bitcoin/bitcoin.git"
 
+  devel do
+    url "https://github.com/bitcoin/bitcoin/archive/v0.10.1rc2.tar.gz"
+    sha256 "2167d36b3f86cca1630c91d144c435c881048d22c68c4f4060d6e653524595ec"
+    version "0.10.1rc2"
+  end
+
   option "with-gui", "Build with the GUI enabled in addition to the Daemon/CLI"
 
   depends_on "pkg-config" => :build
@@ -53,8 +59,7 @@ class Bitcoind < Formula
     ENV.prepend "CPPFLAGS", "-I#{libexec}/berkeley-db4/4.8.30/include"
     ENV.prepend "LDFLAGS", "-L#{libexec}/berkeley-db4/4.8.30/lib"
 
-    args = ["--prefix=#{libexec}",
-            "--disable-dependency-tracking"]
+    args = ["--prefix=#{libexec}", "--disable-dependency-tracking"]
 
     if build.with? "gui"
       args << "--with-qrencode"
