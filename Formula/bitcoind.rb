@@ -5,9 +5,9 @@ class Bitcoind < Formula
   head "https://github.com/bitcoin/bitcoin.git"
 
   devel do
-    url "https://github.com/bitcoin/bitcoin/archive/v0.10.1rc2.tar.gz"
-    sha256 "2167d36b3f86cca1630c91d144c435c881048d22c68c4f4060d6e653524595ec"
-    version "0.10.1rc2"
+    url "https://github.com/bitcoin/bitcoin/archive/v0.10.1rc3.tar.gz"
+    sha256 "51d3543115384b2df688a639261d6e910be5a1f3c42097a4ab595b346d2c9a88"
+    version "0.10.1rc3"
   end
 
   option "with-gui", "Build with the GUI enabled in addition to the Daemon/CLI"
