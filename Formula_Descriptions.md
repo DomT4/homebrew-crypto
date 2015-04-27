@@ -17,8 +17,6 @@ Formula Descriptions
 
 * dogecoin - Dogecoin Client. GUI Optional.
 
-* electrum - Popular “Lite” Bitcoin Wallet.
-
 * gnu-wget - Same formula as in Homebrew/Homebrew, except this builds against LibreSSL rather than OpenSSL. Consequently, unless you choose otherwise with the applicable option, the binary is called `lwget` to prevent conflict with the normal `wget`.
 
 * mosmans-openssl - Peter Mosman’s OpenSSL fork with enabled ChaCha20 & Poly1305 support. Based off the 1.0.2-stable branch.
