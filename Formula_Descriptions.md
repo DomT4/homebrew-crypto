@@ -27,8 +27,6 @@ Formula Descriptions
 
 * secp256k1 - Bitcoin’s experimental curves library.
 
-* truecrypt - My fork of the 7.1a Truecrypt source code. All modifications, of which there are none to the source code itself, are documented by commits in the upstream repo.
-
 
 **Standard Boring Disclaimer**
 
