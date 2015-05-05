@@ -12,7 +12,7 @@ class Dogecoin < Formula
   depends_on "libtool" => :build
   depends_on :xcode => :build
   depends_on "openssl"
-  depends_on "boost"
+  depends_on "homebrew/versions/boost155"
   depends_on "miniupnpc" => :recommended
 
   if build.with? "gui"
@@ -31,15 +31,15 @@ class Dogecoin < Formula
     resource("berkeleydb51").stage do
       ENV.deparallelize
 
-    inreplace "src/dbinc/atomic.h", "__atomic_compare_exchange((p), (o), (n))", "__atomic_compare_exchange_db((p), (o), (n))"
-    inreplace "src/dbinc/atomic.h", "static inline int __atomic_compare_exchange(", "static inline int __atomic_compare_exchange_db("
+      inreplace "src/dbinc/atomic.h", "__atomic_compare_exchange((p), (o), (n))", "__atomic_compare_exchange_db((p), (o), (n))"
+      inreplace "src/dbinc/atomic.h", "static inline int __atomic_compare_exchange(", "static inline int __atomic_compare_exchange_db("
 
-    args = ["--disable-debug",
-            "--prefix=#{libexec}/berkeley-db/5.1.29",
-            "--mandir=#{libexec}/share/man/berkeley-db/5.1.29",
-            "--disable-shared",
-            "--disable-replication",
-            "--enable-cxx"]
+      args = ["--disable-debug",
+              "--prefix=#{libexec}/berkeley-db/5.1.29",
+              "--mandir=#{libexec}/share/man/berkeley-db/5.1.29",
+              "--disable-shared",
+              "--disable-replication",
+              "--enable-cxx"]
 
       cd "build_unix" do
         system "../dist/configure", *args
@@ -53,8 +53,7 @@ class Dogecoin < Formula
     ENV.prepend "LDFLAGS", "-L#{libexec}/berkeley-db/5.1.29/lib"
     system "./autogen.sh"
 
-    args = ["--prefix=#{libexec}",
-            "--disable-dependency-tracking"]
+    args = ["--prefix=#{libexec}", "--disable-dependency-tracking"]
 
     if build.with? "gui"
       args << "--with-qrencode"
