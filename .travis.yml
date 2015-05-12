@@ -1,0 +1,23 @@
+language: objective-c
+
+before_install:
+  - rvm use system
+  - printenv PATH
+  - which ruby
+  - brew update
+
+install:
+  - mkdir -p $(brew --prefix)/Library/Taps/domt4/
+  - ln -s $PWD $(brew --prefix)/Library/Taps/domt4/homebrew-crypto
+  - brew tap --repair
+
+script:
+  - cd $(brew --prefix)
+  - if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
+        brew test-bot $TRAVIS_COMMIT --skip-setup --tap=domt4/crypto;
+    else
+        brew test-bot $TRAVIS_COMMIT --skip-setup --tap=domt4/crypto --ci-pr;
+    fi
+
+notifications:
+  email: false
