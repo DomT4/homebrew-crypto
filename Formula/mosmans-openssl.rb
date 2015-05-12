@@ -1,8 +1,8 @@
 class MosmansOpenssl < Formula
   homepage "https://www.onwebsecurity.com/cryptography/openssl"
   url "https://github.com/PeterMosmans/openssl.git",
-      :branch => "1.0.2-chacha", :revision => "5f22a45f32e3d90d8410269c243f8738ecb92ecb"
-  version "1.0.2_chacha_m8"
+      :branch => "1.0.2-chacha", :revision => "24d8376b27ea64c94378e1b873b3ed8ec130abab"
+  version "1.0.2_chacha_m9"
 
   option :universal
   option "without-check", "Skip build-time tests (not recommended)"
