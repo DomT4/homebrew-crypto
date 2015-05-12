@@ -1,8 +1,17 @@
 class Bitcoind < Formula
   homepage "https://bitcoin.org/en/"
-  url "https://github.com/bitcoin/bitcoin/archive/v0.10.1.tar.gz"
-  sha256 "d83e2872de37a17c60b7f5d86a5d9cfe2e7e706bf270ea59d7cd846d2fbf8102"
   head "https://github.com/bitcoin/bitcoin.git"
+
+  stable do
+    url "https://github.com/bitcoin/bitcoin/archive/v0.10.1.tar.gz"
+    sha256 "d83e2872de37a17c60b7f5d86a5d9cfe2e7e706bf270ea59d7cd846d2fbf8102"
+
+
+    patch do
+      url "https://github.com/bitcoin/bitcoin/commit/824c011d165cc.diff"
+      sha256 "894ad7d853f3b52f6f582276bd5625354ffa66d604326b2968681bc41c8535ec"
+    end
+  end
 
   option "with-gui", "Build with the GUI enabled in addition to the Daemon/CLI"
 
