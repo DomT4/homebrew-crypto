@@ -1,17 +1,8 @@
 class Bitcoind < Formula
   homepage "https://bitcoin.org/en/"
+  url "https://github.com/bitcoin/bitcoin/archive/v0.10.2.tar.gz"
+  sha256 "48c82a35369e54b613f738adf2a3420f8a25636182d272635202a5f99bb1fb9b"
   head "https://github.com/bitcoin/bitcoin.git"
-
-  stable do
-    url "https://github.com/bitcoin/bitcoin/archive/v0.10.1.tar.gz"
-    sha256 "d83e2872de37a17c60b7f5d86a5d9cfe2e7e706bf270ea59d7cd846d2fbf8102"
-
-
-    patch do
-      url "https://github.com/bitcoin/bitcoin/commit/824c011d165cc.diff"
-      sha256 "894ad7d853f3b52f6f582276bd5625354ffa66d604326b2968681bc41c8535ec"
-    end
-  end
 
   option "with-gui", "Build with the GUI enabled in addition to the Daemon/CLI"
 
@@ -44,12 +35,14 @@ class Bitcoind < Formula
       inreplace "dbinc/atomic.h", "__atomic_compare_exchange((p), (o), (n))", "__atomic_compare_exchange_db((p), (o), (n))"
       inreplace "dbinc/atomic.h", "static inline int __atomic_compare_exchange(", "static inline int __atomic_compare_exchange_db("
 
-      args = ["--disable-debug",
-              "--prefix=#{libexec}/berkeley-db4/4.8.30",
-              "--mandir=#{libexec}/share/man/berkeley-db4/4.8.30",
-              "--disable-shared",
-              "--disable-replication",
-              "--enable-cxx"]
+      args = %W[
+        --disable-debug
+        --prefix=#{libexec}/berkeley-db4/4.8.30
+        --mandir=#{libexec}/share/man/berkeley-db4/4.8.30
+        --disable-shared
+        --disable-replication
+        --enable-cxx
+      ]
 
       cd "build_unix" do
         system "../dist/configure", *args
