@@ -14,9 +14,9 @@ install:
 script:
   - cd $(brew --prefix)
   - if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then
-        brew test-bot $TRAVIS_COMMIT --skip-setup --tap=domt4/crypto;
+        brew test-bot $TRAVIS_COMMIT --skip-setup --verbose --tap=domt4/crypto;
     else
-        brew test-bot $TRAVIS_COMMIT --skip-setup --tap=domt4/crypto --ci-pr;
+        brew test-bot $TRAVIS_COMMIT --skip-setup --verbose --tap=domt4/crypto --ci-pr;
     fi
 
 notifications:
