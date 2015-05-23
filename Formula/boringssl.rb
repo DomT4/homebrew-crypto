@@ -1,7 +1,7 @@
 class Boringssl < Formula
   homepage "https://boringssl.googlesource.com"
-  url "https://boringssl.googlesource.com/boringssl.git", :revision => "3dacff94dcd15477a819f230b801934bc17def9d"
-  version "0.0.0.25" # Fake version so we can update the formula regularly & easily.
+  url "https://boringssl.googlesource.com/boringssl.git", :revision => "444dce49345a69aa344c5720e9d5da824cbb0eba"
+  version "0.0.0.26" # Fake version so we can update the formula regularly & easily.
   head "https://boringssl.googlesource.com/boringssl.git"
 
   keg_only :provided_by_osx, <<-EOS.undent
@@ -24,8 +24,7 @@ class Boringssl < Formula
       end
     end
 
-    mkdir "build"
-    cd "build" do
+    mkdir "build" do
       system "cmake", "-GNinja", ".."
       system "ninja"
 
@@ -34,5 +33,11 @@ class Boringssl < Formula
       lib.install "crypto/libcrypto.a", "ssl/libssl.a"
     end
     include.install Dir["include/*"]
+  end
+
+  test do
+    (testpath/"testfile.txt").write("This is a test file")
+    expected_checksum = "91b7b0b1e27bfbf7bc646946f35fa972c47c2d32"
+    assert_match expected_checksum, shell_output("#{bin}/bssl sha1sum testfile.txt")
   end
 end
