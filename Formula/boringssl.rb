@@ -1,7 +1,7 @@
 class Boringssl < Formula
   homepage "https://boringssl.googlesource.com"
-  url "https://boringssl.googlesource.com/boringssl.git", :revision => "444dce49345a69aa344c5720e9d5da824cbb0eba"
-  version "0.0.0.26" # Fake version so we can update the formula regularly & easily.
+  url "https://boringssl.googlesource.com/boringssl.git", :revision => "bd15a8e74894616ca8ad04fc2942b958f99000a1"
+  version "0.0.0.27" # Fake version so we can update the formula regularly & easily.
   head "https://boringssl.googlesource.com/boringssl.git"
 
   keg_only :provided_by_osx, <<-EOS.undent
