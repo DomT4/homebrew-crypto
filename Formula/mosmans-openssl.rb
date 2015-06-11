@@ -1,8 +1,9 @@
 class MosmansOpenssl < Formula
+  desc "OpenSSL with ChaCha20 and Poly1305"
   homepage "https://www.onwebsecurity.com/cryptography/openssl"
   url "https://github.com/PeterMosmans/openssl.git",
-      :branch => "1.0.2-chacha", :revision => "fb786ae98487bfecd73a6b1c1aea074002538e27"
-  version "1.0.2_chacha_m10"
+      :branch => "1.0.2-chacha", :revision => "2158d857a120f066d67513224d42bc7797b89e53"
+  version "1.0.2_chacha_m11"
 
   option :universal
   option "without-check", "Skip build-time tests (not recommended)"
