@@ -1,14 +1,15 @@
 class Bopenssh < Formula
+  desc "OpenBSD freely-licensed SSH connectivity tools"
   homepage "http://www.openssh.com/"
   url "http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-6.8p1.tar.gz"
   mirror "http://ftp.eu.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-6.8p1.tar.gz"
   version "6.8p1"
   sha256 "3ff64ce73ee124480b5bf767b9830d7d3c03bbcb6abe716b78f0192c37ce160e"
+  revision 1
 
   depends_on "pkg-config" => :build
   depends_on "libressl" => :recommended
   depends_on "openssl" => :optional
-  depends_on "copenssl" => :optional
   depends_on "ldns" => :optional
 
   patch do
@@ -37,8 +38,6 @@ class Bopenssh < Formula
 
     if build.with? "openssl"
       args << "--with-ssl-dir=#{Formula["openssl"].opt_prefix}"
-    elsif build.with? "copenssl"
-      args << "--with-ssl-dir=#{Formula["copenssl"].opt_prefix}"
     else
       args << "--with-ssl-dir=#{Formula["libressl"].opt_prefix}"
     end
