@@ -1,11 +1,10 @@
 class Poly1305aes < Formula
+  desc "State-of-the-art message-authentication code"
   homepage "http://cr.yp.to/mac.html"
   url "http://cr.yp.to/mac/poly1305aes-20050218.tar.gz"
   sha256 "1ff45c186f85a8a2533d88ae10b6ea7510be93d592c22d751db21023ef0a7133"
 
-  fails_with :clang do
-    "refuses to compile"
-  end
+  fails_with :clang
 
   def install
     ENV.append_to_cflags "-O2"
@@ -18,7 +17,6 @@ class Poly1305aes < Formula
     include.install "poly1305aes.h"
   end
 
-  # Improve this later.
   test do
     system "#{bin}/x86cpuid"
   end
