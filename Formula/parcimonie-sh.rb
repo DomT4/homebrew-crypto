@@ -5,10 +5,11 @@ class HasGnuPG < Requirement
 end
 
 class ParcimonieSh < Formula
+  desc "Refresh your GnuPG keyring discreetly"
   homepage "https://github.com/EtiennePerot/parcimonie.sh"
   url "https://github.com/EtiennePerot/parcimonie.sh.git", :revision => "d7d83f0da29d5880da6e8f060fa5e52738e8ae17"
-  head "https://github.com/EtiennePerot/parcimonie.sh.git"
   version "23032015"
+  head "https://github.com/EtiennePerot/parcimonie.sh.git"
 
   depends_on HasGnuPG
   depends_on "gnupg" => :recommended
