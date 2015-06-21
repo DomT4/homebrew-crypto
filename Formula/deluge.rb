@@ -1,4 +1,5 @@
 class Deluge < Formula
+  desc "Popular open-source bittorrent client"
   homepage "http://deluge-torrent.org/"
   url "http://download.deluge-torrent.org/source/deluge-1.3.11.tar.gz"
   sha256 "80b0a2a3460d52a5f53df26a9ce314e3e792f2e3f45b7c389140fd830bdee1b0"
