@@ -1,4 +1,5 @@
 class Dogecoin < Formula
+  desc "Peer-to-peer digital currency, favored by Shiba Inus"
   homepage "http://dogecoin.com/"
   url "https://github.com/dogecoin/dogecoin/archive/v1.8.2.tar.gz"
   sha256 "87060dfe6d9770f8af17c447120cb6a059bbd84687dfd6a1f0787c9d75d75d9e"
