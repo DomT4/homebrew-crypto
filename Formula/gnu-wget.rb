@@ -2,15 +2,12 @@
 # Upstream issue: https://savannah.gnu.org/bugs/index.php?37063
 
 class GnuWget < Formula
-  desc "Internet file retriever"
+  desc "Internet file retriever built against LibreSSL"
   homepage "https://www.gnu.org/software/wget/"
   url "http://ftpmirror.gnu.org/wget/wget-1.16.3.tar.xz"
   mirror "https://ftp.gnu.org/gnu/wget/wget-1.16.3.tar.xz"
   sha256 "67f7b7b0f5c14db633e3b18f53172786c001e153d545cfc85d82759c5c2ffb37"
   revision 1
-
-  option "with-default-names", "Do not prepend 'l' to the binary"
-  option "with-debug", "Build with debug support"
 
   head do
     url "git://git.savannah.gnu.org/wget.git"
@@ -20,6 +17,9 @@ class GnuWget < Formula
     depends_on "xz" => :build
     depends_on "gettext"
   end
+
+  option "with-default-names", "Do not prepend 'l' to the binary"
+  option "with-debug", "Build with debug support"
 
   depends_on "libressl"
   depends_on "libidn" => :optional
