@@ -20,7 +20,7 @@ class Bopenssh < Formula
   # Patch for SSH tunnelling issues caused by launchd changes on Yosemite
   patch do
     url "https://trac.macports.org/export/135165/trunk/dports/net/openssh/files/launchd.patch"
-    sha1 "02e76c153d2d51bb0b4b0e51dd7b302469bd24deac487f7cca4ee536928bceef"
+    sha256 "02e76c153d2d51bb0b4b0e51dd7b302469bd24deac487f7cca4ee536928bceef"
   end
 
   def install
