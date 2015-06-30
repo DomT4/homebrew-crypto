@@ -3,6 +3,7 @@ class Deluge < Formula
   homepage "http://deluge-torrent.org/"
   url "http://download.deluge-torrent.org/source/deluge-1.3.11.tar.gz"
   sha256 "80b0a2a3460d52a5f53df26a9ce314e3e792f2e3f45b7c389140fd830bdee1b0"
+  revision 1
 
   head "git://deluge-torrent.org/deluge.git", :branch => "develop"
 
@@ -13,6 +14,7 @@ class Deluge < Formula
   depends_on "geoip"
   depends_on "libtorrent-rasterbar" => "with-python"
   depends_on "pygtk" => "with-libglade"
+  depends_on "gtk-mac-integration"
   depends_on "librsvg"
 
   # Zope tantrums horribly if not installed directly in the Python dir.
