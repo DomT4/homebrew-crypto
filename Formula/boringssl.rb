@@ -21,7 +21,7 @@ class Boringssl < Formula
       (doc/"boringssl").mkpath
       cd "util" do
         system "go", "build", "doc.go"
-        system buildpath/"util/doc", "--config", buildpath/"util/doc.config", "--out", "#{doc}/boringssl"
+        system buildpath/"util/doc", "--config", buildpath/"util/doc.config", "--out", "#{doc}"
       end
     end
 
