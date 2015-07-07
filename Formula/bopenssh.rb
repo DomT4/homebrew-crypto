@@ -1,11 +1,10 @@
 class Bopenssh < Formula
   desc "OpenBSD freely-licensed SSH connectivity tools"
   homepage "http://www.openssh.com/"
-  url "http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-6.8p1.tar.gz"
-  mirror "http://ftp.eu.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-6.8p1.tar.gz"
-  version "6.8p1"
-  sha256 "3ff64ce73ee124480b5bf767b9830d7d3c03bbcb6abe716b78f0192c37ce160e"
-  revision 1
+  url "http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-6.9p1.tar.gz"
+  mirror "http://ftp.eu.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-6.9p1.tar.gz"
+  version "6.9p1"
+  sha256 "6e074df538f357d440be6cf93dc581a21f22d39e236f217fcd8eacbb6c896cfe"
 
   depends_on "pkg-config" => :build
   depends_on "libressl" => :recommended
@@ -19,8 +18,8 @@ class Bopenssh < Formula
 
   # Patch for SSH tunnelling issues caused by launchd changes on Yosemite
   patch do
-    url "https://trac.macports.org/export/135165/trunk/dports/net/openssh/files/launchd.patch"
-    sha256 "02e76c153d2d51bb0b4b0e51dd7b302469bd24deac487f7cca4ee536928bceef"
+    url "https://trac.macports.org/export/138238/trunk/dports/net/openssh/files/launchd.patch"
+    sha256 "012ee24bf0265dedd5bfd2745cf8262c3240a6d70edcd555e5b35f99ed070590"
   end
 
   def install
@@ -41,6 +40,8 @@ class Bopenssh < Formula
     else
       args << "--with-ssl-dir=#{Formula["libressl"].opt_prefix}"
     end
+
+    args << "--with-ldns" if build.with? "ldns"
 
     system "./configure", *args
     system "make"
