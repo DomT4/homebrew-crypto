@@ -1,8 +1,8 @@
 class Bitcoind < Formula
   desc "An innovative decentralized, peer-to-peer payment network"
   homepage "https://bitcoin.org/en/"
-  url "https://github.com/bitcoin/bitcoin/archive/v0.10.2.tar.gz"
-  sha256 "48c82a35369e54b613f738adf2a3420f8a25636182d272635202a5f99bb1fb9b"
+  url "https://github.com/bitcoin/bitcoin/archive/v0.11.0.tar.gz"
+  sha256 "2bcd61a4c288e5cc5d7fbe724606c610a20037332b06f7a9e99c1153eef73aef"
   head "https://github.com/bitcoin/bitcoin.git"
 
   option "with-gui", "Build with the GUI enabled in addition to the Daemon/CLI"
@@ -14,7 +14,7 @@ class Bitcoind < Formula
   depends_on :xcode => :build
   depends_on "openssl"
   depends_on "boost"
-  depends_on "gmp"
+  depends_on "berkeley-db4"
   depends_on "miniupnpc" => :recommended
 
   if build.with? "gui"
@@ -24,38 +24,7 @@ class Bitcoind < Formula
     depends_on "gettext" => :recommended
   end
 
-  resource "berkeleydb4" do
-    url "http://download.oracle.com/berkeley-db/db-4.8.30.tar.gz"
-    sha256 "e0491a07cdb21fb9aa82773bbbedaeb7639cbd0e7f96147ab46141e0045db72a"
-  end
-
   def install
-    resource("berkeleydb4").stage do
-      ENV.deparallelize
-
-      inreplace "dbinc/atomic.h", "__atomic_compare_exchange((p), (o), (n))", "__atomic_compare_exchange_db((p), (o), (n))"
-      inreplace "dbinc/atomic.h", "static inline int __atomic_compare_exchange(", "static inline int __atomic_compare_exchange_db("
-
-      args = %W[
-        --disable-debug
-        --prefix=#{libexec}/berkeley-db4/4.8.30
-        --mandir=#{libexec}/share/man/berkeley-db4/4.8.30
-        --disable-shared
-        --disable-replication
-        --enable-cxx
-      ]
-
-      cd "build_unix" do
-        system "../dist/configure", *args
-        system "make"
-        system "make", "install"
-      end
-    end
-
-    ENV.prepend_path "PATH", "#{libexec}/berkeley-db4/4.8.30/bin"
-    ENV.prepend "CPPFLAGS", "-I#{libexec}/berkeley-db4/4.8.30/include"
-    ENV.prepend "LDFLAGS", "-L#{libexec}/berkeley-db4/4.8.30/lib"
-
     args = ["--prefix=#{libexec}", "--disable-dependency-tracking"]
 
     if build.with? "gui"
@@ -67,6 +36,7 @@ class Bitcoind < Formula
 
     system "./autogen.sh"
     system "./configure", *args
+
     system "make"
     system "make", "check"
     system "make", "install"
