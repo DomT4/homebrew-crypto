@@ -6,7 +6,7 @@ class GnuWget < Formula
   url "http://ftpmirror.gnu.org/wget/wget-1.16.3.tar.xz"
   mirror "https://ftp.gnu.org/gnu/wget/wget-1.16.3.tar.xz"
   sha256 "67f7b7b0f5c14db633e3b18f53172786c001e153d545cfc85d82759c5c2ffb37"
-  revision 2
+  revision 3
 
   head do
     url "git://git.savannah.gnu.org/wget.git"
