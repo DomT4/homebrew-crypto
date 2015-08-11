@@ -1,11 +1,10 @@
 class Bopenssh < Formula
   desc "OpenBSD freely-licensed SSH connectivity tools"
   homepage "http://www.openssh.com/"
-  url "http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-6.9p1.tar.gz"
-  mirror "http://ftp.eu.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-6.9p1.tar.gz"
-  version "6.9p1"
-  sha256 "6e074df538f357d440be6cf93dc581a21f22d39e236f217fcd8eacbb6c896cfe"
-  revision 2
+  url "http://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-7.0p1.tar.gz"
+  mirror "https://www.mirrorservice.org/pub/OpenBSD/OpenSSH/portable/openssh-7.0p1.tar.gz"
+  version "7.0p1"
+  sha256 "fd5932493a19f4c81153d812ee4e042b49bbd3b759ab3d9344abecc2bc1485e5"
 
   depends_on "pkg-config" => :build
   depends_on "libressl" => :recommended
