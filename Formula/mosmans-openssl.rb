@@ -2,8 +2,8 @@ class MosmansOpenssl < Formula
   desc "Peter Mosman's OpenSSL fork supporting new ciphers"
   homepage "https://www.onwebsecurity.com/cryptography/openssl"
   url "https://github.com/PeterMosmans/openssl.git",
-      :branch => "1.0.2-chacha", :revision => "f3347e2bf7b73735ba0bd4d7cbf5008d592f26da"
-  version "1.0.2d_chacha_m3"
+      :branch => "1.0.2-chacha", :revision => "4ccbc406150492a6612998c77aaa18b324e4a16a"
+  version "1.0.2d_chacha_m4"
 
   option :universal
   option "without-check", "Skip build-time tests (not recommended)"
@@ -16,7 +16,7 @@ class MosmansOpenssl < Formula
   def arch_args
     {
       :x86_64 => %w[darwin64-x86_64-cc enable-ec_nistp_64_gcc_128],
-      :i386   => %w[darwin-i386-cc],
+      :i386   => %w[darwin-i386-cc]
     }
   end
 
