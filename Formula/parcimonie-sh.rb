@@ -1,19 +1,12 @@
-class HasGnuPG < Requirement
-  fatal true
-  default_formula "gnupg"
-  satisfy { which("gpg") || which("gpg2") }
-end
-
 class ParcimonieSh < Formula
   desc "Refresh your GnuPG keyring discreetly"
   homepage "https://github.com/EtiennePerot/parcimonie.sh"
-  url "https://github.com/EtiennePerot/parcimonie.sh.git", :revision => "d7d83f0da29d5880da6e8f060fa5e52738e8ae17"
-  version "23032015"
+  url "https://github.com/EtiennePerot/parcimonie.sh.git", :revision => "c00993738a93b75cba5b61bb2c57a51169484b6f"
+  version "04082015"
   head "https://github.com/EtiennePerot/parcimonie.sh.git"
 
-  depends_on HasGnuPG
-  depends_on "gnupg" => :recommended
-  depends_on "gnupg2" => :optional
+  depends_on "gnupg" => :optional
+  depends_on "gnupg2" => :recommended
   depends_on "homebrew/versions/gnupg21" => :optional
   depends_on "torsocks" => :recommended
   depends_on "tor" => :optional
@@ -21,18 +14,17 @@ class ParcimonieSh < Formula
   def install
     inreplace "parcimonie.sh" do |s|
       s.gsub! "${TORSOCKS_BINARY:-torsocks}", "${TORSOCKS_BINARY:-#{Formula["torsocks"].opt_bin}/torsocks}"
-      s.gsub! "${TMP_PREFIX:-/tmp/parcimonie}", "${TMP_PREFIX:-#{var}/parcimonie}"
     end
 
-    if build.with? "gnupg21"
-      inreplace "parcimonie.sh", "${GNUPG_BINARY:-gpg}", "${GNUPG_BINARY:-#{Formula["gnupg21"].opt_bin}/gpg2}"
-    elsif build.with? "gnupg2"
-      inreplace "parcimonie.sh", "${GNUPG_BINARY:-gpg}", "${GNUPG_BINARY:-#{Formula["gnupg2"].opt_bin}/gpg2}"
-    else
+    if build.with? "gnupg"
       inreplace "parcimonie.sh", "${GNUPG_BINARY:-gpg}", "${GNUPG_BINARY:-#{Formula["gnupg"].opt_bin}/gpg}"
+    elsif build.with? "gnupg21"
+      inreplace "parcimonie.sh", "${GNUPG_BINARY:-gpg}", "${GNUPG_BINARY:-#{Formula["gnupg21"].opt_bin}/gpg2}"
+    else
+      inreplace "parcimonie.sh", "${GNUPG_BINARY:-gpg}", "${GNUPG_BINARY:-#{Formula["gnupg2"].opt_bin}/gpg2}"
     end
 
-    mkdir_p var/"parcimonie"
+    (var/"parcimonie").mkpath
     bin.install "parcimonie.sh" => "parcimonie"
   end
 
