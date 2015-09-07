@@ -1,8 +1,8 @@
 class Boringssl < Formula
   desc "Google fork of OpenSSL"
   homepage "https://boringssl.googlesource.com"
-  url "https://boringssl.googlesource.com/boringssl.git", :revision => "1f9f9c4b5127b54b9363cac43a05c8eff27f102e"
-  version "0.0.0.36" # Fake version so we can update the formula regularly & easily.
+  url "https://boringssl.googlesource.com/boringssl.git", :revision => "8748920ca791dd582614ae3527c1a4749085f331"
+  version "0.0.0.37" # Fake version so we can update the formula regularly & easily.
   head "https://boringssl.googlesource.com/boringssl.git"
 
   keg_only :provided_by_osx, <<-EOS.undent
@@ -14,7 +14,7 @@ class Boringssl < Formula
 
   depends_on "ninja" => :build
   depends_on "cmake" => :build
-  depends_on "go" => :build if build.with? "documentation"
+  depends_on "go" => :build
 
   def install
     if build.with? "documentation"
@@ -26,7 +26,7 @@ class Boringssl < Formula
     end
 
     mkdir "build" do
-      system "cmake", "-GNinja", ".."
+      system "cmake", "-GNinja", "..", *std_cmake_args
       system "ninja"
 
       # There's no real Makefile as such. We have to handle this manually.
