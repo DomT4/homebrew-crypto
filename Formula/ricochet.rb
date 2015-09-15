@@ -1,8 +1,8 @@
 class Ricochet < Formula
   desc "Anonymous peer-to-peer instant messaging"
   homepage "https://ricochet.im"
-  url "https://github.com/ricochet-im/ricochet/archive/v1.1.0.tar.gz"
-  sha256 "ab372c46a274825aa51ecc416966bee44fd69088fbc4b9f68fff46967a1becd9"
+  url "https://github.com/ricochet-im/ricochet/archive/v1.1.1.tar.gz"
+  sha256 "baa67151ca1ed4ce1fea0367b260c7761f3d69eb9efd801200b627fafe8be978"
   head "https://github.com/ricochet-im/ricochet.git"
 
   depends_on "pkg-config" => :build
@@ -11,8 +11,6 @@ class Ricochet < Formula
   depends_on "protobuf"
   depends_on "libevent" # For Tor
 
-  # It kind of sucks at picking up Tor from the PATH, so vendor it for now.
-  # FIX THIS
   resource "tor" do
     url "https://dist.torproject.org/tor-0.2.6.10.tar.gz"
     mirror "https://tor.eff.org/dist/tor-0.2.6.10.tar.gz"
@@ -20,6 +18,7 @@ class Ricochet < Formula
   end
 
   def install
+    (var/"ricochet").mkpath
     openssl = Formula["openssl"].opt_prefix
 
     system "qmake", "-config", "release", "OPENSSLDIR=#{openssl}",
@@ -31,14 +30,14 @@ class Ricochet < Formula
       args = %W[
         --disable-dependency-tracking
         --disable-silent-rules
-        --prefix=#{libexec}/Ricochet.app/Contents/Resources/Tor
-        --sysconfdir=#{libexec}/Ricochet.app/Contents/Resources/Tor/unused
+        --prefix=#{libexec}/Ricochet.app/Contents/Resources/tor
+        --sysconfdir=#{libexec}/Ricochet.app/Contents/Resources/tor/unused
         --with-openssl-dir=#{openssl}
       ]
 
       system "./configure", *args
       system "make", "install"
-      (libexec/"Ricochet.app/Contents/MacOS").install_symlink Dir[libexec/"Ricochet.app/Contents/Resources/Tor/bin/*"]
+      (libexec/"Ricochet.app/Contents/MacOS").install_symlink Dir[libexec/"Ricochet.app/Contents/Resources/tor/bin/*"]
     end
   end
 
