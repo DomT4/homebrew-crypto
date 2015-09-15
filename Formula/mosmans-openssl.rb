@@ -2,8 +2,8 @@ class MosmansOpenssl < Formula
   desc "Peter Mosman's OpenSSL fork supporting new ciphers"
   homepage "https://www.onwebsecurity.com/cryptography/openssl"
   url "https://github.com/PeterMosmans/openssl.git",
-      :branch => "1.0.2-chacha", :revision => "d6fe710e7492d3f1efeed0575d52a74a0c2643c8"
-  version "1.0.2d_chacha_m5"
+      :branch => "1.0.2-chacha", :revision => "9470592aaf723969dc67d6c475cb898590eb8208"
+  version "1.0.2d_chacha_m6"
 
   option :universal
   option "without-check", "Skip build-time tests (not recommended)"
@@ -16,7 +16,7 @@ class MosmansOpenssl < Formula
   def arch_args
     {
       :x86_64 => %w[darwin64-x86_64-cc enable-ec_nistp_64_gcc_128],
-      :i386   => %w[darwin-i386-cc]
+      :i386   => %w[darwin-i386-cc],
     }
   end
 
@@ -134,8 +134,8 @@ class MosmansOpenssl < Formula
 
   test do
     (testpath/"testfile.txt").write("This is a test file")
-    expected_checksum = "91b7b0b1e27bfbf7bc646946f35fa972c47c2d32"
-    system "#{bin}/openssl", "dgst", "-sha1", "-out", "checksum.txt", "testfile.txt"
+    expected_checksum = "e2d0fe1585a63ec6009c8016ff8dda8b17719a637405a4e23c0ff81339148249"
+    system "#{bin}/openssl", "dgst", "-sha256", "-out", "checksum.txt", "testfile.txt"
     open("checksum.txt") do |f|
       checksum = f.read(100).split("=").last.strip
       assert_equal checksum, expected_checksum
