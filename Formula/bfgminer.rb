@@ -1,8 +1,8 @@
 class Bfgminer < Formula
   desc "Modular ASIC/FPGA miner written in C"
   homepage "https://github.com/luke-jr/bfgminer"
-  url "http://luke.dashjr.org/programs/bitcoin/files/bfgminer/5.2.x/bfgminer-5.2.0.zip"
-  sha256 "6b3e055fdf79468dbb5306c8657de3c956d2e535c8d5b2713b0c30ee38c4cca5"
+  url "http://luke.dashjr.org/programs/bitcoin/files/bfgminer/5.3.0/bfgminer-5.3.0.zip"
+  sha256 "03978f01c7770a47c2612059d02d385ece6f5d99f8688446469a55fbd5adfa5a"
 
   option "without-scrypt", "Build without Scrypt support"
   option "with-keccak", "Build with Keccak support"
@@ -30,6 +30,7 @@ class Bfgminer < Formula
       --prefix=#{prefix}
       --disable-debug
       --disable-dependency-tracking
+      --disable-silent-rules
       --enable-opencl
       --without-system-libbase58
     ]
@@ -45,6 +46,6 @@ class Bfgminer < Formula
   end
 
   test do
-    system "bfgminer", "--version"
+    system bin/"bfgminer", "--version"
   end
 end
