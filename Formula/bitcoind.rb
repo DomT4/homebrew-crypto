@@ -1,20 +1,18 @@
 class Bitcoind < Formula
   desc "Innovative decentralized, peer-to-peer payment network"
   homepage "https://bitcoin.org/en/"
-  url "https://github.com/bitcoin/bitcoin/archive/v0.11.0.tar.gz"
-  sha256 "2bcd61a4c288e5cc5d7fbe724606c610a20037332b06f7a9e99c1153eef73aef"
+  url "https://bitcoin.org/bin/bitcoin-core-0.11.1/bitcoin-0.11.1.tar.gz"
+  sha256 "2bf7fa14aba89d5d3fb9382a3b99e5a25ea89a4c48249288683e30b6b63e6a63"
   head "https://github.com/bitcoin/bitcoin.git"
 
   option "with-gui", "Build with the GUI enabled in addition to the Daemon/CLI"
 
   depends_on "pkg-config" => :build
-  depends_on "autoconf" => :build
-  depends_on "automake" => :build
-  depends_on "libtool" => :build
   depends_on :xcode => :build
   depends_on "openssl"
   depends_on "boost"
   depends_on "berkeley-db4"
+  depends_on "libevent"
   depends_on "miniupnpc" => :recommended
 
   if build.with? "gui"
@@ -25,18 +23,11 @@ class Bitcoind < Formula
   end
 
   def install
-    args = ["--prefix=#{libexec}", "--disable-dependency-tracking"]
-
-    if build.with? "gui"
-      args << "--with-qrencode"
-      args << "--with-gui=qt5"
-    end
-
+    args = %W[--prefix=#{libexec} --disable-dependency-tracking --disable-silent-rules]
+    args << "--with-qrencode" << "--with-gui=qt5" if build.with? "gui"
     args << "--with-miniupnpc" if build.with? "miniupnpc"
 
-    system "./autogen.sh"
     system "./configure", *args
-
     system "make"
     system "make", "check"
     system "make", "install"
