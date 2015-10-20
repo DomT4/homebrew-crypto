@@ -19,7 +19,8 @@ before_install:
   - sudo rm -rf $(brew --repo)/Library/Taps/domt4/homebrew-crypto/
   - sudo chown -R $USER $(brew --repo)
   - brew update
-  - ln -s $PWD $(brew --repo)/Library/Taps/domt4/homebrew-crypto/
+  - mkdir -p $(brew --repo)/Library/Taps/domt4/
+  - ln -sf $PWD $(brew --repo)/Library/Taps/domt4/homebrew-crypto/
   - cd $(brew --repo)/Library/Taps/domt4/homebrew-crypto/
   - export TRAVIS_BUILD_DIR="$(brew --repo)/Library/Taps/domt4/homebrew-crypto"
   - env | grep TRAVIS_
