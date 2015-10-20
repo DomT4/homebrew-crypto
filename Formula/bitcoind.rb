@@ -18,7 +18,7 @@ class Bitcoind < Formula
   if build.with? "gui"
     depends_on "protobuf"
     depends_on "qt5"
-    depends_on "qrencode"
+    depends_on "qrencode" => :recommended
     depends_on "gettext" => :recommended
   end
 
