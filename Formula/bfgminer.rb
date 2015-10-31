@@ -1,8 +1,8 @@
 class Bfgminer < Formula
   desc "Modular ASIC/FPGA miner written in C"
   homepage "https://github.com/luke-jr/bfgminer"
-  url "http://luke.dashjr.org/programs/bitcoin/files/bfgminer/5.3.0/bfgminer-5.3.0.zip"
-  sha256 "03978f01c7770a47c2612059d02d385ece6f5d99f8688446469a55fbd5adfa5a"
+  url "http://luke.dashjr.org/programs/bitcoin/files/bfgminer/5.4.0/bfgminer-5.4.0.zip"
+  sha256 "9c96dd893bb41affabd03680f84cca20ed4bda4b85f60f3a1f98442811e176d1"
 
   option "without-scrypt", "Build without Scrypt support"
   option "with-keccak", "Build with Keccak support"
@@ -26,6 +26,7 @@ class Bfgminer < Formula
       (buildpath/"uthash/include").install "src/utarray.h", "src/uthash.h", "src/utlist.h", "src/utstring.h"
     end
 
+    ENV.append_to_cflags "-I#{buildpath}/uthash/include"
     args = %W[
       --prefix=#{prefix}
       --disable-debug
@@ -38,8 +39,6 @@ class Bfgminer < Formula
     args << "--enable-scrypt" if build.with? "scrypt"
     args << "--enable-keccak" if build.with? "keccak"
     args << "--enable-cpumining" if build.with? "cpumining"
-
-    ENV.append_to_cflags "-I#{buildpath}/uthash/include"
 
     system "./configure", *args
     system "make", "install"
