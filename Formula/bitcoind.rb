@@ -1,9 +1,16 @@
 class Bitcoind < Formula
   desc "Innovative decentralized, peer-to-peer payment network"
   homepage "https://bitcoin.org/en/"
-  url "https://bitcoin.org/bin/bitcoin-core-0.11.1/bitcoin-0.11.1.tar.gz"
-  sha256 "2bf7fa14aba89d5d3fb9382a3b99e5a25ea89a4c48249288683e30b6b63e6a63"
-  head "https://github.com/bitcoin/bitcoin.git"
+  url "https://bitcoin.org/bin/bitcoin-core-0.11.2/bitcoin-0.11.2.tar.gz"
+  sha256 "a4d2bd642e5f7f1f82dc3f708618ac77e1e45353db7a98bf81c3bdc0e10690d3"
+
+  head do
+    url "https://github.com/bitcoin/bitcoin.git"
+
+    depends_on "automake" => :build
+    depends_on "autoconf" => :build
+    depends_on "libtool" => :build
+  end
 
   option "with-gui", "Build with the GUI enabled in addition to the Daemon/CLI"
 
@@ -27,6 +34,7 @@ class Bitcoind < Formula
     args << "--with-qrencode" << "--with-gui=qt5" if build.with? "gui"
     args << "--with-miniupnpc" if build.with? "miniupnpc"
 
+    system "./autogen.sh" if build.head?
     system "./configure", *args
     system "make"
     system "make", "check"
