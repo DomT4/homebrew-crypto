@@ -1,8 +1,8 @@
 class Bfgminer < Formula
   desc "Modular ASIC/FPGA miner written in C"
   homepage "https://github.com/luke-jr/bfgminer"
-  url "http://luke.dashjr.org/programs/bitcoin/files/bfgminer/5.4.0/bfgminer-5.4.0.zip"
-  sha256 "9c96dd893bb41affabd03680f84cca20ed4bda4b85f60f3a1f98442811e176d1"
+  url "http://luke.dashjr.org/programs/bitcoin/files/bfgminer/5.4.1/bfgminer-5.4.1.zip"
+  sha256 "101a6ce126ac12e9cd01177279bcab7e40442881fa5bada9427436ab5fd7fc1c"
 
   option "without-scrypt", "Build without Scrypt support"
   option "with-keccak", "Build with Keccak support"
