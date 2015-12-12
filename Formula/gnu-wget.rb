@@ -37,7 +37,6 @@ class GnuWget < Formula
     args << "--disable-debug" if build.without? "debug"
     args << "--disable-iri" if build.without? "libidn"
     args << "--disable-pcre" if build.without? "pcre"
-    args << "--disable-pcre" if build.without? "pcre"
     args << "--with-metalink" if build.with? "libmetalink"
     args << "--with-gpgme-prefix=#{Formula["gpgme"].opt_prefix}" if build.with? "gpgme"
 
