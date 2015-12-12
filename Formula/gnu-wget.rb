@@ -22,6 +22,8 @@ class GnuWget < Formula
   depends_on "libressl"
   depends_on "libidn" => :optional
   depends_on "pcre" => :optional
+  depends_on "libmetalink" => :optional
+  depends_on "gpgme" => :optional
 
   def install
     args = %W[
@@ -35,6 +37,9 @@ class GnuWget < Formula
     args << "--disable-debug" if build.without? "debug"
     args << "--disable-iri" if build.without? "libidn"
     args << "--disable-pcre" if build.without? "pcre"
+    args << "--disable-pcre" if build.without? "pcre"
+    args << "--with-metalink" if build.with? "libmetalink"
+    args << "--with-gpgme-prefix=#{Formula["gpgme"].opt_prefix}" if build.with? "gpgme"
 
     system "./bootstrap" if build.head?
     system "./configure", *args
