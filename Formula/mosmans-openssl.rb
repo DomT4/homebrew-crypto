@@ -2,8 +2,8 @@ class MosmansOpenssl < Formula
   desc "Peter Mosman's OpenSSL fork supporting new ciphers"
   homepage "https://www.onwebsecurity.com/cryptography/openssl"
   url "https://github.com/PeterMosmans/openssl.git",
-      :branch => "1.0.2-chacha", :revision => "378ce998253c1c9edb4738dc138e2ab2b2cf2bd5"
-  version "1.0.2e_chacha_m1"
+      :branch => "1.0.2-chacha", :revision => "e9c855af3f784294a089abd95a787d0a0c4a95a3"
+  version "1.0.2e_chacha_m2"
 
   option :universal
   option "without-check", "Skip build-time tests (not recommended)"
