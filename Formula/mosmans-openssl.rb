@@ -2,8 +2,8 @@ class MosmansOpenssl < Formula
   desc "Peter Mosman's OpenSSL fork supporting new ciphers"
   homepage "https://www.onwebsecurity.com/cryptography/openssl"
   url "https://github.com/PeterMosmans/openssl.git",
-      :branch => "1.0.2-chacha", :revision => "e9c855af3f784294a089abd95a787d0a0c4a95a3"
-  version "1.0.2e_chacha_m2"
+      :branch => "1.0.2-chacha", :revision => "0a5edc13e6701081669c0eb4a6bcda5bd238cdc4"
+  version "1.0.2e_chacha_m3"
 
   option :universal
   option "without-check", "Skip build-time tests (not recommended)"
@@ -16,7 +16,7 @@ class MosmansOpenssl < Formula
   def arch_args
     {
       :x86_64 => %w[darwin64-x86_64-cc enable-ec_nistp_64_gcc_128],
-      :i386   => %w[darwin-i386-cc],
+      :i386   => %w[darwin-i386-cc]
     }
   end
 
@@ -34,6 +34,14 @@ class MosmansOpenssl < Formula
   end
 
   def install
+    # Load zlib from an explicit path instead of relying on dyld's fallback
+    # path, which is empty in a SIP context. This patch will be unnecessary
+    # when we begin building openssl with no-comp to disable TLS compression.
+    # https://langui.sh/2015/11/27/sip-and-dlopen
+    inreplace "crypto/comp/c_zlib.c",
+              'zlib_dso = DSO_load(NULL, "z", NULL, 0);',
+              'zlib_dso = DSO_load(NULL, "/usr/lib/libz.dylib", NULL, DSO_FLAG_NO_NAME_TRANSLATION);'
+
     if build.universal?
       ENV.permit_arch_flags
       archs = Hardware::CPU.universal_archs
@@ -64,6 +72,7 @@ class MosmansOpenssl < Formula
       end
 
       if build.universal?
+        cp "include/openssl/opensslconf.h", dir
         cp Dir["*.?.?.?.dylib", "*.a", "apps/openssl"], dir
         cp Dir["engines/**/*.dylib"], "#{dir}/engines"
       end
@@ -91,6 +100,15 @@ class MosmansOpenssl < Formula
       system "lipo", "-create", "#{dirs.first}/openssl",
                                 "#{dirs.last}/openssl",
                      "-output", "#{bin}/openssl"
+
+      confs = archs.map do |arch|
+        <<-EOS.undent
+          #ifdef __#{arch}__
+          #{(buildpath/"build-#{arch}/opensslconf.h").read}
+          #endif
+          EOS
+      end
+      (include/"openssl/opensslconf.h").atomic_write confs.join("\n")
     end
   end
 
