@@ -3,11 +3,11 @@ matrix:
   include:
     - env: OSX=10.11
       os: osx
-      osx_image: xcode7.2
+      osx_image: osx10.11
       rvm: system
     - env: OSX=10.10
       os: osx
-      osx_image: xcode7.1
+      osx_image: xcode7
       rvm: system
     - env: OSX=10.9
       os: osx
@@ -17,9 +17,8 @@ matrix:
 before_install:
   - if [ -f ".git/shallow" ]; then travis_retry git fetch --unshallow; fi
   - sudo chown -R $USER $(brew --repo)
-  - cd $(brew --repo)
-  - git reset --hard origin/master
-  - git clean -qxdff
+  - git -C $(brew --repo) reset --hard origin/master
+  - git -C $(brew --repo) clean -qxdff
   - brew update
   - mkdir -p $(brew --repo)/Library/Taps/domt4
   - ln -s $PWD $(brew --repo)/Library/Taps/domt4/homebrew-crypto
@@ -31,4 +30,6 @@ script:
   - brew test-bot --no-bottle
 
 notifications:
-  email: false
+  email:
+    on_success: never
+    on_failure: never
