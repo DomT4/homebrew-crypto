@@ -1,10 +1,8 @@
 class Ricochet < Formula
   desc "Anonymous peer-to-peer instant messaging"
   homepage "https://ricochet.im"
-  url "https://github.com/ricochet-im/ricochet/archive/v1.1.1.tar.gz"
-  sha256 "baa67151ca1ed4ce1fea0367b260c7761f3d69eb9efd801200b627fafe8be978"
-  revision 1
-
+  url "https://github.com/ricochet-im/ricochet/releases/download/v1.1.2/ricochet-1.1.2-src.tar.bz2"
+  sha256 "97c78d088892e84c95a3e3a4a982883d8e44028848a513a5d7e0231d36325cc3"
   head "https://github.com/ricochet-im/ricochet.git"
 
   depends_on "pkg-config" => :build
