@@ -1,8 +1,8 @@
 class Bitcoind < Formula
   desc "Innovative decentralized, peer-to-peer payment network"
   homepage "https://bitcoin.org/en/"
-  url "https://bitcoin.org/bin/bitcoin-core-0.11.2/bitcoin-0.11.2.tar.gz"
-  sha256 "a4d2bd642e5f7f1f82dc3f708618ac77e1e45353db7a98bf81c3bdc0e10690d3"
+  url "https://bitcoin.org/bin/bitcoin-core-0.12.0/bitcoin-0.12.0.tar.gz"
+  sha256 "0f1cda66c841a548a07cc37e80b0727354b1236d9f374c7d44362acdb85eb3e1"
 
   head do
     url "https://github.com/bitcoin/bitcoin.git"
