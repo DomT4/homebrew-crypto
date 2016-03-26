@@ -52,5 +52,10 @@ class Bopenssh < Formula
     system "./configure", *args
     system "make"
     system "make", "install"
+
+    # This was removed by upstream with very little announcement and has
+    # potential to break scripts, so recreate it for now.
+    # Debian have done the same thing.
+    bin.install_symlink bin/"ssh" => "slogin"
   end
 end
