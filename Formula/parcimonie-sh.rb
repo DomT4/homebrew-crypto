@@ -1,8 +1,8 @@
 class ParcimonieSh < Formula
   desc "Refresh your GnuPG keyring discreetly"
   homepage "https://github.com/EtiennePerot/parcimonie.sh"
-  url "https://github.com/EtiennePerot/parcimonie.sh.git", :revision => "f2b678c6d078b481678d35b50a1bf0a88feb786c"
-  version "14112015"
+  url "https://github.com/EtiennePerot/parcimonie.sh.git", :revision => "fb8eab742ff754ed7a989f5a25b0a22b48898c99"
+  version "02-04-2016"
   head "https://github.com/EtiennePerot/parcimonie.sh.git"
 
   depends_on "gnupg" => :optional
