@@ -19,6 +19,7 @@ before_install:
   - sudo chown -R $USER $(brew --repo)
   - git -C $(brew --repo) reset --hard origin/master
   - git -C $(brew --repo) clean -qxdff
+  - export HOMEBREW_DEVELOPER="1"
   - brew update
   - mkdir -p $(brew --repo)/Library/Taps/domt4
   - ln -s $PWD $(brew --repo)/Library/Taps/domt4/homebrew-crypto
