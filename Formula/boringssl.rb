@@ -1,8 +1,9 @@
 class Boringssl < Formula
   desc "Google fork of OpenSSL"
   homepage "https://boringssl.googlesource.com"
-  url "https://boringssl.googlesource.com/boringssl.git", :revision => "e72df93461c6d9d2b5698f10e16d3ab82f5adde3"
-  version "0.0.0.52" # Fake version so we can update the formula regularly & easily.
+  url "https://boringssl.googlesource.com/boringssl.git",
+      :revision => "1dc53d2840bb7f6551afa4364e3a2f71816e810e"
+  version "0.0.0.54" # Fake version so we can update the formula regularly.
   head "https://boringssl.googlesource.com/boringssl.git"
 
   keg_only :provided_by_osx, <<-EOS.undent
@@ -18,7 +19,7 @@ class Boringssl < Formula
 
   def install
     if build.with? "documentation"
-      (doc/"boringssl").mkpath
+      doc.mkpath
       cd "util" do
         system "go", "build", "doc.go"
         system buildpath/"util/doc", "--config", buildpath/"util/doc.config", "--out", doc
