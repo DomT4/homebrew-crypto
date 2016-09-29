@@ -2,8 +2,8 @@ class Boringssl < Formula
   desc "Google fork of OpenSSL"
   homepage "https://boringssl.googlesource.com"
   url "https://boringssl.googlesource.com/boringssl.git",
-      :revision => "1dc53d2840bb7f6551afa4364e3a2f71816e810e"
-  version "0.0.0.54" # Fake version so we can update the formula regularly.
+      :revision => "a252b34d66373c10be8e43c74df91e3c634bd26c"
+  version "0.0.0.55" # Fake version so we can update the formula regularly.
   head "https://boringssl.googlesource.com/boringssl.git"
 
   keg_only :provided_by_osx, <<-EOS.undent
@@ -27,12 +27,12 @@ class Boringssl < Formula
     end
 
     mkdir "build" do
-      system "cmake", "-GNinja", "..", *std_cmake_args
+      system "cmake", "-GNinja", "..", "-DBUILD_SHARED_LIBS=1", *std_cmake_args
       system "ninja"
 
       # There's no real Makefile as such. We have to handle this manually.
       bin.install "tool/bssl"
-      lib.install "crypto/libcrypto.a", "ssl/libssl.a"
+      lib.install "crypto/libcrypto.dylib", "ssl/libssl.dylib"
     end
     include.install Dir["include/*"]
   end
