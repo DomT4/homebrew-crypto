@@ -3,6 +3,8 @@ class Ricochet < Formula
   homepage "https://ricochet.im"
   url "https://github.com/ricochet-im/ricochet/releases/download/v1.1.2/ricochet-1.1.2-src.tar.bz2"
   sha256 "97c78d088892e84c95a3e3a4a982883d8e44028848a513a5d7e0231d36325cc3"
+  revision 1
+
   head "https://github.com/ricochet-im/ricochet.git"
 
   depends_on "pkg-config" => :build
@@ -12,9 +14,9 @@ class Ricochet < Formula
   depends_on "libevent" # For Tor
 
   resource "tor" do
-    url "https://dist.torproject.org/tor-0.2.7.6.tar.gz"
-    mirror "https://tor.eff.org/dist/tor-0.2.7.6.tar.gz"
-    sha256 "493a8679f904503048114aca6467faef56861206bab8283d858f37141d95105d"
+    url "https://dist.torproject.org/tor-0.2.8.9.tar.gz"
+    mirror "https://tor.eff.org/dist/tor-0.2.8.9.tar.gz"
+    sha256 "3f5c273bb887be4aff11f4d99b9e2e52d293b81ff4f6302b730161ff16dc5316"
   end
 
   def install
@@ -44,7 +46,7 @@ class Ricochet < Formula
   def caveats; <<-EOS.undent
     Configuration files will be automatically generated upon first run.
 
-    You may wish to backup #{libexec}/config.ricochet to somewhere that
+    You may wish to backup #{opt_libexec}/config.ricochet to somewhere that
     will persist across updates such as #{var}/ricochet.
   EOS
   end
