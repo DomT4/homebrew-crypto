@@ -1,20 +1,17 @@
 class Bearssl < Formula
   desc "Implementation of the SSL/TLS protocol written in C"
   homepage "https://bearssl.org/index.html"
-  url "https://bearssl.org/bearssl-0.1.tar.gz"
-  sha256 "be33f84a6304dacffdfa99c5539cfde5681153a7e916a1b0cf2c5c2a4f623bbe"
+  url "https://bearssl.org/bearssl-0.2.tar.gz"
+  sha256 "8d7640b4112e7cf677a4a5f22a997cf89c4a18e51bc4843f6f16b7db7fe93f73"
+  head "https://www.bearssl.org/git/BearSSL", :using => :git
 
-  head do
-    url "https://www.bearssl.org/git/BearSSL", :using => :git
-
-    depends_on "doxygen" => [:build, :optional]
-    depends_on "graphviz" => :build if build.with? "doxygen"
-  end
+  depends_on "doxygen" => [:build, :optional]
+  depends_on "graphviz" => :build if build.with? "doxygen"
 
   def install
     system "make"
 
-    if build.head? && build.with?("doxygen")
+    if build.with? "doxygen"
       system "doxygen"
       doc.install Dir["apidoc/html/*"]
     end
