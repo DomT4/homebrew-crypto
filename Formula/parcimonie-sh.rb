@@ -2,26 +2,20 @@ class ParcimonieSh < Formula
   desc "Refresh your GnuPG keyring discreetly"
   homepage "https://github.com/EtiennePerot/parcimonie.sh"
   url "https://github.com/EtiennePerot/parcimonie.sh.git",
-      :revision => "4016b027274294787562be1900920e3834bc69bb"
-  version "0.0.0.1" # Fake version to allow easier updates.
+      :revision => "a42af0f9e43001cf5ed6d43fc1ce4e7fc6078685"
+  version "0.0.0.2" # Fake version to allow easier updates.
   version_scheme 1
 
   head "https://github.com/EtiennePerot/parcimonie.sh.git"
 
   depends_on "gnupg2" => :recommended
-  depends_on "homebrew/versions/gnupg21" => :optional
-  depends_on "torsocks" => :recommended
-  depends_on "tor" => :optional
+  depends_on "torsocks"
+  depends_on "tor"
 
   def install
     inreplace "parcimonie.sh" do |s|
       s.gsub! "${TORSOCKS_BINARY:-torsocks}", "${TORSOCKS_BINARY:-#{Formula["torsocks"].opt_bin}/torsocks}"
-
-      if build.with? "gnupg21"
-        s.gsub! "${GNUPG_BINARY:-gpg}", "${GNUPG_BINARY:-#{Formula["gnupg21"].opt_bin}/gpg2}"
-      else
-        s.gsub! "${GNUPG_BINARY:-gpg}", "${GNUPG_BINARY:-#{Formula["gnupg2"].opt_bin}/gpg}"
-      end
+      s.gsub! "${GNUPG_BINARY:-gpg}", "${GNUPG_BINARY:-#{Formula["gnupg2"].opt_bin}/gpg}"
     end
 
     (var/"parcimonie").mkpath
