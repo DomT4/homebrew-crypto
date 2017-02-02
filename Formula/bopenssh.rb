@@ -8,8 +8,7 @@ class Bopenssh < Formula
   revision 1
 
   depends_on "pkg-config" => :build
-  depends_on "libressl" => :recommended
-  depends_on "openssl" => :optional
+  depends_on "libressl"
   depends_on "ldns" => :optional
 
   # Both these patches are applied by Apple.
@@ -41,15 +40,8 @@ class Bopenssh < Formula
       --with-kerberos5
       --prefix=#{prefix}
       --sysconfdir=#{etc}/ssh
+      --with-ssl-dir=#{Formula["libressl"].opt_prefix}
     ]
-
-    args << "--with-ldns" if build.with? "ldns"
-
-    if build.with? "openssl"
-      args << "--with-ssl-dir=#{Formula["openssl"].opt_prefix}"
-    else
-      args << "--with-ssl-dir=#{Formula["libressl"].opt_prefix}"
-    end
 
     args << "--with-ldns" if build.with? "ldns"
 
