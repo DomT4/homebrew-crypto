@@ -3,9 +3,9 @@
 class GnuWget < Formula
   desc "Internet file retriever built against LibreSSL"
   homepage "https://www.gnu.org/software/wget/"
-  url "https://ftpmirror.gnu.org/wget/wget-1.18.tar.xz"
-  mirror "https://ftp.gnu.org/gnu/wget/wget-1.18.tar.xz"
-  sha256 "b5b55b75726c04c06fe253daec9329a6f1a3c0c1878e3ea76ebfebc139ea9cc1"
+  url "https://ftpmirror.gnu.org/wget/wget-1.19.1.tar.gz"
+  mirror "https://ftp.gnu.org/gnu/wget/wget-1.19.1.tar.xz"
+  sha256 "9e4f12da38cc6167d0752d934abe27c7b1599a9af294e73829be7ac7b5b4da40"
 
   head do
     url "git://git.savannah.gnu.org/wget.git"
@@ -17,19 +17,13 @@ class GnuWget < Formula
   end
 
   option "with-default-names", "Do not prepend 'l' to the binary"
-  option "with-debug", "Build with debug support"
 
   depends_on "libressl"
-  depends_on "libidn" => :optional
   depends_on "pcre" => :optional
   depends_on "libmetalink" => :optional
   depends_on "gpgme" => :optional
 
   def install
-    # Fixes undefined symbols _iconv, _iconv_close, _iconv_open
-    # Reported 10 Jun 2016: https://savannah.gnu.org/bugs/index.php?48193
-    ENV.append "LDFLAGS", "-liconv"
-
     args = %W[
       --prefix=#{prefix}
       --sysconfdir=#{etc}
@@ -39,7 +33,6 @@ class GnuWget < Formula
 
     args << "--program-prefix=l" if build.without? "default-names"
     args << "--disable-debug" if build.without? "debug"
-    args << "--disable-iri" if build.without? "libidn"
     args << "--disable-pcre" if build.without? "pcre"
     args << "--with-metalink" if build.with? "libmetalink"
     args << "--with-gpgme-prefix=#{Formula["gpgme"].opt_prefix}" if build.with? "gpgme"
@@ -58,7 +51,7 @@ class GnuWget < Formula
     if build.without? "default-names"
       s += <<-EOS.undent
         The binary is prepended with a 'l' so this can be used
-        alongside Homebrew/Homebrew's wget without conflict.
+        alongside Homebrew's `wget` without conflict.
       EOS
     end
 
@@ -66,6 +59,6 @@ class GnuWget < Formula
   end
 
   test do
-    system bin/"lwget", "-O", "-", "https://duckduckgo.com"
+    system bin/"lwget", "-O", "/dev/null", "https://duckduckgo.com"
   end
 end
