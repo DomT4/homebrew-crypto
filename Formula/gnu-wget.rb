@@ -29,10 +29,10 @@ class GnuWget < Formula
       --sysconfdir=#{etc}
       --with-ssl=openssl
       --with-libssl-prefix=#{Formula["libressl"].opt_prefix}
+      --disable-debug
     ]
 
     args << "--program-prefix=l" if build.without? "default-names"
-    args << "--disable-debug" if build.without? "debug"
     args << "--disable-pcre" if build.without? "pcre"
     args << "--with-metalink" if build.with? "libmetalink"
     args << "--with-gpgme-prefix=#{Formula["gpgme"].opt_prefix}" if build.with? "gpgme"
