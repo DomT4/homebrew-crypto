@@ -19,7 +19,6 @@ class Deluge < Formula
   depends_on "gtk-mac-integration"
   depends_on "librsvg"
   depends_on "openssl"
-  depends_on "openjpeg" # For Pillow
 
   resource "appdirs" do
     url "https://files.pythonhosted.org/packages/48/69/d87c60746b393309ca30761f8e2b49473d43450b150cb08f3c6df5c11be5/appdirs-1.4.3.tar.gz"
@@ -163,6 +162,7 @@ class Deluge < Formula
     resource("Pillow").stage do
       inreplace "setup.py" do |s|
         sdkprefix = MacOS::CLT.installed? ? "" : MacOS.sdk_path
+        s.gsub! "openjpeg.h", "probably_not_a_header_called_this_eh.h"
         s.gsub! "ZLIB_ROOT = None", "ZLIB_ROOT = ('#{sdkprefix}/usr/lib', '#{sdkprefix}/usr/include')"
         s.gsub! "JPEG_ROOT = None", "JPEG_ROOT = ('#{Formula["jpeg"].opt_prefix}/lib', '#{Formula["jpeg"].opt_prefix}/include')"
         s.gsub! "FREETYPE_ROOT = None", "FREETYPE_ROOT = ('#{Formula["freetype"].opt_prefix}/lib', '#{Formula["freetype"].opt_prefix}/include')"
