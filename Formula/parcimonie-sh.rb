@@ -3,19 +3,19 @@ class ParcimonieSh < Formula
   homepage "https://github.com/EtiennePerot/parcimonie.sh"
   url "https://github.com/EtiennePerot/parcimonie.sh.git",
       :revision => "a42af0f9e43001cf5ed6d43fc1ce4e7fc6078685"
-  version "0.0.0.2" # Fake version to allow easier updates.
+  version "0.0.0.3" # Fake version to allow easier updates.
   version_scheme 1
 
   head "https://github.com/EtiennePerot/parcimonie.sh.git"
 
-  depends_on "gnupg2" => :recommended
+  depends_on :gpg
   depends_on "torsocks"
   depends_on "tor"
 
   def install
     inreplace "parcimonie.sh" do |s|
       s.gsub! "${TORSOCKS_BINARY:-torsocks}", "${TORSOCKS_BINARY:-#{Formula["torsocks"].opt_bin}/torsocks}"
-      s.gsub! "${GNUPG_BINARY:-gpg}", "${GNUPG_BINARY:-#{Formula["gnupg2"].opt_bin}/gpg}"
+      s.gsub! "${GNUPG_BINARY:-gpg}", "${GNUPG_BINARY:-#{which("gpg")}}"
     end
 
     (var/"parcimonie").mkpath
@@ -24,6 +24,9 @@ class ParcimonieSh < Formula
 
   def caveats; <<-EOS.undent
     Tor must be running for parcimonie to work.
+
+    Note if using GnuPG 2.1.x there are some potential issues:
+      https://github.com/EtiennePerot/parcimonie.sh/issues/15
   EOS
   end
 
