@@ -6,9 +6,10 @@ class GnuWget < Formula
   url "https://ftpmirror.gnu.org/wget/wget-1.19.1.tar.xz"
   mirror "https://ftp.gnu.org/gnu/wget/wget-1.19.1.tar.xz"
   sha256 "0c950b9671881222a4d385b013c9604e98a8025d1988529dfca0e93617744cd2"
+  revision 1
 
   head do
-    url "git://git.savannah.gnu.org/wget.git"
+    url "https://git.savannah.gnu.org/git/wget.git"
 
     depends_on "autoconf" => :build
     depends_on "automake" => :build
@@ -18,6 +19,8 @@ class GnuWget < Formula
 
   option "with-default-names", "Do not prepend 'l' to the binary"
 
+  depends_on "pkg-config" => :build
+  depends_on "pod2man" => :build if MacOS.version <= :snow_leopard
   depends_on "libressl"
   depends_on "pcre" => :optional
   depends_on "libmetalink" => :optional
@@ -40,9 +43,11 @@ class GnuWget < Formula
     system "./bootstrap" if build.head?
     system "./configure", *args
     system "make", "install"
-    rm_rf share/"info"
 
-    mv "#{man1}/wget.1", "#{man1}/lwget.1" if build.without? "default-names"
+    if build.without? "default-names"
+      mv info/"wget.info", info/"lwget.info"
+      mv man1/"wget.1", man1/"lwget.1"
+    end
   end
 
   def caveats
