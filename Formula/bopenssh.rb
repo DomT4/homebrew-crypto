@@ -5,6 +5,7 @@ class Bopenssh < Formula
   mirror "https://www.mirrorservice.org/pub/OpenBSD/OpenSSH/portable/openssh-7.5p1.tar.gz"
   version "7.5p1"
   sha256 "9846e3c5fab9f0547400b4d2c017992f914222b3fd1f8eee6c7dc6bc5e59f9f0"
+  revision 1
 
   depends_on "pkg-config" => :build
   depends_on "libressl"
