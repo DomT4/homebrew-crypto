@@ -22,10 +22,16 @@ class Bopenssh < Formula
     sha256 "3505c58bf1e584c8af92d916fe5f3f1899a6b15cc64a00ddece1dc0874b2f78f"
   end
 
+  resource "com.openssh.sshd.sb" do
+    url "https://opensource.apple.com/source/OpenSSH/OpenSSH-209.50.1/com.openssh.sshd.sb"
+    sha256 "a273f86360ea5da3910cfa4c118be931d10904267605cdd4b2055ced3a829774"
+  end
+
   def install
     ENV.append "CPPFLAGS", "-D__APPLE_SANDBOX_NAMED_EXTERNAL__"
 
     # Ensure sandbox profile prefix is correct.
+    # We introduce this issue with patching, it's not an upstream bug.
     inreplace "sandbox-darwin.c", "@PREFIX@/share/openssh", etc/"ssh"
 
     args = %W[
@@ -48,32 +54,20 @@ class Bopenssh < Formula
     # Debian have done the same thing.
     bin.install_symlink bin/"ssh" => "slogin"
 
-    # https://opensource.apple.com/source/OpenSSH/OpenSSH-209.30.4/com.openssh.sshd.sb
-    (buildpath/"org.openssh.sshd.sb").write <<-EOS.undent
-      ;; Copyright (c) 2008 Apple Inc.  All Rights reserved.
-      ;;
-      ;; sshd - profile for privilege separated children
-      ;;
-      ;; WARNING: The sandbox rules in this file currently constitute
-      ;; Apple System Private Interface and are subject to change at any time and
-      ;; without notice.
-      ;;
+    buildpath.install resource("com.openssh.sshd.sb")
+    (etc/"ssh").install "com.openssh.sshd.sb" => "org.openssh.sshd.sb"
+  end
 
-      (version 1)
+  test do
+    assert_match "OpenSSH_", shell_output("#{bin}/ssh -V 2>&1")
 
-      (deny default)
-
-      (allow file-chroot)
-      (allow file-read-metadata (literal "/var"))
-
-      (allow sysctl-read)
-      (allow mach-per-user-lookup)
-      (allow mach-lookup
-      	(global-name "com.apple.system.notification_center")
-      	(global-name "com.apple.system.opendirectoryd.libinfo")
-      	(global-name "com.apple.system.opendirectoryd.libinfo") ;; duplicate name as a work-around for 19978803
-      	(global-name "com.apple.system.logger"))
-    EOS
-    (etc/"ssh").install "org.openssh.sshd.sb"
+    begin
+      pid = fork { exec sbin/"sshd", "-D", "-p", "8022" }
+      sleep 2
+      assert_match "sshd", shell_output("lsof -i :8022")
+    ensure
+      Process.kill(9, pid)
+      Process.wait(pid)
+    end
   end
 end
