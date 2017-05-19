@@ -3,20 +3,20 @@ class Ricochet < Formula
   homepage "https://ricochet.im"
   url "https://ricochet.im/releases/1.1.4/ricochet-1.1.4-src.tar.bz2"
   sha256 "f5f32caa3480def1de5c93010c6bf5f5789ddcba34bf09fc0feab67696d0c374"
-  revision 3
+  revision 4
 
   head "https://github.com/ricochet-im/ricochet.git"
 
   depends_on "pkg-config" => :build
-  depends_on "qt5"
+  depends_on "qt"
   depends_on "openssl"
   depends_on "protobuf"
   depends_on "libevent" # For Tor
 
   resource "tor" do
-    url "https://www.torproject.org/dist/tor-0.2.9.10.tar.gz"
-    mirror "https://tor.eff.org/dist/tor-0.2.9.10.tar.gz"
-    sha256 "d611283e1fb284b5f884f8c07e7d3151016851848304f56cfdf3be2a88bd1341"
+    url "https://tor.eff.org/dist/tor-0.3.0.7.tar.gz"
+    mirror "https://www.torproject.org/dist/tor-0.3.0.7.tar.gz"
+    sha256 "9640c4448ef3cad7237c68ed6984e705db8fb2b9d6bb74c8815d01bb06527d02"
   end
 
   def install
@@ -49,5 +49,10 @@ class Ricochet < Formula
     You may wish to backup #{opt_libexec}/config.ricochet to somewhere that
     will persist across updates such as #{var}/ricochet.
   EOS
+  end
+
+  test do
+    output = shell_output("#{libexec}/Ricochet.app/Contents/MacOS/tor --version")
+    assert_match resource("tor").version.to_s, output
   end
 end
