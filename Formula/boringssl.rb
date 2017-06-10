@@ -2,13 +2,13 @@ class Boringssl < Formula
   desc "Google fork of OpenSSL"
   homepage "https://boringssl.googlesource.com"
   url "https://boringssl.googlesource.com/boringssl.git",
-      :revision => "429e85b516ec967458da3281ff6fd05a0b5170c8"
-  version "0.0.0.68" # Fake version so we can update the formula regularly.
+      :revision => "ff2394527fd863741b75d160836d2badd4346a43"
+  version "0.0.0.69" # Fake version so we can update the formula regularly.
   head "https://boringssl.googlesource.com/boringssl.git"
 
   keg_only <<-EOS.undent
     Apple provides a deprecated OpenSSL, which conflicts with this.
-    It also conflicts with Homebrew's shipped OpenSSL and LibreSSL.
+    It also conflicts with Homebrew's shipped OpenSSL and LibreSSL
   EOS
 
   option "without-documentation", "Skip building the documentation."
