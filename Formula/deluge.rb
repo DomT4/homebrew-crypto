@@ -56,8 +56,8 @@ class Deluge < Formula
   end
 
   resource "attrs" do
-    url "https://files.pythonhosted.org/packages/33/51/c53224aeff5af098204ee15281c662e1d4ac4635a15552bfdb17b97674e4/attrs-17.1.0.tar.gz"
-    sha256 "91a2160e61ffb778a8d017c9b1dcc60758d65d39bf7b480e5e9c6005a4462321"
+    url "https://files.pythonhosted.org/packages/be/41/e909cb6d901e9689da947419505cc7fb7d242a08a62ee221fce6a009a523/attrs-17.2.0.tar.gz"
+    sha256 "5d4d1b99f94d69338f485984127e4473b3ab9e20f43821b0e546cc3b2302fd11"
   end
 
   resource "cffi" do
@@ -66,8 +66,8 @@ class Deluge < Formula
   end
 
   resource "chardet" do
-    url "https://files.pythonhosted.org/packages/fc/f9/3963ae8e196ceb4a09e0d7906f511fdf62a631f05d9288dc4905a93a1f52/chardet-3.0.3.tar.gz"
-    sha256 "77df6d712a6037ed6f247ad1dd67faca506f64bc1295d43533e9212a101f28cb"
+    url "https://files.pythonhosted.org/packages/fc/bb/a5768c230f9ddb03acc9ef3f0d4a3cf93462473795d18e9535498c8f929d/chardet-3.0.4.tar.gz"
+    sha256 "84ab92ed1c4d4f16916e05906b6b75a6c0fb5db821cc65e70cbd64a3e2a5eaae"
   end
 
   resource "constantly" do
@@ -76,8 +76,8 @@ class Deluge < Formula
   end
 
   resource "cryptography" do
-    url "https://files.pythonhosted.org/packages/ec/5f/d5bc241d06665eed93cd8d3aa7198024ce7833af7a67f6dc92df94e00588/cryptography-1.8.1.tar.gz"
-    sha256 "323524312bb467565ebca7e50c8ae5e9674e544951d28a2904a50012a8828190"
+    url "https://files.pythonhosted.org/packages/2a/0c/31bd69469e90035381f0197b48bf71032991d9f07a7e444c311b4a23a3df/cryptography-1.9.tar.gz"
+    sha256 "5518337022718029e367d982642f3e3523541e098ad671672a90b82474c84882"
   end
 
   resource "enum34" do
@@ -91,8 +91,8 @@ class Deluge < Formula
   end
 
   resource "incremental" do
-    url "https://files.pythonhosted.org/packages/da/b0/32233c9e84b0d44b39015fba8fec03e88053723c1b455925081dc6ccd9e7/incremental-16.10.1.tar.gz"
-    sha256 "14ad6b720ec47aad6c9caa83e47db1843e2b9b98742da5dda08e16a99f400342"
+    url "https://files.pythonhosted.org/packages/8f/26/02c4016aa95f45479eea37c90c34f8fab6775732ae62587a874b619ca097/incremental-17.5.0.tar.gz"
+    sha256 "7b751696aaf36eebfab537e458929e194460051ccad279c72b755a167eebd4b3"
   end
 
   resource "ipaddress" do
@@ -121,8 +121,8 @@ class Deluge < Formula
   end
 
   resource "pyasn1-modules" do
-    url "https://files.pythonhosted.org/packages/60/32/7703bccdba05998e4ff04db5038a6695a93bedc45dcf491724b85b5db76a/pyasn1-modules-0.0.8.tar.gz"
-    sha256 "10561934f1829bcc455c7ecdcdacdb4be5ffd3696f26f468eb6eb41e107f3837"
+    url "https://files.pythonhosted.org/packages/cf/57/d4097cea8caf360ffe0c5d6f25c2cb9317500cdc000fd02a741ba6e64c9e/pyasn1-modules-0.0.9.tar.gz"
+    sha256 "be0e4157e4a53551279d6c6e366b080527f5fd068616835b4abf32c14f657f5f"
   end
 
   resource "pycparser" do
@@ -141,8 +141,8 @@ class Deluge < Formula
   end
 
   resource "service_identity" do
-    url "https://files.pythonhosted.org/packages/f3/2a/7c04e7ab74f9f2be026745a9ffa81fd9d56139fa6f5f4b4c8a8c07b2bfba/service_identity-16.0.0.tar.gz"
-    sha256 "0630e222f59f91f3db498be46b1d879ff220955d7bbad719a5cb9ad14e3c3036"
+    url "https://files.pythonhosted.org/packages/de/2a/cab6e30be82c8fcd2339ef618036720eda954cf05daef514e386661c9221/service_identity-17.0.0.tar.gz"
+    sha256 "4001fbb3da19e0df22c47a06d29681a398473af4aa9d745eca525b3b2c2302ab"
   end
 
   resource "six" do
