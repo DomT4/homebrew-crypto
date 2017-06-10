@@ -2,8 +2,8 @@ class ParcimonieSh < Formula
   desc "Refresh your GnuPG keyring discreetly"
   homepage "https://github.com/EtiennePerot/parcimonie.sh"
   url "https://github.com/EtiennePerot/parcimonie.sh.git",
-      :revision => "a42af0f9e43001cf5ed6d43fc1ce4e7fc6078685"
-  version "0.0.0.3" # Fake version to allow easier updates.
+      :revision => "5aa21efa3f5f20eb02a44a9681ec91bf2a380628"
+  version "0.0.0.4" # Fake version to allow easier updates.
   version_scheme 1
 
   head "https://github.com/EtiennePerot/parcimonie.sh.git"
@@ -15,7 +15,7 @@ class ParcimonieSh < Formula
   def install
     inreplace "parcimonie.sh" do |s|
       s.gsub! "${TORSOCKS_BINARY:-torsocks}", "${TORSOCKS_BINARY:-#{Formula["torsocks"].opt_bin}/torsocks}"
-      s.gsub! "${GNUPG_BINARY:-gpg}", "${GNUPG_BINARY:-#{which("gpg")}}"
+      s.gsub! "${GNUPG_BINARY:-}", "${GNUPG_BINARY:-#{which("gpg")}}"
     end
 
     (var/"parcimonie").mkpath
