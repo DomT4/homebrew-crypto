@@ -2,8 +2,8 @@ class Boringssl < Formula
   desc "Google fork of OpenSSL"
   homepage "https://boringssl.googlesource.com"
   url "https://boringssl.googlesource.com/boringssl.git",
-      :revision => "e55b32ddff4e1d4f580f196485944bcbb5218b70"
-  version "0.0.0.70" # Fake version so we can update the formula regularly.
+      :revision => "a93bc1124c00b1ac0a68ea5cb14b158d6c8366e1"
+  version "0.0.0.71" # Fake version so we can update the formula regularly.
   head "https://boringssl.googlesource.com/boringssl.git"
 
   keg_only <<-EOS.undent
@@ -38,7 +38,7 @@ class Boringssl < Formula
   end
 
   test do
-    (testpath/"testfile.txt").write("This is a test file")
+    (testpath/"testfile.txt").write "This is a test file"
     expected_checksum = "e2d0fe1585a63ec6009c8016ff8dda8b17719a637405a4e23c0ff81339148249"
     assert_match expected_checksum, shell_output("#{bin}/bssl sha256sum testfile.txt")
   end
