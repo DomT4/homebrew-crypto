@@ -4,7 +4,7 @@ class CurlMax < Formula
   url "https://curl.haxx.se/download/curl-7.54.1.tar.bz2"
   mirror "http://curl.askapache.com/download/curl-7.54.1.tar.bz2"
   sha256 "fdfc4df2d001ee0c44ec071186e770046249263c491fcae48df0e1a3ca8f25a0"
-  revision 1
+  revision 2
 
   keg_only :provided_by_osx
 
@@ -24,9 +24,9 @@ class CurlMax < Formula
   needs :cxx11
 
   resource "libidn2" do
-    url "https://ftp.gnu.org/gnu/libidn/libidn2-2.0.2.tar.gz"
-    mirror "https://ftpmirror.gnu.org/libidn/libidn2-2.0.2.tar.gz"
-    sha256 "8cd62828b2ab0171e0f35a302f3ad60c3a3fffb45733318b3a8205f9d187eeab"
+    url "https://ftp.gnu.org/gnu/libidn/libidn2-2.0.3.tar.gz"
+    mirror "https://ftpmirror.gnu.org/libidn/libidn2-2.0.3.tar.gz"
+    sha256 "4335149ce7a5c615edb781574d38f658672780331064fb17354a10e11a5308cd"
   end
 
   # Needed for nghttp2
@@ -61,6 +61,7 @@ class CurlMax < Formula
     resource("libidn2").stage do
       system "./configure", "--disable-dependency-tracking",
                             "--disable-silent-rules",
+                            "--disable-doc",
                             "--prefix=#{vendor}",
                             "--with-packager=Homebrew"
       system "make", "install"
