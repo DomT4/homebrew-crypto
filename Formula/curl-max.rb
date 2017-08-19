@@ -4,6 +4,7 @@ class CurlMax < Formula
   url "https://curl.haxx.se/download/curl-7.55.1.tar.bz2"
   mirror "http://curl.askapache.com/download/curl-7.55.1.tar.bz2"
   sha256 "e5b1a92ed3b0c11f149886458fa063419500819f1610c020d62f25b8e4b16cfb"
+  revision 1
 
   keg_only :provided_by_macos
 
@@ -41,8 +42,8 @@ class CurlMax < Formula
   end
 
   resource "nghttp2" do
-    url "https://github.com/nghttp2/nghttp2/releases/download/v1.24.0/nghttp2-1.24.0.tar.xz"
-    sha256 "0d443cd2f45593aa42e93163cb46a03cb4a28703712a8dd8cc9102d454727316"
+    url "https://github.com/nghttp2/nghttp2/releases/download/v1.25.0/nghttp2-1.25.0.tar.xz"
+    sha256 "9553f144e60aa0d7bc5245df1c0f6a867a9fd9dc35ed6f358c6122a844d52f62"
   end
 
   resource "libssh2" do
