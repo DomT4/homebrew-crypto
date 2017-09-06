@@ -2,8 +2,8 @@ class Boringssl < Formula
   desc "Google fork of OpenSSL"
   homepage "https://boringssl.googlesource.com/boringssl"
   url "https://boringssl.googlesource.com/boringssl.git",
-      :revision => "7cc3f4fce01164b5cd9b06b3a5f04c588ac906ca"
-  version "0.0.0.76" # Fake version so we can update the formula regularly.
+      :revision => "be90bf764a07f186ac5413d7a9d507d67f694efe"
+  version "0.0.0.77" # Fake version so we can update the formula regularly.
   head "https://boringssl.googlesource.com/boringssl.git"
 
   keg_only <<-EOS.undent
@@ -11,19 +11,15 @@ class Boringssl < Formula
     It also conflicts with Homebrew's shipped OpenSSL and LibreSSL
   EOS
 
-  option "without-documentation", "Skip building the documentation."
-
   depends_on "ninja" => :build
   depends_on "cmake" => :build
   depends_on "go" => :build
 
   def install
-    if build.with? "documentation"
-      doc.mkpath
-      cd "util" do
-        system "go", "build", "doc.go"
-        system buildpath/"util/doc", "--config", buildpath/"util/doc.config", "--out", doc
-      end
+    doc.mkpath
+    cd "util" do
+      system "go", "build", "doc.go"
+      system buildpath/"util/doc", "--config", buildpath/"util/doc.config", "--out", doc
     end
 
     mkdir "build" do
