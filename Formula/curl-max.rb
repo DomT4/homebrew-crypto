@@ -4,7 +4,7 @@ class CurlMax < Formula
   url "https://curl.haxx.se/download/curl-7.55.1.tar.bz2"
   mirror "http://curl.askapache.com/download/curl-7.55.1.tar.bz2"
   sha256 "e5b1a92ed3b0c11f149886458fa063419500819f1610c020d62f25b8e4b16cfb"
-  revision 1
+  revision 2
 
   keg_only :provided_by_macos
 
@@ -24,9 +24,9 @@ class CurlMax < Formula
   needs :cxx11
 
   resource "libidn2" do
-    url "https://ftp.gnu.org/gnu/libidn/libidn2-2.0.3.tar.gz"
-    mirror "https://ftpmirror.gnu.org/libidn/libidn2-2.0.3.tar.gz"
-    sha256 "4335149ce7a5c615edb781574d38f658672780331064fb17354a10e11a5308cd"
+    url "https://ftp.gnu.org/gnu/libidn/libidn2-2.0.4.tar.gz"
+    mirror "https://ftpmirror.gnu.org/libidn/libidn2-2.0.4.tar.gz"
+    sha256 "644b6b03b285fb0ace02d241d59483d98bc462729d8bb3608d5cad5532f3d2f0"
   end
 
   # Needed for nghttp2
