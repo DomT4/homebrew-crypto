@@ -31,8 +31,8 @@ class CurlMax < Formula
 
   # Needed for nghttp2
   resource "libevent" do
-    url "https://github.com/libevent/libevent/archive/release-2.1.8-stable.tar.gz"
-    sha256 "316ddb401745ac5d222d7c529ef1eada12f58f6376a66c1118eee803cb70f83d"
+    url "https://github.com/libevent/libevent/releases/download/release-2.1.8-stable/libevent-2.1.8-stable.tar.gz"
+    sha256 "965cc5a8bb46ce4199a47e9b2c9e1cae3b137e8356ffdad6d94d3b9069b71dc2"
   end
 
   # Needed for nghttp2
@@ -68,7 +68,6 @@ class CurlMax < Formula
     end
 
     resource("libevent").stage do
-      system "./autogen.sh"
       system "./configure", "--disable-dependency-tracking",
                             "--disable-debug-mode",
                             "--prefix=#{vendor}"
