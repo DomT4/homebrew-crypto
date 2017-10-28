@@ -1,10 +1,9 @@
 class GnuWget < Formula
   desc "Internet file retriever built against LibreSSL"
   homepage "https://www.gnu.org/software/wget/"
-  url "https://ftp.gnu.org/gnu/wget/wget-1.19.1.tar.xz"
-  mirror "https://ftpmirror.gnu.org/wget/wget-1.19.1.tar.xz"
-  sha256 "0c950b9671881222a4d385b013c9604e98a8025d1988529dfca0e93617744cd2"
-  revision 1
+  url "https://ftp.gnu.org/gnu/wget/wget-1.19.2.tar.gz"
+  mirror "https://ftpmirror.gnu.org/wget/wget-1.19.2.tar.gz"
+  sha256 "4f4a673b6d466efa50fbfba796bd84a46ae24e370fa562ede5b21ab53c11a920"
 
   head do
     url "https://git.savannah.gnu.org/git/wget.git"
@@ -50,7 +49,7 @@ class GnuWget < Formula
 
   def caveats
     return if build.with? "default-names"
-    <<-EOS.undent
+    <<~EOS
       The binary is prepended with a 'l' so this can be used
       alongside Homebrew's `wget` without conflict.
     EOS
