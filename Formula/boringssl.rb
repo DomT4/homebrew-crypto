@@ -2,11 +2,11 @@ class Boringssl < Formula
   desc "Google fork of OpenSSL"
   homepage "https://boringssl.googlesource.com/boringssl"
   url "https://boringssl.googlesource.com/boringssl.git",
-      :revision => "6675cfddef7831b86b094caff18c22e5e7346f43"
-  version "0.0.0.81" # Fake version so we can update the formula regularly.
+      :revision => "cb16f17b36d9ee9528a06d2e520374a4f177af4d"
+  version "0.0.0.82" # Fake version so we can update the formula regularly.
   head "https://boringssl.googlesource.com/boringssl.git"
 
-  keg_only <<-EOS.undent
+  keg_only <<~EOS
     Apple provides an old OpenSSL, which conflicts with this.
     It also conflicts with Homebrew's shipped OpenSSL and LibreSSL
   EOS
@@ -19,7 +19,7 @@ class Boringssl < Formula
     doc.mkpath
     cd "util" do
       system "go", "build", "doc.go"
-      system buildpath/"util/doc", "--config", buildpath/"util/doc.config", "--out", doc
+      system "./doc", "--config", "doc.config", "--out", doc
     end
 
     mkdir "build" do
