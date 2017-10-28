@@ -7,8 +7,8 @@ class Electrum < Formula
   desc "Bitcoin thin client"
   homepage "https://electrum.org"
   url "https://github.com/spesmilo/electrum.git",
-      :revision => "ccf1f0f5d12b5087f5a9f84364c9ebe2c73c6129"
-  version "2.9.3-ccf1"
+      :revision => "3696d38f335b666c797483f839c3adbb0d64b5a2"
+  version "2.9.3-3696"
 
   depends_on "protobuf"
   depends_on "pyqt"
