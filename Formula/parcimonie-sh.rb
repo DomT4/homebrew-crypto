@@ -18,11 +18,14 @@ class ParcimonieSh < Formula
       s.gsub! "${GNUPG_BINARY:-}", "${GNUPG_BINARY:-#{which("gpg")}}"
     end
 
-    (var/"parcimonie").mkpath
     bin.install "parcimonie.sh" => "parcimonie"
   end
 
-  def caveats; <<-EOS.undent
+  def post_install
+    (var/"parcimonie").mkpath
+  end
+
+  def caveats; <<~EOS
     Tor must be running for parcimonie to work.
 
     Note if using GnuPG 2.1.x there are some potential issues:
@@ -32,7 +35,7 @@ class ParcimonieSh < Formula
 
   plist_options :manual => "parcimonie"
 
-  def plist; <<-EOS.undent
+  def plist; <<~EOS
     <?xml version="1.0" encoding="UTF-8"?>
     <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
     <plist version="1.0">
