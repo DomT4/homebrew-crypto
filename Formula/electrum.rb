@@ -1,14 +1,10 @@
-# Once this has a stable Python3 release I'll likely submit it
-# to Homebrew/core but at the moment the stable release uses Python2
-# which has issues, particularly around Homebrew dependencies.
 class Electrum < Formula
   include Language::Python::Virtualenv
 
   desc "Bitcoin thin client"
   homepage "https://electrum.org"
-  url "https://github.com/spesmilo/electrum.git",
-      :revision => "3696d38f335b666c797483f839c3adbb0d64b5a2"
-  version "2.9.3-3696"
+  url "https://download.electrum.org/3.0/Electrum-3.0.tar.gz"
+  sha256 "d1e9b81c10fd9c7ba214be4eaf84067a0b7d9b595945e938a8d67e86ddad8ca0"
 
   depends_on "protobuf"
   depends_on "pyqt"
@@ -20,8 +16,8 @@ class Electrum < Formula
   end
 
   resource "certifi" do
-    url "https://files.pythonhosted.org/packages/20/d0/3f7a84b0c5b89e94abbd073a5f00c7176089f526edb056686751d5064cbd/certifi-2017.7.27.1.tar.gz"
-    sha256 "40523d2efb60523e113b44602298f0960e900388cf3bb6043f645cf57ea9e3f5"
+    url "https://files.pythonhosted.org/packages/23/3f/8be01c50ed24a4bd6b8da799839066ce0288f66f5e11f0367323467f0cbc/certifi-2017.11.5.tar.gz"
+    sha256 "5ec74291ca1136b40f0379e1128ff80e866597e4e2c1e755739a913bbc3613c0"
   end
 
   resource "chardet" do
@@ -93,8 +89,6 @@ class Electrum < Formula
     xy = Language::Python.major_minor_version "python3"
     sp = libexec/"lib/python#{xy}/site-packages"
     system "pyrcc5", "icons.qrc", "-o", sp/"electrum_gui/qt/icons_rc.py"
-    system "protoc", "--proto_path=lib/", "--python_out=#{libexec}/lib",
-                                          "lib/paymentrequest.proto"
   end
 
   test do
