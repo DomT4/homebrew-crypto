@@ -3,8 +3,8 @@ class Electrum < Formula
 
   desc "Bitcoin thin client"
   homepage "https://electrum.org"
-  url "https://download.electrum.org/3.0/Electrum-3.0.tar.gz"
-  sha256 "d1e9b81c10fd9c7ba214be4eaf84067a0b7d9b595945e938a8d67e86ddad8ca0"
+  url "https://download.electrum.org/3.0.2/Electrum-3.0.2.tar.gz"
+  sha256 "4dff75bc5f496f03ad7acbe33f7cec301955ef592b0276f2c518e94e47284f53"
 
   depends_on "protobuf"
   depends_on "pyqt"
@@ -51,8 +51,8 @@ class Electrum < Formula
   end
 
   resource "protobuf" do
-    url "https://files.pythonhosted.org/packages/89/45/3214bb758646a1a30459ca0f5b8f8164d6893f24725c58b632e663565f44/protobuf-3.4.0.tar.gz"
-    sha256 "ef02609ef445987976a3a26bff77119c518e0915c96661c3a3b17856d0ef6374"
+    url "https://files.pythonhosted.org/packages/24/5f/545a0a1a169417283e63f5a0bf7af8a68ac4a451b56ef5ba2fd3985004e5/protobuf-3.5.0.tar.gz"
+    sha256 "5dc58d69207af74e07c56c7b5c5c5dcb60f44b9c9b7c0a17a06ae50808072edc"
   end
 
   resource "pyaes" do
