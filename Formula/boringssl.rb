@@ -2,8 +2,8 @@ class Boringssl < Formula
   desc "Google fork of OpenSSL"
   homepage "https://boringssl.googlesource.com/boringssl"
   url "https://boringssl.googlesource.com/boringssl.git",
-      :revision => "74b828f263e0d811e37fbb20d4a9a1f04347ca03"
-  version "0.0.0.84" # Fake version so we can update the formula regularly.
+      :revision => "2fce1beda0f7e74e2d687860f807cf0b8d8056a4"
+  version "0.0.0.85" # Fake version so we can update the formula regularly.
   head "https://boringssl.googlesource.com/boringssl.git"
 
   keg_only <<~EOS
@@ -25,6 +25,7 @@ class Boringssl < Formula
     mkdir "build" do
       system "cmake", "-GNinja", "..", "-DBUILD_SHARED_LIBS=1", *std_cmake_args
       system "ninja"
+      system "go", "run", buildpath/"util/all_tests.go"
 
       # There's no real Makefile as such. We have to handle this manually.
       bin.install "tool/bssl"
