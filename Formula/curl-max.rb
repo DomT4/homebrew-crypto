@@ -4,7 +4,7 @@ class CurlMax < Formula
   url "https://curl.haxx.se/download/curl-7.56.1.tar.bz2"
   mirror "http://curl.askapache.com/download/curl-7.56.1.tar.bz2"
   sha256 "2594670367875e7d87b0f129b5e4690150780884d90244ba0fe3e74a778b5f90"
-  revision 1
+  revision 2
 
   keg_only :provided_by_macos
 
@@ -35,15 +35,9 @@ class CurlMax < Formula
     sha256 "965cc5a8bb46ce4199a47e9b2c9e1cae3b137e8356ffdad6d94d3b9069b71dc2"
   end
 
-  # Needed for nghttp2
-  resource "spdylay" do
-    url "https://github.com/tatsuhiro-t/spdylay/archive/v1.4.0.tar.gz"
-    sha256 "31ed26253943b9d898b936945a1c68c48c3e0974b146cef7382320a97d8f0fa0"
-  end
-
   resource "nghttp2" do
-    url "https://github.com/nghttp2/nghttp2/releases/download/v1.27.0/nghttp2-1.27.0.tar.xz"
-    sha256 "e83819560952a3dc3c8d96c46f60745408f46f5f384168c90b9e3dfa53b2c2c8"
+    url "https://github.com/nghttp2/nghttp2/releases/download/v1.28.0/nghttp2-1.28.0.tar.xz"
+    sha256 "0d6c3f00614deca3935e42a27f6ad0ea87c31d8c1baa3a9c52755955c599fd8d"
   end
 
   resource "libssh2" do
@@ -75,25 +69,12 @@ class CurlMax < Formula
       system "make", "install"
     end
 
-    resource("spdylay").stage do
-      if MacOS.version == "10.11" && MacOS::Xcode.installed? &&
-         MacOS::Xcode.version >= "8.0"
-        ENV["ac_cv_search_clock_gettime"] = "no"
-      end
-
-      system "autoreconf", "-fiv"
-      system "./configure", "--disable-dependency-tracking",
-                            "--prefix=#{vendor}"
-      system "make", "install"
-    end
-
     resource("nghttp2").stage do
       system "./configure", "--prefix=#{vendor}",
                             "--disable-silent-rules",
                             "--enable-app",
                             "--with-boost=#{Formula["boost"].opt_prefix}",
                             "--enable-asio-lib",
-                            "--with-spdylay",
                             "--disable-python-bindings"
       system "make"
       system "make", "check"
@@ -171,7 +152,6 @@ class CurlMax < Formula
     system "./test2"
 
     # Test vendored executables.
-    system libexec/"vendor/bin/spdycat", "-ns", "https://cloudflare.com/"
     system libexec/"vendor/bin/nghttp", "-nv", "https://nghttp2.org"
 
     # Test IDN support.
