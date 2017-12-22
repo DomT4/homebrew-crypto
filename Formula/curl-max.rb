@@ -4,6 +4,7 @@ class CurlMax < Formula
   url "https://curl.haxx.se/download/curl-7.57.0.tar.bz2"
   mirror "http://curl.askapache.com/download/curl-7.57.0.tar.bz2"
   sha256 "c92fe31a348eae079121b73884065e600c533493eb50f1f6cee9c48a3f454826"
+  revision 1
 
   keg_only :provided_by_macos
 
@@ -17,16 +18,11 @@ class CurlMax < Formula
   depends_on "libev"
   depends_on "jansson"
   depends_on "boost"
+  depends_on "libidn2"
   depends_on "libmetalink"
   depends_on "libxml2"
 
   needs :cxx11
-
-  resource "libidn2" do
-    url "https://ftp.gnu.org/gnu/libidn/libidn2-2.0.4.tar.gz"
-    mirror "https://ftpmirror.gnu.org/libidn/libidn2-2.0.4.tar.gz"
-    sha256 "644b6b03b285fb0ace02d241d59483d98bc462729d8bb3608d5cad5532f3d2f0"
-  end
 
   # Needed for nghttp2
   resource "libevent" do
@@ -35,8 +31,8 @@ class CurlMax < Formula
   end
 
   resource "nghttp2" do
-    url "https://github.com/nghttp2/nghttp2/releases/download/v1.28.0/nghttp2-1.28.0.tar.xz"
-    sha256 "0d6c3f00614deca3935e42a27f6ad0ea87c31d8c1baa3a9c52755955c599fd8d"
+    url "https://github.com/nghttp2/nghttp2/releases/download/v1.29.0/nghttp2-1.29.0.tar.xz"
+    sha256 "a7a1b18be57be6a53a7739988ea27d6ec9209e7b0e8372b8483cd911d7838739"
   end
 
   resource "libssh2" do
@@ -50,15 +46,6 @@ class CurlMax < Formula
     ENV.prepend_path "PKG_CONFIG_PATH", vendor/"lib/pkgconfig"
     ENV.prepend_path "PATH", vendor/"bin"
     ENV.cxx11
-
-    resource("libidn2").stage do
-      system "./configure", "--disable-dependency-tracking",
-                            "--disable-silent-rules",
-                            "--disable-doc",
-                            "--prefix=#{vendor}",
-                            "--with-packager=Homebrew"
-      system "make", "install"
-    end
 
     resource("libevent").stage do
       system "./configure", "--disable-dependency-tracking",
