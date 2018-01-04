@@ -8,14 +8,14 @@ class ParcimonieSh < Formula
 
   head "https://github.com/EtiennePerot/parcimonie.sh.git"
 
-  depends_on :gpg
+  depends_on "gnupg"
   depends_on "torsocks"
   depends_on "tor"
 
   def install
     inreplace "parcimonie.sh" do |s|
       s.gsub! "${TORSOCKS_BINARY:-torsocks}", "${TORSOCKS_BINARY:-#{Formula["torsocks"].opt_bin}/torsocks}"
-      s.gsub! "${GNUPG_BINARY:-}", "${GNUPG_BINARY:-#{which("gpg")}}"
+      s.gsub! "${GNUPG_BINARY:-}", "${GNUPG_BINARY:-#{Formula["gnupg"].opt_bin}/gnupg}"
     end
 
     bin.install "parcimonie.sh" => "parcimonie"
