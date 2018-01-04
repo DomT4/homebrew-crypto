@@ -8,7 +8,7 @@ class Electrum < Formula
 
   depends_on "protobuf"
   depends_on "pyqt"
-  depends_on :python3
+  depends_on "python3"
 
   resource "PySocks" do
     url "https://files.pythonhosted.org/packages/7d/38/edca891ce16827a1de45cc347e4b6c22311eba25838b9825a5e6c48cf560/PySocks-1.6.7.tar.gz"
