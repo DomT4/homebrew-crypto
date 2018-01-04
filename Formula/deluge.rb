@@ -5,11 +5,10 @@ class Deluge < Formula
   homepage "http://deluge-torrent.org/"
   url "http://download.deluge-torrent.org/source/deluge-1.3.15.tar.xz"
   sha256 "a96405140e3cbc569e6e056165e289a5e9ec66e036c327f3912c73d049ccf92c"
-  revision 1
+  revision 2
 
   head "git://deluge-torrent.org/deluge.git", :branch => "develop"
 
-  depends_on :python if MacOS.version <= :snow_leopard
   depends_on "intltool" => :build
   depends_on "gettext"
   depends_on "freetype"
@@ -18,6 +17,7 @@ class Deluge < Formula
   depends_on "gtk-mac-integration"
   depends_on "librsvg"
   depends_on "openssl"
+  depends_on "python"
 
   # These now trigger `brew audit` failures because of the default options
   # change but as far as I'm aware the requirement for both of these has
