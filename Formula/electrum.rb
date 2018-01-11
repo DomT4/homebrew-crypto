@@ -3,16 +3,16 @@ class Electrum < Formula
 
   desc "Bitcoin thin client"
   homepage "https://electrum.org"
-  url "https://download.electrum.org/3.0.3/Electrum-3.0.3.tar.gz"
-  sha256 "e55cb8b29a2ee1442f0873787e54b52b85aac76c2b5f540e823cd2b96ad00326"
+  url "https://download.electrum.org/3.0.5/Electrum-3.0.5.tar.gz"
+  sha256 "61ebc06782433f928853188762c6f3098bd3d08d54c34b5594233d196e51e01b"
 
   depends_on "protobuf"
   depends_on "pyqt"
   depends_on "python3"
 
   resource "PySocks" do
-    url "https://files.pythonhosted.org/packages/7d/38/edca891ce16827a1de45cc347e4b6c22311eba25838b9825a5e6c48cf560/PySocks-1.6.7.tar.gz"
-    sha256 "d00329f27efa157db7efe3ca26fcd69033cd61f83822461ee3f8a353b48e33cf"
+    url "https://files.pythonhosted.org/packages/53/12/6bf1d764f128636cef7408e8156b7235b150ea31650d0260969215bb8e7d/PySocks-1.6.8.tar.gz"
+    sha256 "3fe52c55890a248676fd69dc9e3c4e811718b777834bcaab7a8125cf9deac672"
   end
 
   resource "certifi" do
@@ -51,8 +51,8 @@ class Electrum < Formula
   end
 
   resource "protobuf" do
-    url "https://files.pythonhosted.org/packages/ec/f1/9b9a75ce62227e8286eaca97d84130c6c0e877dbe06db9edcc046dad2668/protobuf-3.5.0.post1.tar.gz"
-    sha256 "f656bf5fdfcf0fbc8ba1bd23cab0f2a78fad08741f536c3ffdc9e463621a16ed"
+    url "https://files.pythonhosted.org/packages/14/03/ff5279abda7b46e9538bfb1411d42831b7e65c460d73831ed2445649bc02/protobuf-3.5.1.tar.gz"
+    sha256 "95b78959572de7d7fafa3acb718ed71f482932ddddddbd29ba8319c10639d863"
   end
 
   resource "pyaes" do
