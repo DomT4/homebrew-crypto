@@ -1,10 +1,9 @@
 class GnuWget < Formula
   desc "Internet file retriever built against LibreSSL"
   homepage "https://www.gnu.org/software/wget/"
-  url "https://ftp.gnu.org/gnu/wget/wget-1.19.2.tar.gz"
-  mirror "https://ftpmirror.gnu.org/wget/wget-1.19.2.tar.gz"
-  sha256 "4f4a673b6d466efa50fbfba796bd84a46ae24e370fa562ede5b21ab53c11a920"
-  revision 1
+  url "https://ftp.gnu.org/gnu/wget/wget-1.19.3.tar.gz"
+  mirror "https://ftpmirror.gnu.org/wget/wget-1.19.3.tar.gz"
+  sha256 "9801174275b4a47f85f5a3c2a99a84436cfe90815eafb5ee26c6100499528c76"
 
   head do
     url "https://git.savannah.gnu.org/git/wget.git"
@@ -20,6 +19,7 @@ class GnuWget < Formula
   depends_on "pkg-config" => :build
   depends_on "pod2man" => :build if MacOS.version <= :snow_leopard
   depends_on "libressl"
+  depends_on "libidn2" => :recommended
   depends_on "pcre" => :optional
   depends_on "libmetalink" => :optional
   depends_on "gpgme" => :optional
