@@ -3,8 +3,8 @@ class Electrum < Formula
 
   desc "Bitcoin thin client"
   homepage "https://electrum.org"
-  url "https://download.electrum.org/3.0.5/Electrum-3.0.5.tar.gz"
-  sha256 "61ebc06782433f928853188762c6f3098bd3d08d54c34b5594233d196e51e01b"
+  url "https://download.electrum.org/3.0.6/Electrum-3.0.6.tar.gz"
+  sha256 "2f4ff9b94793b7a4c54fe578430811dbb12df552c8e0d86ade4a50f955c4b605"
 
   depends_on "protobuf"
   depends_on "pyqt"
@@ -16,8 +16,8 @@ class Electrum < Formula
   end
 
   resource "certifi" do
-    url "https://files.pythonhosted.org/packages/23/3f/8be01c50ed24a4bd6b8da799839066ce0288f66f5e11f0367323467f0cbc/certifi-2017.11.5.tar.gz"
-    sha256 "5ec74291ca1136b40f0379e1128ff80e866597e4e2c1e755739a913bbc3613c0"
+    url "https://files.pythonhosted.org/packages/15/d4/2f888fc463d516ff7bf2379a4e9a552fef7f22a94147655d9b1097108248/certifi-2018.1.18.tar.gz"
+    sha256 "edbc3f203427eef571f79a7692bb160a2b0f7ccaa31953e99bd17e307cf63f7d"
   end
 
   resource "chardet" do
