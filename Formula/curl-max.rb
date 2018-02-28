@@ -4,7 +4,7 @@ class CurlMax < Formula
   url "https://curl.haxx.se/download/curl-7.58.0.tar.bz2"
   mirror "http://curl.askapache.com/download/curl-7.58.0.tar.bz2"
   sha256 "1cb081f97807c01e3ed747b6e1c9fee7a01cb10048f1cd0b5f56cfe0209de731"
-  revision 1
+  revision 2
 
   keg_only :provided_by_macos
 
@@ -31,8 +31,8 @@ class CurlMax < Formula
   end
 
   resource "nghttp2" do
-    url "https://github.com/nghttp2/nghttp2/releases/download/v1.30.0/nghttp2-1.30.0.tar.xz"
-    sha256 "089afb4c22a53f72384b71ea06194be255a8a73b50b1412589105d0e683c52ac"
+    url "https://github.com/nghttp2/nghttp2/releases/download/v1.31.0/nghttp2-1.31.0.tar.xz"
+    sha256 "36573c2dc74f0da872b02a3ccf1f1419d6b992dd4703dc866e5a289d36397ac7"
   end
 
   resource "libssh2" do
@@ -46,6 +46,15 @@ class CurlMax < Formula
     ENV.prepend_path "PKG_CONFIG_PATH", vendor/"lib/pkgconfig"
     ENV.prepend_path "PATH", vendor/"bin"
     ENV.cxx11
+
+    unless Tab.for_name("openssl@1.1").spec.eql?(:devel)
+      ohai <<~EOS
+        This formula will support TLSv1.3 if you reinstall openssl@1.1
+        with the --devel option. Note that running a prerelease version
+        of OpenSSL in a production environment would be a silly thing
+        to do.
+      EOS
+    end
 
     resource("libevent").stage do
       system "./configure", "--disable-dependency-tracking",
