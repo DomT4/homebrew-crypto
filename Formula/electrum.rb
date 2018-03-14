@@ -3,12 +3,17 @@ class Electrum < Formula
 
   desc "Bitcoin thin client"
   homepage "https://electrum.org"
-  url "https://download.electrum.org/3.0.6/Electrum-3.0.6.tar.gz"
-  sha256 "2f4ff9b94793b7a4c54fe578430811dbb12df552c8e0d86ade4a50f955c4b605"
+  url "https://download.electrum.org/3.1.1/Electrum-3.1.1.tar.gz"
+  sha256 "3195679f898bd763c6db32f46bbdf59fa5a211fd3013507f5c7aab25d9b94337"
 
   depends_on "protobuf"
   depends_on "pyqt"
   depends_on "python3"
+
+  resource "Cython" do
+    url "https://files.pythonhosted.org/packages/fa/86/0c8311bcba3b3f0944c135db95312e057a353058f522692e4dcf6d4bb978/Cython-0.28.tar.gz"
+    sha256 "518f7e22da54109661e483a91a63045203caf9fd78da4a69185a7622f759965f"
+  end
 
   resource "PySocks" do
     url "https://files.pythonhosted.org/packages/53/12/6bf1d764f128636cef7408e8156b7235b150ea31650d0260969215bb8e7d/PySocks-1.6.8.tar.gz"
@@ -25,6 +30,11 @@ class Electrum < Formula
     sha256 "84ab92ed1c4d4f16916e05906b6b75a6c0fb5db821cc65e70cbd64a3e2a5eaae"
   end
 
+  resource "click" do
+    url "https://files.pythonhosted.org/packages/95/d9/c3336b6b5711c3ab9d1d3a80f1a3e2afeb9d8c02a7166462f6cc96570897/click-6.7.tar.gz"
+    sha256 "f15516df478d5a56180fbf80e68f206010e6d160fc39fa508b65e035fd75130b"
+  end
+
   resource "dnspython" do
     url "https://files.pythonhosted.org/packages/e4/96/a598fa35f8a625bc39fed50cdbe3fd8a52ef215ef8475c17cabade6656cb/dnspython-1.15.0.zip"
     sha256 "40f563e1f7a7b80dc5a4e76ad75c23da53d62f1e15e6e517293b04e1f84ead7c"
@@ -33,6 +43,11 @@ class Electrum < Formula
   resource "ecdsa" do
     url "https://files.pythonhosted.org/packages/f9/e5/99ebb176e47f150ac115ffeda5fedb6a3dbb3c00c74a59fd84ddf12f5857/ecdsa-0.13.tar.gz"
     sha256 "64cf1ee26d1cde3c73c6d7d107f835fed7c6a2904aef9eac223d57ad800c43fa"
+  end
+
+  resource "hidapi" do
+    url "https://files.pythonhosted.org/packages/c1/86/89df0e8890f96eeb5fb68d4ccb14cb38e2c2d2cfd7601ba972206acd9015/hidapi-0.7.99.post21.tar.gz"
+    sha256 "e0be1aa6566979266a8fc845ab0e18613f4918cf2c977fe67050f5dc7e2a9a97"
   end
 
   resource "idna" do
@@ -45,14 +60,34 @@ class Electrum < Formula
     sha256 "5417b1508d5a50ec64f6e5b88907f111155d52607b218ff3ba9a777afb2e49e3"
   end
 
+  resource "keepkey" do
+    url "https://files.pythonhosted.org/packages/bd/7c/8edc3d017b4b02f11533083d9987d11707fcf82ab6606c9b9aedd2e95b4c/keepkey-4.0.2.tar.gz"
+    sha256 "cddee60ae405841cdff789cbc54168ceaeb2282633420f2be155554c25c69138"
+  end
+
+  resource "libusb1" do
+    url "https://files.pythonhosted.org/packages/ec/5d/4fdac6c53525786fe35cff035c3345452e24e2bee5627893be65d12555cb/libusb1-1.6.4.tar.gz"
+    sha256 "8c930d9c1d037d9c83924c82608aa6a1adcaa01ca0e4a23ee0e8e18d7eee670d"
+  end
+
+  resource "mnemonic" do
+    url "https://files.pythonhosted.org/packages/a4/5a/663362ccceb76035ad50fbc20203b6a4674be1fe434886b7407e79519c5e/mnemonic-0.18.tar.gz"
+    sha256 "02a7306a792370f4a0c106c2cf1ce5a0c84b9dbd7e71c6792fdb9ad88a727f1d"
+  end
+
   resource "pbkdf2" do
     url "https://files.pythonhosted.org/packages/02/c0/6a2376ae81beb82eda645a091684c0b0becb86b972def7849ea9066e3d5e/pbkdf2-1.3.tar.gz"
     sha256 "ac6397369f128212c43064a2b4878038dab78dab41875364554aaf2a684e6979"
   end
 
+  resource "pyblake2" do
+    url "https://files.pythonhosted.org/packages/cc/a6/3fa4c5cd5c3f590187cc31e5d5089332fb46c3a9912a28d5c44d34268cd4/pyblake2-1.1.0.tar.gz"
+    sha256 "3a850036bf42053c74bfc52c063323ca78e40ba1f326b01777da5750a143631a"
+  end
+
   resource "protobuf" do
-    url "https://files.pythonhosted.org/packages/14/03/ff5279abda7b46e9538bfb1411d42831b7e65c460d73831ed2445649bc02/protobuf-3.5.1.tar.gz"
-    sha256 "95b78959572de7d7fafa3acb718ed71f482932ddddddbd29ba8319c10639d863"
+    url "https://files.pythonhosted.org/packages/f2/2f/7c8475f523b6db67506eba48d3beacc3625e0effabfac109848f19e3cffc/protobuf-3.5.2.tar.gz"
+    sha256 "09879a295fd7234e523b62066223b128c5a8a88f682e3aff62fb115e4a0d8be0"
   end
 
   resource "pyaes" do
@@ -70,9 +105,19 @@ class Electrum < Formula
     sha256 "9c443e7324ba5b85070c4a818ade28bfabedf16ea10206da1132edaa6dda237e"
   end
 
+  resource "rlp" do
+    url "https://files.pythonhosted.org/packages/f9/53/922c7a15116e52cd7340f81b83322d5ec9d38668cd78d1a0c7e75dfce8f2/rlp-0.6.0.tar.gz"
+    sha256 "87879a0ba1479b760cee98af165de2eee95258b261faa293199f60742be96f34"
+  end
+
   resource "six" do
     url "https://files.pythonhosted.org/packages/16/d8/bc6316cf98419719bd59c91742194c111b6f2e85abac88e496adefaf7afe/six-1.11.0.tar.gz"
     sha256 "70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9"
+  end
+
+  resource "trezor" do
+    url "https://files.pythonhosted.org/packages/26/46/b78ba738beea1d451a9f88b55edde8d1fac1049b69157aeaf12390ec00b6/trezor-0.9.1.tar.gz"
+    sha256 "a481191011bade98f1e9f1201e7c72a83945050657bbc90dc4ac32dc8b8b46a4"
   end
 
   resource "urllib3" do
