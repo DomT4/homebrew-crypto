@@ -8,7 +8,7 @@ class Electrum < Formula
 
   depends_on "protobuf"
   depends_on "pyqt"
-  depends_on "python3"
+  depends_on "python"
 
   resource "Cython" do
     url "https://files.pythonhosted.org/packages/fa/86/0c8311bcba3b3f0944c135db95312e057a353058f522692e4dcf6d4bb978/Cython-0.28.tar.gz"
