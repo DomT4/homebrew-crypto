@@ -3,16 +3,16 @@ class Electrum < Formula
 
   desc "Bitcoin thin client"
   homepage "https://electrum.org"
-  url "https://download.electrum.org/3.1.1/Electrum-3.1.1.tar.gz"
-  sha256 "3195679f898bd763c6db32f46bbdf59fa5a211fd3013507f5c7aab25d9b94337"
+  url "https://download.electrum.org/3.1.2/Electrum-3.1.2.tar.gz"
+  sha256 "f5a67c616984e18646a6369e38d203e49e371ad904e6556ff445110f5ab44559"
 
   depends_on "protobuf"
   depends_on "pyqt"
   depends_on "python"
 
   resource "Cython" do
-    url "https://files.pythonhosted.org/packages/fa/86/0c8311bcba3b3f0944c135db95312e057a353058f522692e4dcf6d4bb978/Cython-0.28.tar.gz"
-    sha256 "518f7e22da54109661e483a91a63045203caf9fd78da4a69185a7622f759965f"
+    url "https://files.pythonhosted.org/packages/be/08/bb5ffd1c32a951cbc26011ecb8557e59dc7a0a4975f0ad98b2cd7446f7dd/Cython-0.28.1.tar.gz"
+    sha256 "152ee5f345012ca3bb7cc71da2d3736ee20f52cd8476e4d49e5e25c5a4102b12"
   end
 
   resource "PySocks" do
@@ -81,13 +81,13 @@ class Electrum < Formula
   end
 
   resource "pyblake2" do
-    url "https://files.pythonhosted.org/packages/cc/a6/3fa4c5cd5c3f590187cc31e5d5089332fb46c3a9912a28d5c44d34268cd4/pyblake2-1.1.0.tar.gz"
-    sha256 "3a850036bf42053c74bfc52c063323ca78e40ba1f326b01777da5750a143631a"
+    url "https://files.pythonhosted.org/packages/a8/fb/1e920928b0ed3afd27d240980ee2a993ad5365037e85a20892aa29e76fcb/pyblake2-1.1.1.tar.gz"
+    sha256 "8ec8e9087d13c99b354ab6d8b4cadb1758633db5946ff95a6bc7ac538b6d7b3d"
   end
 
   resource "protobuf" do
-    url "https://files.pythonhosted.org/packages/f2/2f/7c8475f523b6db67506eba48d3beacc3625e0effabfac109848f19e3cffc/protobuf-3.5.2.tar.gz"
-    sha256 "09879a295fd7234e523b62066223b128c5a8a88f682e3aff62fb115e4a0d8be0"
+    url "https://files.pythonhosted.org/packages/73/73/4f133a31d67b27431fe4b9cc5e2f74d0644bce0327a743093f3cc27864ce/protobuf-3.5.2.post1.tar.gz"
+    sha256 "3b60685732bd0cbdc802dfcb6071efbcf5d927ce3127c13c33ea1a8efae3aa76"
   end
 
   resource "pyaes" do
@@ -96,8 +96,8 @@ class Electrum < Formula
   end
 
   resource "qrcode" do
-    url "https://files.pythonhosted.org/packages/87/16/99038537dc58c87b136779c0e06d46887ff5104eb8c64989aac1ec8cba81/qrcode-5.3.tar.gz"
-    sha256 "4115ccee832620df16b659d4653568331015c718a754855caf5930805d76924e"
+    url "https://files.pythonhosted.org/packages/8d/b6/beed3d50e1047a2aa6437d3a653e5f31feb7f4de8bc054299dc205682e41/qrcode-6.0.tar.gz"
+    sha256 "037b0db4c93f44586e37f84c3da3f763874fcac85b2974a69a98e399ac78e1bf"
   end
 
   resource "requests" do
