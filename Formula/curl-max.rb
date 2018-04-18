@@ -132,7 +132,7 @@ class CurlMax < Formula
 
   test do
     # Test vendored libraries.
-    (testpath/"test.c").write <<-EOS.undent
+    (testpath/"test.c").write <<~EOS
       #include <event2/event.h>
 
       int main()
@@ -146,7 +146,7 @@ class CurlMax < Formula
     system ENV.cc, "test.c", "-L#{libexec}/vendor/lib", "-levent", "-o", "test"
     system "./test"
 
-    (testpath/"test2.c").write <<-EOS.undent
+    (testpath/"test2.c").write <<~EOS
       #include <libssh2.h>
 
       int main(void)
@@ -159,7 +159,7 @@ class CurlMax < Formula
     system ENV.cc, "test2.c", "-L#{libexec}/vendor/lib", "-lssh2", "-o", "test2"
     system "./test2"
 
-    (testpath/"test.c").write <<~EOS
+    (testpath/"test3.c").write <<~EOS
       #include <libxml/tree.h>
 
       int main()
@@ -172,9 +172,9 @@ class CurlMax < Formula
       }
     EOS
     args = shell_output("#{libexec}/vendor/bin/xml2-config --cflags --libs").split
-    args += %w[test.c -o test]
+    args += %w[test3.c -o test3]
     system ENV.cc, *args
-    system "./test"
+    system "./test3"
 
     # Test vendored executables.
     system libexec/"vendor/bin/nghttp", "-nv", "https://nghttp2.org"
