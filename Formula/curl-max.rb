@@ -20,7 +20,6 @@ class CurlMax < Formula
   depends_on "boost"
   depends_on "libidn2"
   depends_on "libmetalink"
-  depends_on "libxml2"
 
   needs :cxx11
 
@@ -40,6 +39,12 @@ class CurlMax < Formula
     sha256 "39f34e2f6835f4b992cafe8625073a88e5a28ba78f83e8099610a7b3af4676d4"
   end
 
+  resource "libxml2" do
+    url "http://xmlsoft.org/sources/libxml2-2.9.7.tar.gz"
+    mirror "https://ftp.osuosl.org/pub/blfs/conglomeration/libxml2/libxml2-2.9.7.tar.gz"
+    sha256 "f63c5e7d30362ed28b38bfa1ac6313f9a80230720b7fb6c80575eeab3ff5900c"
+  end
+
   def install
     vendor = libexec/"vendor"
     ENV.prepend_path "PKG_CONFIG_PATH", Formula["openssl@1.1"].opt_lib/"pkgconfig"
@@ -54,6 +59,14 @@ class CurlMax < Formula
         of OpenSSL in a production environment would be a silly thing
         to do.
       EOS
+    end
+
+    resource("libxml2").stage do
+      system "./configure", "--disable-dependency-tracking",
+                            "--prefix=#{vendor}",
+                            "--without-python",
+                            "--without-lzma"
+      system "make", "install"
     end
 
     resource("libevent").stage do
@@ -145,6 +158,23 @@ class CurlMax < Formula
 
     system ENV.cc, "test2.c", "-L#{libexec}/vendor/lib", "-lssh2", "-o", "test2"
     system "./test2"
+
+    (testpath/"test.c").write <<~EOS
+      #include <libxml/tree.h>
+
+      int main()
+      {
+        xmlDocPtr doc = xmlNewDoc(BAD_CAST "1.0");
+        xmlNodePtr root_node = xmlNewNode(NULL, BAD_CAST "root");
+        xmlDocSetRootElement(doc, root_node);
+        xmlFreeDoc(doc);
+        return 0;
+      }
+    EOS
+    args = shell_output("#{libexec}/vendor/bin/xml2-config --cflags --libs").split
+    args += %w[test.c -o test]
+    system ENV.cc, *args
+    system "./test"
 
     # Test vendored executables.
     system libexec/"vendor/bin/nghttp", "-nv", "https://nghttp2.org"
