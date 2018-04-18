@@ -5,16 +5,14 @@ class Bearssl < Formula
   sha256 "400f7027f309f5c0e3784ad1f5a612cfadfa108a33d867f50c75974cabd7830c"
   head "https://www.bearssl.org/git/BearSSL", :using => :git
 
-  depends_on "doxygen" => [:build, :optional]
-  depends_on "graphviz" => :build if build.with? "doxygen"
+  depends_on "doxygen" => :build
+  depends_on "graphviz" => :build
 
   def install
     system "make"
 
-    if build.with? "doxygen"
-      system "doxygen"
-      doc.install Dir["apidoc/html/*"]
-    end
+    system "doxygen"
+    doc.install Dir["apidoc/html/*"]
 
     cd "build" do
       # Run the crypto testsuite.
