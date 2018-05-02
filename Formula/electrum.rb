@@ -3,16 +3,16 @@ class Electrum < Formula
 
   desc "Bitcoin thin client"
   homepage "https://electrum.org"
-  url "https://download.electrum.org/3.1.2/Electrum-3.1.2.tar.gz"
-  sha256 "f5a67c616984e18646a6369e38d203e49e371ad904e6556ff445110f5ab44559"
+  url "https://download.electrum.org/3.1.3/Electrum-3.1.3.tar.gz"
+  sha256 "3e5aedb52184f2237eb81194539f27b148045e266e46aca0e42ae53f9a47a216"
 
   depends_on "protobuf"
   depends_on "pyqt"
   depends_on "python"
 
   resource "Cython" do
-    url "https://files.pythonhosted.org/packages/be/08/bb5ffd1c32a951cbc26011ecb8557e59dc7a0a4975f0ad98b2cd7446f7dd/Cython-0.28.1.tar.gz"
-    sha256 "152ee5f345012ca3bb7cc71da2d3736ee20f52cd8476e4d49e5e25c5a4102b12"
+    url "https://files.pythonhosted.org/packages/79/9d/dea8c5181cdb77d32e20a44dd5346b0e4bac23c4858f2f66ad64bbcf4de8/Cython-0.28.2.tar.gz"
+    sha256 "634e2f10fc8d026c633cffacb45cd8f4582149fa68e1428124e762dbc566e68a"
   end
 
   resource "PySocks" do
@@ -21,8 +21,8 @@ class Electrum < Formula
   end
 
   resource "certifi" do
-    url "https://files.pythonhosted.org/packages/15/d4/2f888fc463d516ff7bf2379a4e9a552fef7f22a94147655d9b1097108248/certifi-2018.1.18.tar.gz"
-    sha256 "edbc3f203427eef571f79a7692bb160a2b0f7ccaa31953e99bd17e307cf63f7d"
+    url "https://files.pythonhosted.org/packages/4d/9c/46e950a6f4d6b4be571ddcae21e7bc846fcbb88f1de3eff0f6dd0a6be55d/certifi-2018.4.16.tar.gz"
+    sha256 "13e698f54293db9f89122b0581843a782ad0934a4fe0172d2a980ba77fc61bb7"
   end
 
   resource "chardet" do
@@ -81,8 +81,8 @@ class Electrum < Formula
   end
 
   resource "pyblake2" do
-    url "https://files.pythonhosted.org/packages/a8/fb/1e920928b0ed3afd27d240980ee2a993ad5365037e85a20892aa29e76fcb/pyblake2-1.1.1.tar.gz"
-    sha256 "8ec8e9087d13c99b354ab6d8b4cadb1758633db5946ff95a6bc7ac538b6d7b3d"
+    url "https://files.pythonhosted.org/packages/a6/ea/559658f48713567276cabe1344a9ef918adcb34a9da417dbf0a2f7477d8e/pyblake2-1.1.2.tar.gz"
+    sha256 "5ccc7eb02edb82fafb8adbb90746af71460fbc29aa0f822526fc976dff83e93f"
   end
 
   resource "protobuf" do
