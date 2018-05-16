@@ -1,10 +1,9 @@
 class CurlMax < Formula
   desc "Feature-maximised version of cURL, using OpenSSL 1.1"
   homepage "https://curl.haxx.se/"
-  url "https://curl.haxx.se/download/curl-7.59.0.tar.xz"
-  mirror "http://curl.askapache.com/download/curl-7.59.0.tar.xz"
-  sha256 "e44eaabdf916407585bf5c7939ff1161e6242b6b015d3f2f5b758b2a330461fc"
-  revision 2
+  url "https://curl.haxx.se/download/curl-7.60.0.tar.bz2"
+  mirror "http://curl.mirror.anstey.ca/curl-7.60.0.tar.bz2"
+  sha256 "897dfb2204bd99be328279f88f55b7c61592216b0542fcbe995c60aa92871e9b"
 
   keg_only :provided_by_macos
 
