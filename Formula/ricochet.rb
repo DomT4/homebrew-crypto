@@ -43,7 +43,7 @@ class Ricochet < Formula
     end
   end
 
-  def caveats; <<-EOS.undent
+  def caveats; <<~EOS
     Configuration files will be automatically generated upon first run.
 
     You may wish to backup #{opt_libexec}/config.ricochet to somewhere that
