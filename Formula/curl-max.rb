@@ -77,12 +77,17 @@ class CurlMax < Formula
     end
 
     resource("nghttp2").stage do
-      system "./configure", "--prefix=#{vendor}",
-                            "--disable-silent-rules",
-                            "--enable-app",
-                            "--with-boost=#{Formula["boost"].opt_prefix}",
-                            "--enable-asio-lib",
-                            "--disable-python-bindings"
+      args = %W[
+        --prefix=#{vendor}
+        --disable-silent-rules
+        --enable-app
+        --with-boost=#{Formula["boost"].opt_prefix}
+        --enable-asio-lib
+        --disable-python-bindings
+      ]
+      args << "--disable-threads" if MacOS.version <= :mavericks
+
+      system "./configure", *args
       system "make"
       system "make", "check"
       system "make", "install"
