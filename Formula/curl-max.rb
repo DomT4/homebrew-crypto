@@ -85,7 +85,8 @@ class CurlMax < Formula
         --enable-asio-lib
         --disable-python-bindings
       ]
-      args << "--disable-threads" if MacOS.version <= :mavericks
+      # requires thread-local storage features only available in 10.11+
+      args << "--disable-threads" if MacOS.version < :el_capitan
 
       system "./configure", *args
       system "make"
