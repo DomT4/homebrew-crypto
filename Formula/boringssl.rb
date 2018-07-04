@@ -2,8 +2,8 @@ class Boringssl < Formula
   desc "Google fork of OpenSSL"
   homepage "https://boringssl.googlesource.com/boringssl"
   url "https://boringssl.googlesource.com/boringssl.git",
-      :revision => "b4810de60f151e9848b19a87d9679f3befcd39b2"
-  version "0.0.0.106" # Fake version so we can update the formula regularly.
+      :revision => "d2f87a777955dd53d7768b236ec3804fe50462a7"
+  version "0.0.0.107" # Fake version so we can update the formula regularly.
   head "https://boringssl.googlesource.com/boringssl.git"
 
   keg_only <<~EOS
