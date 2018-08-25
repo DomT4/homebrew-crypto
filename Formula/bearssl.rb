@@ -1,8 +1,8 @@
 class Bearssl < Formula
   desc "Implementation of the SSL/TLS protocol written in C"
   homepage "https://bearssl.org/index.html"
-  url "https://bearssl.org/bearssl-0.5.tar.gz"
-  sha256 "400f7027f309f5c0e3784ad1f5a612cfadfa108a33d867f50c75974cabd7830c"
+  url "https://bearssl.org/bearssl-0.6.tar.gz"
+  sha256 "6705bba1714961b41a728dfc5debbe348d2966c117649392f8c8139efc83ff14"
   head "https://www.bearssl.org/git/BearSSL", :using => :git
 
   depends_on "doxygen" => :build
