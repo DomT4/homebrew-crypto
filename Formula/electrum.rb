@@ -6,6 +6,12 @@ class Electrum < Formula
   url "https://download.electrum.org/3.2.3/Electrum-3.2.3.tar.gz"
   sha256 "41c32a38448219882c576c608a5240db02264b408d1f8b374f00308019e15108"
 
+  bottle do
+    root_url "https://dl.bintray.com/domt4/crypto-bottles"
+    cellar :any_skip_relocation
+    sha256 "d196fb270f73eb99eeaadd6b1a8102c6efdd99dfcad966c88306764b93f8fc9f" => :mojave
+  end
+
   depends_on "protobuf"
   depends_on "pyqt"
   depends_on "python"
