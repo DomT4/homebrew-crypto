@@ -5,6 +5,11 @@ class GitMax < Formula
   sha256 "8b40be383a603147ae29337136c00d1c634bdfdc169a30924a024596a7e30e92"
   head "https://github.com/git/git.git", :shallow => false
 
+  bottle do
+    root_url "https://dl.bintray.com/domt4/crypto-bottles"
+    sha256 "34d2b32b0d0bbd7939e4f251b66f9cd59f0e12169518347c92ad6f339e4e26d4" => :mojave
+  end
+
   depends_on "go" => :build
   depends_on "domt4/crypto/curl-max"
   depends_on "openssl@1.1"
