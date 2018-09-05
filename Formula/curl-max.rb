@@ -5,6 +5,11 @@ class CurlMax < Formula
   mirror "http://curl.mirror.anstey.ca/curl-7.61.1.tar.bz2"
   sha256 "a308377dbc9a16b2e994abd55455e5f9edca4e31666f8f8fcfe7a1a4aea419b9"
 
+  bottle do
+    root_url "https://dl.bintray.com/domt4/crypto-bottles"
+    sha256 "f8845b39818ee72ac83269cbcf32026d9731516039429998efc91e11ab3e1f80" => :mojave
+  end
+
   keg_only :provided_by_macos
 
   depends_on "pkg-config" => :build
