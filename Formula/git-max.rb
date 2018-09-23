@@ -40,6 +40,7 @@ class GitMax < Formula
     # in case we ever move back to CommonCrypto here in future.
     ENV["DC_SHA1"] = "1"
     ENV["V"] = "1" # build verbosely
+    ENV["NO_INSTALL_HARDLINKS"] = "1" # https://github.com/Homebrew/brew/issues/4921
     ENV["NO_R_TO_GCC_LINKER"] = "1" # pass arguments to LD correctly
     ENV["PYTHON_PATH"] = which("python")
     ENV["PERL_PATH"] = which("perl")
