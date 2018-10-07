@@ -1,5 +1,9 @@
 language: ruby
 
+env:
+  - HOMEBREW_NO_AUTO_UPDATE=1
+  - HOMEBREW_DEVELOPER=1
+
 matrix:
   include:
     - os: osx
@@ -7,25 +11,16 @@ matrix:
       rvm: system
 
 before_install:
-  - export HOMEBREW_NO_AUTO_UPDATE=1
-  - export HOMEBREW_DEVELOPER=1
-  - git clone --depth=1 https://github.com/Homebrew/homebrew-test-bot Library/Taps/homebrew/homebrew-test-bot
-  - export TRAVIS_COMMIT="$(git rev-parse --verify -q HEAD)"
-  - if [ -f ".git/shallow" ]; then
-      travis_retry git fetch --unshallow;
-    fi
-  - HOMEBREW_REPOSITORY="$(brew --repo)"
-  - sudo chown -R "$USER" "$HOMEBREW_REPOSITORY"
-  - git -C "$HOMEBREW_REPOSITORY" reset --hard origin/master
-  - brew update || brew update
+  - sudo chown -R "$USER" "$(brew --repo)"
+  - travis_retry brew update
   - HOMEBREW_TAP_DIR="$(brew --repo "$TRAVIS_REPO_SLUG")"
+  - mkdir -p "$HOMEBREW_TAP_DIR"
   - rm -rf "$HOMEBREW_TAP_DIR"
-  - mkdir -p "$(brew --repo)/Library/Taps/domt4"
-  - ln -sf "$PWD" "$HOMEBREW_TAP_DIR"
+  - ln -s "$PWD" "$HOMEBREW_TAP_DIR"
   - ulimit -n 1024
 
 script:
-  - brew test-bot --no-bottle
+  - brew test-bot
 
 notifications:
   email:
