@@ -56,15 +56,6 @@ class CurlMax < Formula
     ENV.prepend_path "PATH", vendor/"bin"
     ENV.cxx11
 
-    unless Tab.for_name("openssl@1.1").spec.eql?(:devel)
-      ohai <<~EOS
-        This formula will support TLSv1.3 if you reinstall openssl@1.1
-        with the --devel option. Note that running a prerelease version
-        of OpenSSL in a production environment would be a silly thing
-        to do.
-      EOS
-    end
-
     resource("libxml2").stage do
       system "./configure", "--disable-dependency-tracking",
                             "--prefix=#{vendor}",
