@@ -1,14 +1,11 @@
 language: ruby
 
-env:
-  - HOMEBREW_NO_AUTO_UPDATE=1
-  - HOMEBREW_DEVELOPER=1
-
 matrix:
   include:
     - os: osx
       osx_image: xcode10
       rvm: system
+      env: HOMEBREW_DEVELOPER=1 HOMEBREW_NO_AUTO_UPDATE=1
 
 before_install:
   - sudo chown -R "$USER" "$(brew --repo)"
