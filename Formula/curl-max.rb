@@ -4,6 +4,7 @@ class CurlMax < Formula
   url "https://curl.haxx.se/download/curl-7.61.1.tar.bz2"
   mirror "http://curl.mirror.anstey.ca/curl-7.61.1.tar.bz2"
   sha256 "a308377dbc9a16b2e994abd55455e5f9edca4e31666f8f8fcfe7a1a4aea419b9"
+  revision 1
 
   bottle do
     root_url "https://dl.bintray.com/domt4/crypto-bottles"
@@ -34,8 +35,13 @@ class CurlMax < Formula
   end
 
   resource "nghttp2" do
-    url "https://github.com/nghttp2/nghttp2/releases/download/v1.33.0/nghttp2-1.33.0.tar.xz"
-    sha256 "4879ce9ff3320f5344b910ee1c46ed5e366edc2272620cf17d8e762724d7df1e"
+    url "https://github.com/nghttp2/nghttp2/releases/download/v1.34.0/nghttp2-1.34.0.tar.xz"
+    sha256 "ecb0c013141495e24bd6deca022b5a92097a7848a0c17c4e5af1243a97fa622e"
+
+    patch do
+      url "https://github.com/nghttp2/nghttp2/commit/153531d.patch?full_index=1"
+      sha256 "7b520ff66699dd41a84cbd287c06ed474ef21ce2b2fab34152267ac1d8ec07da"
+    end
   end
 
   resource "libssh2" do
