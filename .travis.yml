@@ -3,7 +3,7 @@ language: ruby
 matrix:
   include:
     - os: osx
-      osx_image: xcode10
+      osx_image: xcode10.1
       rvm: system
       env: HOMEBREW_DEVELOPER=1 HOMEBREW_NO_AUTO_UPDATE=1
 
