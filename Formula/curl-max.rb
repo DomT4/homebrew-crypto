@@ -4,6 +4,7 @@ class CurlMax < Formula
   url "https://curl.haxx.se/download/curl-7.62.0.tar.bz2"
   mirror "http://curl.mirror.anstey.ca/curl-7.62.0.tar.bz2"
   sha256 "7802c54076500be500b171fde786258579d60547a3a35b8c5a23d8c88e8f9620"
+  revision 1
 
   bottle do
     root_url "https://dl.bintray.com/domt4/crypto-bottles"
@@ -34,13 +35,8 @@ class CurlMax < Formula
   end
 
   resource "nghttp2" do
-    url "https://github.com/nghttp2/nghttp2/releases/download/v1.34.0/nghttp2-1.34.0.tar.xz"
-    sha256 "ecb0c013141495e24bd6deca022b5a92097a7848a0c17c4e5af1243a97fa622e"
-
-    patch do
-      url "https://github.com/nghttp2/nghttp2/commit/153531d.patch?full_index=1"
-      sha256 "7b520ff66699dd41a84cbd287c06ed474ef21ce2b2fab34152267ac1d8ec07da"
-    end
+    url "https://github.com/nghttp2/nghttp2/releases/download/v1.35.0/nghttp2-1.35.0.tar.xz"
+    sha256 "23610ddd446bf1a9ae12905b0e7f283afd46249794868b7acd581e693900544c"
   end
 
   resource "libssh2" do
@@ -49,9 +45,9 @@ class CurlMax < Formula
   end
 
   resource "libxml2" do
-    url "http://xmlsoft.org/sources/libxml2-2.9.7.tar.gz"
-    mirror "https://ftp.osuosl.org/pub/blfs/conglomeration/libxml2/libxml2-2.9.7.tar.gz"
-    sha256 "f63c5e7d30362ed28b38bfa1ac6313f9a80230720b7fb6c80575eeab3ff5900c"
+    url "http://xmlsoft.org/sources/libxml2-2.9.8.tar.gz"
+    mirror "https://ftp.osuosl.org/pub/blfs/conglomeration/libxml2/libxml2-2.9.8.tar.gz"
+    sha256 "0b74e51595654f958148759cfef0993114ddccccbb6f31aee018f3558e8e2732"
   end
 
   def install
