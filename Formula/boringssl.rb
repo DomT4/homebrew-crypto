@@ -1,9 +1,21 @@
+class GoRequirement < Requirement
+  fatal true
+
+  satisfy(:build_env => false) { which("go") }
+
+  def message; <<~EOS
+    boringssl requires golang to compile:
+      brew install go
+  EOS
+  end
+end
+
 class Boringssl < Formula
   desc "Google fork of OpenSSL"
   homepage "https://boringssl.googlesource.com/boringssl"
   url "https://boringssl.googlesource.com/boringssl.git",
-      :revision => "6965d25602754bc419c5f757d008ba1f4da49ae4"
-  version "0.0.0.116" # Fake version so we can update the formula regularly.
+      :revision => "bf5021a6b8a4859d04966998e84fcbff16bffd78"
+  version "0.0.0.117" # Fake version so we can update the formula regularly.
   head "https://boringssl.googlesource.com/boringssl.git"
 
   keg_only <<~EOS
@@ -11,9 +23,9 @@ class Boringssl < Formula
     It also conflicts with Homebrew's shipped OpenSSL and LibreSSL
   EOS
 
-  depends_on "ninja" => :build
   depends_on "cmake" => :build
-  depends_on "go" => :build
+  depends_on GoRequirement => :build
+  depends_on "ninja" => :build
 
   def install
     doc.mkpath
