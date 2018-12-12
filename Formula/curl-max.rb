@@ -1,10 +1,9 @@
 class CurlMax < Formula
   desc "Feature-maximised version of cURL, using OpenSSL 1.1"
   homepage "https://curl.haxx.se/"
-  url "https://curl.haxx.se/download/curl-7.62.0.tar.bz2"
-  mirror "http://curl.mirror.anstey.ca/curl-7.62.0.tar.bz2"
-  sha256 "7802c54076500be500b171fde786258579d60547a3a35b8c5a23d8c88e8f9620"
-  revision 1
+  url "https://curl.haxx.se/download/curl-7.63.0.tar.bz2"
+  mirror "http://curl.mirror.anstey.ca/curl-7.63.0.tar.bz2"
+  sha256 "9bab7ed4ecff77020a312d84cc5fb7eb02d58419d218f267477a724a17fd8dd8"
 
   bottle do
     root_url "https://dl.bintray.com/domt4/crypto-bottles"
@@ -35,8 +34,8 @@ class CurlMax < Formula
   end
 
   resource "nghttp2" do
-    url "https://github.com/nghttp2/nghttp2/releases/download/v1.35.0/nghttp2-1.35.0.tar.xz"
-    sha256 "23610ddd446bf1a9ae12905b0e7f283afd46249794868b7acd581e693900544c"
+    url "https://github.com/nghttp2/nghttp2/releases/download/v1.35.1/nghttp2-1.35.1.tar.xz"
+    sha256 "9b7f5b09c3ca40a46118240bf476a5babf4bd93a1e4fde2337c308c4c5c3263a"
   end
 
   resource "libssh2" do
