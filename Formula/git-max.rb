@@ -13,8 +13,8 @@ end
 class GitMax < Formula
   desc "Distributed revision control system"
   homepage "https://git-scm.com"
-  url "https://www.kernel.org/pub/software/scm/git/git-2.20.0.tar.xz"
-  sha256 "bc94735073e14b138a1290cc99af3c379d544f514c43f8ebde988fc50d0ad81f"
+  url "https://www.kernel.org/pub/software/scm/git/git-2.20.1.tar.xz"
+  sha256 "9d2e91e2faa2ea61ba0a70201d023b36f54d846314591a002c610ea2ab81c3e9"
   head "https://github.com/git/git.git", :shallow => false
 
   bottle do
