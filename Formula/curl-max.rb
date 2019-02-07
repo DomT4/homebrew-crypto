@@ -25,8 +25,6 @@ class CurlMax < Formula
   depends_on "libidn2"
   depends_on "libmetalink"
 
-  needs :cxx11
-
   # Needed for nghttp2
   resource "libevent" do
     url "https://github.com/libevent/libevent/releases/download/release-2.1.8-stable/libevent-2.1.8-stable.tar.gz"
@@ -54,7 +52,6 @@ class CurlMax < Formula
     ENV.prepend_path "PKG_CONFIG_PATH", Formula["openssl@1.1"].opt_lib/"pkgconfig"
     ENV.prepend_path "PKG_CONFIG_PATH", vendor/"lib/pkgconfig"
     ENV.prepend_path "PATH", vendor/"bin"
-    ENV.cxx11
 
     resource("libxml2").stage do
       system "./configure", "--disable-dependency-tracking",
