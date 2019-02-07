@@ -3,8 +3,8 @@ class Electrum < Formula
 
   desc "Bitcoin thin client"
   homepage "https://electrum.org"
-  url "https://download.electrum.org/3.3.2/Electrum-3.3.2.tar.gz"
-  sha256 "51b2a5dd3b0e924a9525dc1da801a87d113050ee109296496e86e6bc396cee6d"
+  url "https://download.electrum.org/3.3.3/Electrum-3.3.3.tar.gz"
+  sha256 "c2692f1e1a21907a2b3e47564f06954a73d20017ca081238d07f65ae3c745f7c"
 
   bottle do
     root_url "https://dl.bintray.com/domt4/crypto-bottles"
