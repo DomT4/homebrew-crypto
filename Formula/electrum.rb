@@ -3,8 +3,8 @@ class Electrum < Formula
 
   desc "Bitcoin thin client"
   homepage "https://electrum.org"
-  url "https://download.electrum.org/3.3.3/Electrum-3.3.3.tar.gz"
-  sha256 "c2692f1e1a21907a2b3e47564f06954a73d20017ca081238d07f65ae3c745f7c"
+  url "https://download.electrum.org/3.3.4/Electrum-3.3.4.tar.gz"
+  sha256 "2f230e85bcc5833315a44959c645d05df6694847a4ad8f7fe91c974f27472240"
 
   bottle do
     root_url "https://dl.bintray.com/domt4/crypto-bottles"
@@ -13,12 +13,11 @@ class Electrum < Formula
   end
 
   depends_on "protobuf"
-  depends_on "pyqt"
   depends_on "python"
 
   resource "Cython" do
-    url "https://files.pythonhosted.org/packages/c1/f2/d1207fd0dfe5cb4dbb06a035eb127653821510d896ce952b5c66ca3dafa4/Cython-0.29.2.tar.gz"
-    sha256 "2ac187ff998a95abb7fae452b5178f91e1a713698c9ced89836c94e6b1d3f41e"
+    url "https://files.pythonhosted.org/packages/36/da/fcb979fc8cb486a67a013d6aefefbb95a3e19e67e49dff8a35e014046c5e/Cython-0.29.6.tar.gz"
+    sha256 "6c5d33f1b5c864382fbce810a8fd9e015447869ae42e98e6301e977b8165e7ae"
   end
 
   resource "QDarkStyle" do
@@ -37,8 +36,8 @@ class Electrum < Formula
   end
 
   resource "aiorpcX" do
-    url "https://files.pythonhosted.org/packages/83/91/5f6addaf318e9546c5ebd3607caafcd50a14b4136d495bdc144d3b861e72/aiorpcX-0.10.2.tar.gz"
-    sha256 "d2bf57fc46ae37d769ab3f5e58ebee4b44acab626e597b5150a201284b9808dd"
+    url "https://files.pythonhosted.org/packages/bc/05/a7ff482cf131fdc52f512f598ea2bf4e0ebb133ff91c1f039b8ff8140bae/aiorpcX-0.10.5.tar.gz"
+    sha256 "21add307084497c19c911d369f9e995c7cd9bd0ef74485cb5509682080559330"
   end
 
   resource "async_timeout" do
@@ -47,8 +46,8 @@ class Electrum < Formula
   end
 
   resource "attrs" do
-    url "https://files.pythonhosted.org/packages/0f/9e/26b1d194aab960063b266170e53c39f73ea0d0d3f5ce23313e0ec8ee9bdf/attrs-18.2.0.tar.gz"
-    sha256 "10cbf6e27dbce8c30807caf056c8eb50917e0eaafe86347671b57254006c3e69"
+    url "https://files.pythonhosted.org/packages/cc/d9/931a24cc5394f19383fbbe3e1147a0291276afa43a0dc3ed0d6cd9fda813/attrs-19.1.0.tar.gz"
+    sha256 "f0b870f674851ecbfbbbd364d6b5cbdff9dcedbc7f3f5e18a6891057f21fe399"
   end
 
   resource "btchip-python" do
@@ -57,8 +56,8 @@ class Electrum < Formula
   end
 
   resource "certifi" do
-    url "https://files.pythonhosted.org/packages/55/54/3ce77783acba5979ce16674fc98b1920d00b01d337cfaaf5db22543505ed/certifi-2018.11.29.tar.gz"
-    sha256 "47f9c83ef4c0c621eaef743f133f09fa8a74a9b75f037e8624f83bd1b6626cb7"
+    url "https://files.pythonhosted.org/packages/06/b8/d1ea38513c22e8c906275d135818fee16ad8495985956a9b7e2bb21942a1/certifi-2019.3.9.tar.gz"
+    sha256 "b26104d6835d1f5e49452a26eb2ff87fe7090b89dfcaee5ea2212697e1e1d7ae"
   end
 
   resource "chardet" do
@@ -107,8 +106,8 @@ class Electrum < Formula
   end
 
   resource "keepkey" do
-    url "https://files.pythonhosted.org/packages/bd/7c/8edc3d017b4b02f11533083d9987d11707fcf82ab6606c9b9aedd2e95b4c/keepkey-4.0.2.tar.gz"
-    sha256 "cddee60ae405841cdff789cbc54168ceaeb2282633420f2be155554c25c69138"
+    url "https://files.pythonhosted.org/packages/d2/0f/433b95333278466204a3e4ba79836198957d697f36227ea2c462e4a51917/keepkey-6.0.2.tar.gz"
+    sha256 "af107f610fb0e2417fc7a9d87a2fa22aac9b80b79559370d178be424bb85489a"
   end
 
   resource "libusb1" do
@@ -132,8 +131,8 @@ class Electrum < Formula
   end
 
   resource "protobuf" do
-    url "https://files.pythonhosted.org/packages/1b/90/f531329e628ff34aee79b0b9523196eb7b5b6b398f112bb0c03b24ab1973/protobuf-3.6.1.tar.gz"
-    sha256 "1489b376b0f364bcc6f89519718c057eb191d7ad6f1b395ffd93d1aa45587811"
+    url "https://files.pythonhosted.org/packages/93/4a/ba399b29924ba56e7bf84fd5245251ebd160fc9777b4f2e145d10d61f5d2/protobuf-3.7.0.tar.gz"
+    sha256 "ad385fbb9754023d17be14dd5aa67efff07f43c5df7f93118aef3c20e635ea19"
   end
 
   resource "pyaes" do
@@ -167,8 +166,8 @@ class Electrum < Formula
   end
 
   resource "trezor" do
-    url "https://files.pythonhosted.org/packages/62/47/b188966e10effe4b7444c42c9717e161e0edc277b4878d2495d6c09760cd/trezor-0.11.1.tar.gz"
-    sha256 "6043f321d856e1b45b9df0c37810264f08d065bb56cd999f61a05fe2906e9e18"
+    url "https://files.pythonhosted.org/packages/42/6a/283786bfb63aacfaa4b82891c906d27880feed32a62692db1fdb36a15b51/trezor-0.11.2.tar.gz"
+    sha256 "a6f4b47b37a21247535fc43411cb70a8c61ef0a5a2dfee668bd05611e2741fb8"
   end
 
   resource "typing-extensions" do
@@ -181,9 +180,9 @@ class Electrum < Formula
     sha256 "de9529817c93f27c8ccbfead6985011db27bd0ddfcdb2d86f3f663385c6a9c22"
   end
 
-  resource "websocket-client" do
-    url "https://files.pythonhosted.org/packages/35/d4/14e446a82bc9172d088ebd81c0b02c5ca8481bfeecb13c9ef07998f9249b/websocket_client-0.54.0.tar.gz"
-    sha256 "e51562c91ddb8148e791f0155fdb01325d99bb52c4cdbb291aee7a3563fd0849"
+  resource "websocket_client" do
+    url "https://files.pythonhosted.org/packages/23/f9/d31c5ce35bdd865de3aa6453c0cae13a7fe6799a8b0d6967c767bbb83a30/websocket_client-0.55.0.tar.gz"
+    sha256 "f6029deea21218f2c771848935aa26c15699c831770f4fa66958bdaabff80ca0"
   end
 
   resource "yarl" do
@@ -196,10 +195,6 @@ class Electrum < Formula
     ENV.delete("PYTHONPATH")
 
     virtualenv_install_with_resources
-
-    xy = Language::Python.major_minor_version "python3"
-    sp = libexec/"lib/python#{xy}/site-packages"
-    system "pyrcc5", "icons.qrc", "-o", sp/"electrum/gui/qt/icons_rc.py"
   end
 
   test do
