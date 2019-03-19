@@ -12,18 +12,18 @@ class CurlMax < Formula
 
   keg_only :provided_by_macos
 
-  depends_on "pkg-config" => :build
   depends_on "autoconf" => :build
   depends_on "automake" => :build
-  depends_on "libtool" => :build
   depends_on "cunit" => :build
-  depends_on "openssl@1.1"
-  depends_on "c-ares"
-  depends_on "libev"
-  depends_on "jansson"
+  depends_on "libtool" => :build
+  depends_on "pkg-config" => :build
   depends_on "boost"
+  depends_on "c-ares"
+  depends_on "jansson"
+  depends_on "libev"
   depends_on "libidn2"
   depends_on "libmetalink"
+  depends_on "openssl@1.1"
 
   # Needed for nghttp2
   resource "libevent" do
