@@ -1,10 +1,8 @@
 class GnuWget < Formula
   desc "Internet file retriever built against LibreSSL"
   homepage "https://www.gnu.org/software/wget/"
-  url "https://ftp.gnu.org/gnu/wget/wget-1.20.1.tar.gz"
-  mirror "https://ftpmirror.gnu.org/wget/wget-1.20.1.tar.gz"
-  sha256 "b783b390cb571c837b392857945f5a1f00ec6b043177cc42abb8ee1b542ee1b3"
-  revision 1
+  url "https://ftp.gnu.org/gnu/wget/wget-1.20.3.tar.gz"
+  sha256 "31cccfc6630528db1c8e3a06f6decf2a370060b982841cfab2b8677400a5092e"
 
   head do
     url "https://git.savannah.gnu.org/git/wget.git"
