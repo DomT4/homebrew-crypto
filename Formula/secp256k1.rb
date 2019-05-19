@@ -2,8 +2,8 @@ class Secp256k1 < Formula
   desc "Bitcoin experimental curves library"
   homepage "https://github.com/bitcoin/secp256k1"
   url "https://github.com/bitcoin/secp256k1.git",
-      :revision => "ee99f12f3d8af18bbb9b74cd31907ac1979742ec"
-  version "0.0.0.51" # Fake version number to make updates easier.
+      :revision => "735fbde04e07df9d29719fadec4841b973d624d5"
+  version "0.0.0.52" # Fake version number to make updates easier.
   head "https://github.com/bitcoin/secp256k1.git"
 
   depends_on "automake" => :build
