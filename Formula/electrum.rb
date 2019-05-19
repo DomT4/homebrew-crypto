@@ -3,8 +3,8 @@ class Electrum < Formula
 
   desc "Bitcoin thin client"
   homepage "https://electrum.org"
-  url "https://download.electrum.org/3.3.4/Electrum-3.3.4.tar.gz"
-  sha256 "2f230e85bcc5833315a44959c645d05df6694847a4ad8f7fe91c974f27472240"
+  url "https://download.electrum.org/3.3.6/Electrum-3.3.6.tar.gz"
+  sha256 "9f4f0f753114df39f8ba18275901bcb8f7e98a9752dc6dc2cf707bf0479ca52a"
 
   bottle do
     root_url "https://dl.bintray.com/domt4/crypto-bottles"
@@ -18,13 +18,13 @@ class Electrum < Formula
   depends_on "python"
 
   resource "Cython" do
-    url "https://files.pythonhosted.org/packages/36/da/fcb979fc8cb486a67a013d6aefefbb95a3e19e67e49dff8a35e014046c5e/Cython-0.29.6.tar.gz"
-    sha256 "6c5d33f1b5c864382fbce810a8fd9e015447869ae42e98e6301e977b8165e7ae"
+    url "https://files.pythonhosted.org/packages/f8/da/c979464858b257b21a6472a85285548c91f5b4dc773cb049cfdfb3ceeb02/Cython-0.29.7.tar.gz"
+    sha256 "55d081162191b7c11c7bfcb7c68e913827dfd5de6ecdbab1b99dab190586c1e8"
   end
 
   resource "QDarkStyle" do
-    url "https://files.pythonhosted.org/packages/2a/a1/6d3f940e479d6a7f5be32d0dcec67088857e98ae3e135bb7e72b60175c78/QDarkStyle-2.5.4.tar.gz"
-    sha256 "3eb60922b8c4d9cedecb6897ca4c9f8a259d81bdefe5791976ccdf12432de1f0"
+    url "https://files.pythonhosted.org/packages/a4/ec/c6ae1509370f07ef2ac725cfed6add23b94670a5903a834a463440ca295a/QDarkStyle-2.6.8.tar.gz"
+    sha256 "037a54bf0aa5153f8055b65b8b36ac0d0f7648f2fd906c011a4da22eb0f582a2"
   end
 
   resource "aiohttp" do
@@ -38,8 +38,8 @@ class Electrum < Formula
   end
 
   resource "aiorpcX" do
-    url "https://files.pythonhosted.org/packages/bc/05/a7ff482cf131fdc52f512f598ea2bf4e0ebb133ff91c1f039b8ff8140bae/aiorpcX-0.10.5.tar.gz"
-    sha256 "21add307084497c19c911d369f9e995c7cd9bd0ef74485cb5509682080559330"
+    url "https://files.pythonhosted.org/packages/fd/2e/7d9f0dd1a8c308bdc7cbda32859e9b1171768b8f68c124527da83cd4f978/aiorpcX-0.17.0.tar.gz"
+    sha256 "13ccc8361bc3049d649094b69aead6118f6deb5f1b88ad77211be85c4e2ed792"
   end
 
   resource "async_timeout" do
@@ -68,8 +68,8 @@ class Electrum < Formula
   end
 
   resource "ckcc-protocol" do
-    url "https://files.pythonhosted.org/packages/7f/a4/f39c0cfcc8eb8fe72084ec22022d32f7c3d07b7611a353cc7f1a3a8c4b32/ckcc-protocol-0.7.2.tar.gz"
-    sha256 "498db4ccdda018cd9f40210f5bd02ddcc98e7df583170b2eab4035c86c3cc03b"
+    url "https://files.pythonhosted.org/packages/b3/a4/ac06f7ae2196fb5b334492b296e137b7ce610061ec83860a9a0fc803919d/ckcc-protocol-0.7.4.tar.gz"
+    sha256 "5af1d268a62e03997832b6300453c8f005630591df30a7156b450c80dd74a881"
   end
 
   resource "click" do
@@ -88,8 +88,8 @@ class Electrum < Formula
   end
 
   resource "ecdsa" do
-    url "https://files.pythonhosted.org/packages/f9/e5/99ebb176e47f150ac115ffeda5fedb6a3dbb3c00c74a59fd84ddf12f5857/ecdsa-0.13.tar.gz"
-    sha256 "64cf1ee26d1cde3c73c6d7d107f835fed7c6a2904aef9eac223d57ad800c43fa"
+    url "https://files.pythonhosted.org/packages/51/76/139bf6e9b7b6684d5891212cdbd9e0739f2bfc03f380a1a6ffa700f392ac/ecdsa-0.13.2.tar.gz"
+    sha256 "5c034ffa23413ac923541ceb3ac14ec15a0d2530690413bff58c12b80e56d884"
   end
 
   resource "hidapi" do
@@ -108,13 +108,13 @@ class Electrum < Formula
   end
 
   resource "keepkey" do
-    url "https://files.pythonhosted.org/packages/d2/0f/433b95333278466204a3e4ba79836198957d697f36227ea2c462e4a51917/keepkey-6.0.2.tar.gz"
-    sha256 "af107f610fb0e2417fc7a9d87a2fa22aac9b80b79559370d178be424bb85489a"
+    url "https://files.pythonhosted.org/packages/61/f7/5487352c4a724fa864c442938b4b44244beaeec34e1d351916611441345f/keepkey-6.1.0.tar.gz"
+    sha256 "2e1623409307c86f709054ad191bc7707c4feeacae2e497bd933f2f0054c6eb0"
   end
 
   resource "libusb1" do
-    url "https://files.pythonhosted.org/packages/9c/51/25f5218d9e21bac3e36bb7167d7d9dfe899cd48bebfe60a54cd39c5db585/libusb1-1.7.tar.gz"
-    sha256 "9d4f66d2ed699986b06bc3082cd262101cb26af7a76a34bd15b7eb56cba37e0f"
+    url "https://files.pythonhosted.org/packages/80/bb/4ee9d760dd29499d877ee384f1d2bc6bb9923defd4c69843aef5e729972d/libusb1-1.7.1.tar.gz"
+    sha256 "adf64a4f3f5c94643a1286f8153bcf4bc787c348b38934aacd7fe17fbeebc571"
   end
 
   resource "mnemonic" do
@@ -133,8 +133,8 @@ class Electrum < Formula
   end
 
   resource "protobuf" do
-    url "https://files.pythonhosted.org/packages/93/4a/ba399b29924ba56e7bf84fd5245251ebd160fc9777b4f2e145d10d61f5d2/protobuf-3.7.0.tar.gz"
-    sha256 "ad385fbb9754023d17be14dd5aa67efff07f43c5df7f93118aef3c20e635ea19"
+    url "https://files.pythonhosted.org/packages/cf/72/8c1ed9148ded82adbb76c30f958c6d456a2abc08f092b62a586bdf973b80/protobuf-3.7.1.tar.gz"
+    sha256 "21e395d7959551e759d604940a115c51c6347d90a475c9baf471a1a86b5604a9"
   end
 
   resource "pyaes" do
@@ -153,8 +153,8 @@ class Electrum < Formula
   end
 
   resource "requests" do
-    url "https://files.pythonhosted.org/packages/52/2c/514e4ac25da2b08ca5a464c50463682126385c4272c18193876e91f4bc38/requests-2.21.0.tar.gz"
-    sha256 "502a824f31acdacb3a35b6690b5fbf0bc41d63a24a45c4004352b0242707598e"
+    url "https://files.pythonhosted.org/packages/01/62/ddcf76d1d19885e8579acb1b1df26a852b03472c0e46d2b959a714c90608/requests-2.22.0.tar.gz"
+    sha256 "11e007a8a2aa0323f5a921e9e6a2d7e4e67d9877e85773fba9ba6419025cbeb4"
   end
 
   resource "safet" do
@@ -178,13 +178,18 @@ class Electrum < Formula
   end
 
   resource "urllib3" do
-    url "https://files.pythonhosted.org/packages/b1/53/37d82ab391393565f2f831b8eedbffd57db5a718216f82f1a8b4d381a1c1/urllib3-1.24.1.tar.gz"
-    sha256 "de9529817c93f27c8ccbfead6985011db27bd0ddfcdb2d86f3f663385c6a9c22"
+    url "https://files.pythonhosted.org/packages/9a/8b/ea6d2beb2da6e331e9857d0a60b79ed4f72dcbc4e2c7f2d2521b0480fda2/urllib3-1.25.2.tar.gz"
+    sha256 "a53063d8b9210a7bdec15e7b272776b9d42b2fd6816401a0d43006ad2f9902db"
   end
 
   resource "websocket_client" do
-    url "https://files.pythonhosted.org/packages/23/f9/d31c5ce35bdd865de3aa6453c0cae13a7fe6799a8b0d6967c767bbb83a30/websocket_client-0.55.0.tar.gz"
-    sha256 "f6029deea21218f2c771848935aa26c15699c831770f4fa66958bdaabff80ca0"
+    url "https://files.pythonhosted.org/packages/c5/01/8c9c7de6c46f88e70b5a3276c791a2be82ae83d8e0d0cc030525ee2866fd/websocket_client-0.56.0.tar.gz"
+    sha256 "1fd5520878b68b84b5748bb30e592b10d0a91529d5383f74f4964e72b297fd3a"
+  end
+
+  resource "websockets" do
+    url "https://files.pythonhosted.org/packages/ba/60/59844a5cef2428cb752bd4f446b72095b1edee404a58c27e87cd12a141e2/websockets-7.0.tar.gz"
+    sha256 "08e3c3e0535befa4f0c4443824496c03ecc25062debbcf895874f8a0b4c97c9f"
   end
 
   resource "yarl" do
