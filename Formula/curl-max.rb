@@ -3,6 +3,7 @@ class CurlMax < Formula
   homepage "https://curl.haxx.se/"
   url "https://curl.haxx.se/download/curl-7.65.0.tar.bz2"
   sha256 "ea47c08f630e88e413c85793476e7e5665647330b6db35f5c19d72b3e339df5c"
+  revision 1
 
   bottle do
     root_url "https://dl.bintray.com/domt4/crypto-bottles"
@@ -26,8 +27,8 @@ class CurlMax < Formula
 
   # Needed for nghttp2
   resource "libevent" do
-    url "https://github.com/libevent/libevent/releases/download/release-2.1.8-stable/libevent-2.1.8-stable.tar.gz"
-    sha256 "965cc5a8bb46ce4199a47e9b2c9e1cae3b137e8356ffdad6d94d3b9069b71dc2"
+    url "https://github.com/libevent/libevent/releases/download/release-2.1.10-stable/libevent-2.1.10-stable.tar.gz"
+    sha256 "e864af41a336bb11dab1a23f32993afe963c1f69618bd9292b89ecf6904845b0"
   end
 
   resource "nghttp2" do
