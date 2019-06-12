@@ -1,9 +1,8 @@
 class CurlMax < Formula
   desc "Feature-maximised version of cURL, using OpenSSL 1.1"
   homepage "https://curl.haxx.se/"
-  url "https://curl.haxx.se/download/curl-7.65.0.tar.bz2"
-  sha256 "ea47c08f630e88e413c85793476e7e5665647330b6db35f5c19d72b3e339df5c"
-  revision 1
+  url "https://curl.haxx.se/download/curl-7.65.1.tar.bz2"
+  sha256 "cbd36df60c49e461011b4f3064cff1184bdc9969a55e9608bf5cadec4686e3f7"
 
   bottle do
     root_url "https://dl.bintray.com/domt4/crypto-bottles"
@@ -32,8 +31,16 @@ class CurlMax < Formula
   end
 
   resource "nghttp2" do
-    url "https://github.com/nghttp2/nghttp2/releases/download/v1.38.0/nghttp2-1.38.0.tar.xz"
-    sha256 "ef75c761858241c6b4372fa6397aa0481a984b84b7b07c4ec7dc2d7b9eee87f8"
+    url "https://github.com/nghttp2/nghttp2/releases/download/v1.39.1/nghttp2-1.39.1.tar.xz"
+    sha256 "679160766401f474731fd60c3aca095f88451e3cc4709b72306e4c34cf981448"
+
+    unless OS.mac?
+      patch do
+        # Fix: shrpx_api_downstream_connection.cc:57:3: error: array must be initialized with a brace-enclosed initializer
+        url "https://gist.githubusercontent.com/iMichka/5dda45fbad3e70f52a6b4e7dfd382969/raw/19797e17926922bdd1ef21a47e162d8be8e2ca65/nghttp2?full_index=1"
+        sha256 "0759d448d4b419911c12fa7d5cbf1df2d6d41835c9077bf3accf9eac58f24f12"
+      end
+    end
   end
 
   resource "libssh2" do
@@ -114,6 +121,7 @@ class CurlMax < Formula
       --with-gssapi
       --with-libmetalink
     ]
+    args << "--disable-ldap" unless OS.mac?
 
     system "./configure", *args
     system "make", "install"
