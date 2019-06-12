@@ -6,7 +6,7 @@ class CurlMax < Formula
 
   bottle do
     root_url "https://dl.bintray.com/domt4/crypto-bottles"
-    sha256 "f02f65274175f2f422f30fe301cac3ab67f699de94e66dafbb4431fa20eb1403" => :mojave
+    sha256 "6dc995966af0aa29a8ac26cc7c9693f0123f89c7929417f811bf2499129cf3e6" => :mojave
   end
 
   keg_only :provided_by_macos
