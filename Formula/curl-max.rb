@@ -19,9 +19,11 @@ class CurlMax < Formula
   depends_on "boost"
   depends_on "c-ares"
   depends_on "jansson"
+  depends_on "jemalloc"
   depends_on "libev"
   depends_on "libidn2"
   depends_on "libmetalink"
+  depends_on "libpsl"
   depends_on "openssl@1.1"
 
   # Needed for nghttp2
