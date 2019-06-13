@@ -149,7 +149,8 @@ class CurlMax < Formula
         return 0;
       }
     EOS
-    system ENV.cc, "test.c", "-L#{libexec}/vendor/lib", "-levent", "-o", "test"
+    system ENV.cc, "test.c", "-L#{libexec}/vendor/lib",
+                   "-I#{libexec}/vendor/include", "-levent", "-o", "test"
     system "./test"
 
     (testpath/"test2.c").write <<~EOS
@@ -162,7 +163,8 @@ class CurlMax < Formula
       }
     EOS
 
-    system ENV.cc, "test2.c", "-L#{libexec}/vendor/lib", "-lssh2", "-o", "test2"
+    system ENV.cc, "test2.c", "-L#{libexec}/vendor/lib",
+                   "-I#{libexec}/vendor/include", "-lssh2", "-o", "test2"
     system "./test2"
 
     (testpath/"test3.c").write <<~EOS
