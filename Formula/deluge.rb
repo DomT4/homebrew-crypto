@@ -9,16 +9,16 @@ class Deluge < Formula
   head "https://git.deluge-torrent.org/deluge", :branch => "develop"
 
   depends_on "intltool" => :build
-  depends_on "gettext"
+  depends_on "boost-python3"
   depends_on "freetype"
   depends_on "geoip"
-  depends_on "pygobject3"
-  depends_on "py3cairo"
-  depends_on "boost-python3"
+  depends_on "gettext"
   depends_on "gtk-mac-integration"
-  depends_on "libtorrent-rasterbar"
   depends_on "librsvg"
+  depends_on "libtorrent-rasterbar"
   depends_on "openssl"
+  depends_on "py3cairo"
+  depends_on "pygobject3"
   depends_on "python"
 
   resource "asn1crypto" do
