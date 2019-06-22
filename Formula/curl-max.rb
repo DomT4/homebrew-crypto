@@ -3,6 +3,7 @@ class CurlMax < Formula
   homepage "https://curl.haxx.se/"
   url "https://curl.haxx.se/download/curl-7.65.1.tar.bz2"
   sha256 "cbd36df60c49e461011b4f3064cff1184bdc9969a55e9608bf5cadec4686e3f7"
+  revision 1
 
   bottle do
     root_url "https://dl.bintray.com/domt4/crypto-bottles"
@@ -46,8 +47,8 @@ class CurlMax < Formula
   end
 
   resource "libssh2" do
-    url "https://libssh2.org/download/libssh2-1.8.2.tar.gz"
-    sha256 "088307d9f6b6c4b8c13f34602e8ff65d21c2dc4d55284dfe15d502c4ee190d67"
+    url "https://libssh2.org/download/libssh2-1.9.0.tar.gz"
+    sha256 "d5fb8bd563305fd1074dda90bd053fb2d29fc4bce048d182f96eaa466dfadafd"
   end
 
   resource "libxml2" do
