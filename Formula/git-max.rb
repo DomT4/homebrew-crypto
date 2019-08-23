@@ -19,7 +19,7 @@ class GitMax < Formula
 
   bottle do
     root_url "https://dl.bintray.com/domt4/crypto-bottles"
-    sha256 "58a1247aafafe5ce1de1d724b18f50d1ea4c5d176c35ca5670fff7d949961d93" => :mojave
+    sha256 "828a50f7896f83d04e17e94e54ba6debe7c07851d83833ee75e2e59c19c63fd3" => :mojave
   end
 
   depends_on GoRequirement => :build
