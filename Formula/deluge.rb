@@ -5,6 +5,7 @@ class Deluge < Formula
   homepage "http://deluge-torrent.org/"
   url "https://files.pythonhosted.org/packages/58/9c/a612e85487c055d88da0f975a81cabf5d04dfb87a2aace2ae5946115113f/deluge-2.0.3.tar.gz"
   sha256 "bd26950f417de2a5b26827d989935a30e770f880c22cb59ca69f781cdc9a14c9"
+  revision 1
 
   head "https://git.deluge-torrent.org/deluge", :branch => "develop"
 
@@ -16,7 +17,7 @@ class Deluge < Formula
   depends_on "gtk-mac-integration"
   depends_on "librsvg"
   depends_on "libtorrent-rasterbar"
-  depends_on "openssl"
+  depends_on "openssl@1.1"
   depends_on "py3cairo"
   depends_on "pygobject3"
   depends_on "python"
@@ -72,8 +73,8 @@ class Deluge < Formula
   end
 
   resource "Mako" do
-    url "https://files.pythonhosted.org/packages/0a/af/a6d8aa7b8909a36074f517b15222e3a2fbd5ef3452c0a686e3d43043dd3b/Mako-1.0.12.tar.gz"
-    sha256 "0cfa65de3a835e87eeca6ac856b3013aade55f49e32515f65d999f91a2324162"
+    url "https://files.pythonhosted.org/packages/b0/3c/8dcd6883d009f7cae0f3157fb53e9afb05a0d3d33b3db1268ec2e6f4a56b/Mako-1.1.0.tar.gz"
+    sha256 "a36919599a9b7dc5d86a7a8988f23a9a3a3d083070023bab23d64f7f1d1e0a4b"
   end
 
   resource "MarkupSafe" do
@@ -82,18 +83,18 @@ class Deluge < Formula
   end
 
   resource "Pillow" do
-    url "https://files.pythonhosted.org/packages/81/1a/6b2971adc1bca55b9a53ed1efa372acff7e8b9913982a396f3fa046efaf8/Pillow-6.0.0.tar.gz"
-    sha256 "809c0a2ce9032cbcd7b5313f71af4bdc5c8c771cb86eb7559afd954cab82ebb5"
+    url "https://files.pythonhosted.org/packages/51/fe/18125dc680720e4c3086dd3f5f95d80057c41ab98326877fc7d3ff6d0ee5/Pillow-6.1.0.tar.gz"
+    sha256 "0804f77cb1e9b6dbd37601cee11283bba39a8d44b9ddb053400c58e0c0d7d9de"
   end
 
   resource "pyasn1" do
-    url "https://files.pythonhosted.org/packages/46/60/b7e32f6ff481b8a1f6c8f02b0fd9b693d1c92ddd2efb038ec050d99a7245/pyasn1-0.4.5.tar.gz"
-    sha256 "da2420fe13a9452d8ae97a0e478adde1dee153b11ba832a95b223a2ba01c10f7"
+    url "https://files.pythonhosted.org/packages/ca/f8/2a60a2c88a97558bdd289b6dc9eb75b00bd90ff34155d681ba6dbbcb46b2/pyasn1-0.4.7.tar.gz"
+    sha256 "a9495356ca1d66ed197a0f72b41eb1823cf7ea8b5bd07191673e8147aecf8604"
   end
 
   resource "pyasn1-modules" do
-    url "https://files.pythonhosted.org/packages/ec/0b/69620cb04a016e4a1e8e352e8a42717862129b574b3479adb2358a1f12f7/pyasn1-modules-0.2.5.tar.gz"
-    sha256 "ef721f68f7951fab9b0404d42590f479e30d9005daccb1699b0a51bb4177db96"
+    url "https://files.pythonhosted.org/packages/f1/a9/a1ef72a0e43feff643cf0130a08123dea76205e7a0dda37e3efb5f054a31/pyasn1-modules-0.2.6.tar.gz"
+    sha256 "43c17a83c155229839cc5c6b868e8d0c6041dba149789b6d6e28801c64821722"
   end
 
   resource "pycparser" do
@@ -137,8 +138,8 @@ class Deluge < Formula
   end
 
   resource "Twisted" do
-    url "https://files.pythonhosted.org/packages/79/59/035de19362320e632301ed7bbde23e4c8cd6fc5e2f1cf8d354cdba857854/Twisted-19.2.1.tar.bz2"
-    sha256 "fa2c04c2d68a9be7fc3975ba4947f653a57a656776f24be58ff0fe4b9aaf3e52"
+    url "https://files.pythonhosted.org/packages/61/31/3855dcacd1d3b2e60c0b4ccc8e727b8cd497bd7087d327d81a9f0cbb580c/Twisted-19.7.0.tar.bz2"
+    sha256 "d5db93026568f60cacdc0615fcd21d46f694a6bfad0ef3ff53cde2b4bb85a39d"
   end
 
   resource "zope.interface" do
