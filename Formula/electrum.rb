@@ -5,6 +5,7 @@ class Electrum < Formula
   homepage "https://electrum.org"
   url "https://download.electrum.org/3.3.8/Electrum-3.3.8.tar.gz"
   sha256 "e2adf191847609d5bd850320f647db6347952b170364a463276db27a836400bc"
+  revision 1
 
   bottle do
     root_url "https://dl.bintray.com/domt4/crypto-bottles"
