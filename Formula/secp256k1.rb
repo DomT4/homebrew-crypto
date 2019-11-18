@@ -6,6 +6,8 @@ class Secp256k1 < Formula
   version "0.0.0.54" # Fake version number to make updates easier.
   head "https://github.com/bitcoin-core/secp256k1.git"
 
+  option "with-enable-module-recovery", "Enable ECDSA pubkey recovery module"
+
   depends_on "automake" => :build
   depends_on "autoconf" => :build
   depends_on "libtool" => :build
@@ -13,10 +15,16 @@ class Secp256k1 < Formula
   depends_on "gmp"
 
   def install
+    args = %W[
+      prefix=#{prefix}
+      --disable-silent-rules
+    ]
+    args << "--enable-module-recovery" if build.with? "enable-module-recovery"
+
     system "./autogen.sh"
-    system "./configure", "prefix=#{prefix}", "--disable-silent-rules"
+    system "./configure", *args
     system "make"
-    system "./tests"
+    system "make", "check"
     system "make", "install"
   end
 end
