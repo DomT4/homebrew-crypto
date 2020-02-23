@@ -13,8 +13,8 @@ end
 class GitMax < Formula
   desc "Distributed revision control system"
   homepage "https://git-scm.com"
-  url "https://www.kernel.org/pub/software/scm/git/git-2.25.0.tar.xz"
-  sha256 "c060291a3ffb43d7c99f4aa5c4d37d3751cf6bca683e7344ea407ea504d9a8d0"
+  url "https://www.kernel.org/pub/software/scm/git/git-2.25.1.tar.xz"
+  sha256 "222796cc6e3bf2f9fd765f8f097daa3c3999bb7865ac88a8c974d98182e29f26"
   head "https://github.com/git/git.git", :shallow => false
 
   bottle do
@@ -35,13 +35,13 @@ class GitMax < Formula
     :because => "git-max is a feature-heavy version of the git formula"
 
   resource "html" do
-    url "https://www.kernel.org/pub/software/scm/git/git-htmldocs-2.25.0.tar.xz"
-    sha256 "a99d83260ff903102bf7556e673c1535e4b0fb276a718a5d2f32b501e39a000d"
+    url "https://www.kernel.org/pub/software/scm/git/git-htmldocs-2.25.1.tar.xz"
+    sha256 "2d8f206f12bfd7d9edd74dea25bc457e4bc9ca6eb1a14e09104b549342fcc377"
   end
 
   resource "man" do
-    url "https://www.kernel.org/pub/software/scm/git/git-manpages-2.25.0.tar.xz"
-    sha256 "d396777bdd69dc2db06a49da6971a883fd95fe16ad1dcca7e6b491686658c8bd"
+    url "https://www.kernel.org/pub/software/scm/git/git-manpages-2.25.1.tar.xz"
+    sha256 "30886372c1962a5e087f919998b02f816605368201b564d3f519614ee4a9ee96"
   end
 
   def install
