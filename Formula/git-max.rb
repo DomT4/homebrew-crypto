@@ -13,8 +13,8 @@ end
 class GitMax < Formula
   desc "Distributed revision control system"
   homepage "https://git-scm.com"
-  url "https://www.kernel.org/pub/software/scm/git/git-2.25.1.tar.xz"
-  sha256 "222796cc6e3bf2f9fd765f8f097daa3c3999bb7865ac88a8c974d98182e29f26"
+  url "https://www.kernel.org/pub/software/scm/git/git-2.26.0.tar.xz"
+  sha256 "9ece0dcb07a5e0d7366a92b613b201cca11ae368ab7687041364b3e756e495d6"
   head "https://github.com/git/git.git", :shallow => false
 
   bottle do
@@ -29,19 +29,20 @@ class GitMax < Formula
   # So bindings can be found & used by Homebrew's Perl.
   depends_on "perl" => :recommended
   depends_on "gettext" => :recommended
+  depends_on "tcl-tk" => :recommended
   depends_on "subversion" => :optional
 
   conflicts_with "git",
     :because => "git-max is a feature-heavy version of the git formula"
 
   resource "html" do
-    url "https://www.kernel.org/pub/software/scm/git/git-htmldocs-2.25.1.tar.xz"
-    sha256 "2d8f206f12bfd7d9edd74dea25bc457e4bc9ca6eb1a14e09104b549342fcc377"
+    url "https://www.kernel.org/pub/software/scm/git/git-htmldocs-2.26.0.tar.xz"
+    sha256 "5be14d0835177f8ada0310c98b0248c7caaea0a302b7b58f1ccc0c0f7ece2466"
   end
 
   resource "man" do
-    url "https://www.kernel.org/pub/software/scm/git/git-manpages-2.25.1.tar.xz"
-    sha256 "30886372c1962a5e087f919998b02f816605368201b564d3f519614ee4a9ee96"
+    url "https://www.kernel.org/pub/software/scm/git/git-manpages-2.26.0.tar.xz"
+    sha256 "387e46a0b67c148be7ef80759b1930a3b64ac77782630c18afc784f35ed93426"
   end
 
   def install
