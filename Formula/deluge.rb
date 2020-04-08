@@ -9,6 +9,12 @@ class Deluge < Formula
 
   head "https://git.deluge-torrent.org/deluge", :branch => "develop"
 
+  bottle do
+    root_url "https://dl.bintray.com/domt4/crypto-bottles"
+    cellar :any
+    sha256 "3d8dff73684c1b86a0048d819c15aeb1a7a17f2db90ccfb2213eea6498b8963c" => :catalina
+  end
+
   depends_on "intltool" => :build
   depends_on "boost-python3"
   depends_on "freetype"
