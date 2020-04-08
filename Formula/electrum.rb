@@ -9,8 +9,8 @@ class Electrum < Formula
 
   bottle do
     root_url "https://dl.bintray.com/domt4/crypto-bottles"
-    cellar :any_skip_relocation
-    sha256 "df0a4fcc55e0d91ba3eb0deba3e381bb9a3cea185daf5ff35a5b23ca1391026d" => :mojave
+    cellar :any
+    sha256 "1714db6277535986b805c617655143a846f7f380927cb15879e4f47d1592c049" => :catalina
   end
 
   depends_on "protobuf"
