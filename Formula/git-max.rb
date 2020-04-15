@@ -19,7 +19,7 @@ class GitMax < Formula
 
   bottle do
     root_url "https://dl.bintray.com/domt4/crypto-bottles"
-    sha256 "5cdc9b1bddd52c82624cbc0f0924b9973255f871590e7e9c84987e977b0c4ad8" => :catalina
+    sha256 "47216bcf83739bfb0cd719775f7d58db288b983ab8b8a9db63df5711a14496cd" => :catalina
   end
 
   depends_on GoRequirement => :build
