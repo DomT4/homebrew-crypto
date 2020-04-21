@@ -2,10 +2,10 @@ class Deluge < Formula
   include Language::Python::Virtualenv
 
   desc "Popular open-source bittorrent client"
-  homepage "http://deluge-torrent.org/"
+  homepage "https://deluge-torrent.org/"
   url "https://files.pythonhosted.org/packages/58/9c/a612e85487c055d88da0f975a81cabf5d04dfb87a2aace2ae5946115113f/deluge-2.0.3.tar.gz"
   sha256 "bd26950f417de2a5b26827d989935a30e770f880c22cb59ca69f781cdc9a14c9"
-  revision 2
+  revision 3
 
   head "https://git.deluge-torrent.org/deluge", :branch => "develop"
 
