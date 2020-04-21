@@ -13,8 +13,8 @@ end
 class GitMax < Formula
   desc "Distributed revision control system"
   homepage "https://git-scm.com"
-  url "https://www.kernel.org/pub/software/scm/git/git-2.26.1.tar.xz"
-  sha256 "888228408f254634330234df3cece734d190ef6381063821f31ec020538f0368"
+  url "https://www.kernel.org/pub/software/scm/git/git-2.26.2.tar.xz"
+  sha256 "6d65132471df9e531807cb2746f8be317e22a343b9385bbe11c9ce7f0d2fc848"
   head "https://github.com/git/git.git", :shallow => false
 
   bottle do
@@ -36,13 +36,22 @@ class GitMax < Formula
     :because => "git-max is a feature-heavy version of the git formula"
 
   resource "html" do
-    url "https://www.kernel.org/pub/software/scm/git/git-htmldocs-2.26.1.tar.xz"
-    sha256 "e857bfef9f7f63b2a553564226500ccca8da40b71e1009fcc4fab84ad951b1b0"
+    url "https://www.kernel.org/pub/software/scm/git/git-htmldocs-2.26.2.tar.xz"
+    sha256 "763c2ab83b980edb210d45d9ad25337afd3610ac3749f4124964f86bbdbb201e"
   end
 
   resource "man" do
-    url "https://www.kernel.org/pub/software/scm/git/git-manpages-2.26.1.tar.xz"
-    sha256 "a93cb7f45dab1fc45a9a4a6cfc32f1a8edd0894c0441e163951c323c7a184048"
+    url "https://www.kernel.org/pub/software/scm/git/git-manpages-2.26.2.tar.xz"
+    sha256 "433de104f74a855b7074d88a27e77bf6f0764074e449ffc863f987c124716465"
+  end
+
+  # Fixes a bug where fast-forwarding via `git rebase` doesn't work with rebase.abbreviateCommands.
+  # This bug broke `brew update` for some users.
+  # **Please verify the bug is fixed before removing this patch.**
+  # https://github.com/Homebrew/brew/issues/7374
+  patch do
+    url "https://github.com/agrn/git/commit/058d9c128c63b0a4849b384b358cca9bb19c56db.patch?full_index=1"
+    sha256 "40a243ccc566721bc4df6d9300772fdd367cb9e35a1652f888b89f3f32823227"
   end
 
   def install
