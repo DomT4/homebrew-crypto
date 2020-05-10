@@ -3,6 +3,7 @@ class GnuWget < Formula
   homepage "https://www.gnu.org/software/wget/"
   url "https://ftp.gnu.org/gnu/wget/wget-1.20.3.tar.gz"
   sha256 "31cccfc6630528db1c8e3a06f6decf2a370060b982841cfab2b8677400a5092e"
+  revision 1
 
   head do
     url "https://git.savannah.gnu.org/git/wget.git"
