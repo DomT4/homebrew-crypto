@@ -5,6 +5,7 @@ class Bopenssh < Formula
   mirror "https://mirror.vdms.io/pub/OpenBSD/OpenSSH/portable/openssh-8.2p1.tar.gz"
   version "8.2p1"
   sha256 "43925151e6cf6cee1450190c0e9af4dc36b41c12737619edff8bcebdff64e671"
+  revision 1
 
   depends_on "pkg-config" => :build
   depends_on "libfido2" => :recommended
