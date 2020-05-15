@@ -3,7 +3,7 @@ class Ricochet < Formula
   homepage "https://ricochet.im"
   url "https://ricochet.im/releases/1.1.4/ricochet-1.1.4-src.tar.bz2"
   sha256 "f5f32caa3480def1de5c93010c6bf5f5789ddcba34bf09fc0feab67696d0c374"
-  revision 26
+  revision 27
   head "https://github.com/ricochet-im/ricochet.git"
 
   depends_on "pkg-config" => :build
@@ -13,9 +13,9 @@ class Ricochet < Formula
   depends_on "libevent" # For Tor
 
   resource "tor" do
-    url "https://www.torproject.org/dist/tor-0.4.2.7.tar.gz"
-    mirror "https://www.torservers.net/mirrors/torproject.org/dist/tor-0.4.2.7.tar.gz"
-    sha256 "06a1d835ddf382f6bca40a62e8fb40b71b2f73d56f0d53523c8bd5caf9b3026d"
+    url "https://www.torproject.org/dist/tor-0.4.3.5.tar.gz"
+    mirror "https://www.torservers.net/mirrors/torproject.org/dist/tor-0.4.3.5.tar.gz"
+    sha256 "616a0e4ae688d0e151d46e3e4258565da4d443d1ddbd316db0b90910e2d5d868"
   end
 
   def install
