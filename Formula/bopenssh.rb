@@ -1,16 +1,19 @@
 class Bopenssh < Formula
   desc "OpenBSD freely-licensed SSH connectivity tools"
   homepage "https://www.openssh.com/"
-  url "https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-8.2p1.tar.gz"
-  mirror "https://mirror.vdms.io/pub/OpenBSD/OpenSSH/portable/openssh-8.2p1.tar.gz"
-  version "8.2p1"
-  sha256 "43925151e6cf6cee1450190c0e9af4dc36b41c12737619edff8bcebdff64e671"
-  revision 1
+  url "https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-8.3p1.tar.gz"
+  mirror "https://mirror.vdms.io/pub/OpenBSD/OpenSSH/portable/openssh-8.3p1.tar.gz"
+  version "8.3p1"
+  sha256 "f2befbe0472fe7eb75d23340eb17531cb6b3aac24075e2066b41f814e12387b2"
 
   depends_on "pkg-config" => :build
   depends_on "libfido2" => :recommended
-  depends_on "libressl"
-  depends_on "ldns" => :optional
+  depends_on "ldns" => :recommended
+  # Prefer to use LibreSSL but since Homebrew uses OpenSSL@1.1 with
+  # libfido2/ldns let's not mandate a second cryptographic library.
+  depends_on "openssl@1.1"
+
+  conflicts_with "openssh", :because => "this formula installs the same files"
 
   # Both these patches are applied by Apple.
   patch do
@@ -41,7 +44,7 @@ class Bopenssh < Formula
       --with-kerberos5
       --prefix=#{prefix}
       --sysconfdir=#{etc}/ssh
-      --with-ssl-dir=#{Formula["libressl"].opt_prefix}
+      --with-ssl-dir=#{Formula["openssl@1.1"].opt_prefix}
     ]
 
     args << "--with-ldns" if build.with? "ldns"
@@ -51,6 +54,12 @@ class Bopenssh < Formula
     system "make"
     ENV.deparallelize
     system "make", "install"
+
+    # Just install these. Homebrew/core uses a separate keg-only formula
+    # which doesn't entirely make sense to me given that the entire
+    # OpenSSH formula duplicates/replaces the system SSH installation.
+    bin.install "contrib/ssh-copy-id"
+    man1.install "contrib/ssh-copy-id.1"
 
     # This was removed by upstream with very little announcement and has
     # potential to break scripts, so recreate it for now.
