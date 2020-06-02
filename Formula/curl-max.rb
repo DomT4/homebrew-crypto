@@ -105,7 +105,6 @@ class CurlMax < Formula
                             "--disable-dependency-tracking",
                             "--disable-silent-rules",
                             "--disable-examples-build",
-                            "--with-openssl",
                             "--with-libz",
                             "--with-libssl-prefix=#{Formula["openssl@1.1"].opt_prefix}"
       system "make", "install"
@@ -133,14 +132,6 @@ class CurlMax < Formula
     system "./configure", *args
     system "make", "install"
     libexec.install "lib/mk-ca-bundle.pl"
-
-    # curl-config --libs outputs all libs, even private ones.
-    # Is a known issue upstream but can cause problems when
-    # third-parties try to link against curl. Can be fixed
-    # with an inreplace until upstream find a happy solution.
-    inreplace bin/"curl-config",
-              "${CURLLIBDIR}-lcurl -lcares",
-              "${CURLLIBDIR} -L#{vendor}/lib -lcurl -lcares"
   end
 
   test do
