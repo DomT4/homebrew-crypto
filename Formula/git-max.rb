@@ -13,8 +13,8 @@ end
 class GitMax < Formula
   desc "Distributed revision control system"
   homepage "https://git-scm.com"
-  url "https://www.kernel.org/pub/software/scm/git/git-2.26.2.tar.xz"
-  sha256 "6d65132471df9e531807cb2746f8be317e22a343b9385bbe11c9ce7f0d2fc848"
+  url "https://www.kernel.org/pub/software/scm/git/git-2.27.0.tar.xz"
+  sha256 "73ca9774d7fa226e1d87c1909401623f96dca6a044e583b9a762e84d7d1a73f9"
   head "https://github.com/git/git.git", :shallow => false
 
   bottle do
@@ -36,35 +36,23 @@ class GitMax < Formula
     :because => "git-max is a feature-heavy version of the git formula"
 
   resource "html" do
-    url "https://www.kernel.org/pub/software/scm/git/git-htmldocs-2.26.2.tar.xz"
-    sha256 "763c2ab83b980edb210d45d9ad25337afd3610ac3749f4124964f86bbdbb201e"
+    url "https://www.kernel.org/pub/software/scm/git/git-htmldocs-2.27.0.tar.xz"
+    sha256 "ffa91681b6a8f558745924b1dbb76d604c9e52b27c525c6bd470c0123f7f4af3"
   end
 
   resource "man" do
-    url "https://www.kernel.org/pub/software/scm/git/git-manpages-2.26.2.tar.xz"
-    sha256 "433de104f74a855b7074d88a27e77bf6f0764074e449ffc863f987c124716465"
-  end
-
-  # Fixes a bug where fast-forwarding via `git rebase` doesn't work with rebase.abbreviateCommands.
-  # This bug broke `brew update` for some users.
-  # **Please verify the bug is fixed before removing this patch.**
-  # https://github.com/Homebrew/brew/issues/7374
-  patch do
-    url "https://github.com/agrn/git/commit/058d9c128c63b0a4849b384b358cca9bb19c56db.patch?full_index=1"
-    sha256 "40a243ccc566721bc4df6d9300772fdd367cb9e35a1652f888b89f3f32823227"
+    url "https://www.kernel.org/pub/software/scm/git/git-manpages-2.27.0.tar.xz"
+    sha256 "e6cbab49b04c975886fdddf46eb24c5645c6799224208db8b01143091d9bd49c"
   end
 
   def install
     # If these things are installed, tell Git build system not to use them
     ENV["NO_FINK"] = "1"
     ENV["NO_DARWIN_PORTS"] = "1"
-    # This is the default now when not using CommonCrypto but set it regardless
-    # in case we ever move back to CommonCrypto here in future.
     ENV["DC_SHA1"] = "1"
     ENV["V"] = "1" # build verbosely
-    ENV["NO_INSTALL_HARDLINKS"] = "1" # https://github.com/Homebrew/brew/issues/4921
+    ENV["INSTALL_SYMLINKS"] = "1"
     ENV["SOURCE_DATE_EPOCH"] = "1"
-    ENV["NO_R_TO_GCC_LINKER"] = "1" # pass arguments to LD correctly
     ENV["PYTHON_PATH"] = which("python")
     ENV["PERL_PATH"] = which("perl")
 
@@ -88,10 +76,6 @@ class GitMax < Formula
       end.join(":")
     end
 
-    unless quiet_system ENV["PERL_PATH"], "-e", "use ExtUtils::MakeMaker"
-      ENV["NO_PERL_MAKEMAKER"] = "1"
-    end
-
     ENV["NO_GETTEXT"] = "1" if build.without? "gettext"
     ENV["USE_LIBPCRE2"] = "1"
     ENV["LIBPCREDIR"] = Formula["pcre2"].opt_prefix
@@ -105,6 +89,13 @@ class GitMax < Formula
       NO_APPLE_COMMON_CRYPTO=1
       OPENSSLDIR=#{Formula["openssl@1.1"].opt_prefix}
     ]
+
+    if build.with? "tcl-tk"
+      tcl = Formula["tcl-tk"]
+      args << "TKFRAMEWORK=/dev/null"
+      args << "TCL_PATH=#{tcl.opt_bin}/tclsh"
+      args << "TCLTK_PATH=#{tcl.opt_bin}/wish"
+    end
 
     system "make", "install", *args
 
@@ -183,6 +174,8 @@ class GitMax < Formula
     system bin/"git", "init"
     %w[haunted house].each { |f| touch testpath/f }
     system bin/"git", "add", "haunted", "house"
+    system bin/"git", "config", "user.name", "wray"
+    system bin/"git", "config", "user.email", "wray@example.com"
     system bin/"git", "commit", "-a", "-m", "Initial Commit"
     assert_equal "haunted\nhouse", shell_output("#{bin}/git ls-files").strip
   end
