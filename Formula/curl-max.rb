@@ -3,6 +3,7 @@ class CurlMax < Formula
   homepage "https://curl.haxx.se/"
   url "https://curl.haxx.se/download/curl-7.70.0.tar.xz"
   sha256 "032f43f2674008c761af19bf536374128c16241fb234699a55f9fb603fcfbae7"
+  revision 1
 
   bottle do
     root_url "https://dl.bintray.com/domt4/crypto-bottles"
@@ -17,6 +18,7 @@ class CurlMax < Formula
   depends_on "libtool" => :build
   depends_on "pkg-config" => :build
   depends_on "boost"
+  depends_on "brotli"
   depends_on "c-ares"
   depends_on "jansson"
   depends_on "jemalloc"
@@ -25,6 +27,7 @@ class CurlMax < Formula
   depends_on "libmetalink"
   depends_on "libpsl"
   depends_on "openssl@1.1"
+  depends_on "rtmpdump"
 
   # Needed for nghttp2
   resource "libevent" do
@@ -33,8 +36,8 @@ class CurlMax < Formula
   end
 
   resource "nghttp2" do
-    url "https://github.com/nghttp2/nghttp2/releases/download/v1.40.0/nghttp2-1.40.0.tar.xz"
-    sha256 "09fc43d428ff237138733c737b29fb1a7e49d49de06d2edbed3bc4cdcee69073"
+    url "https://github.com/nghttp2/nghttp2/releases/download/v1.41.0/nghttp2-1.41.0.tar.xz"
+    sha256 "abc25b8dc601f5b3fefe084ce50fcbdc63e3385621bee0cbfa7b57f9ec3e67c2"
 
     unless OS.mac?
       patch do
@@ -113,15 +116,17 @@ class CurlMax < Formula
       --disable-dependency-tracking
       --disable-silent-rules
       --prefix=#{prefix}
-      --with-libidn2
       --with-ssl=#{Formula["openssl@1.1"].opt_prefix}
       --with-ca-bundle=#{etc}/openssl@1.1/cert.pem
       --with-ca-path=#{etc}/openssl@1.1/certs
       --enable-ares=#{Formula["c-ares"].opt_prefix}
-      --with-libssh2
-      --without-librtmp
+      --with-brotli
       --with-gssapi
+      --with-libidn2
+      --with-librtmp
       --with-libmetalink
+      --with-libpsl
+      --with-libssh2
     ]
     args << "--disable-ldap" unless OS.mac?
 
