@@ -5,7 +5,7 @@ class Deluge < Formula
   homepage "https://deluge-torrent.org/"
   url "https://files.pythonhosted.org/packages/58/9c/a612e85487c055d88da0f975a81cabf5d04dfb87a2aace2ae5946115113f/deluge-2.0.3.tar.gz"
   sha256 "bd26950f417de2a5b26827d989935a30e770f880c22cb59ca69f781cdc9a14c9"
-  revision 3
+  revision 4
 
   head "https://git.deluge-torrent.org/deluge", :branch => "develop"
 
@@ -54,8 +54,8 @@ class Deluge < Formula
   end
 
   resource "cryptography" do
-    url "https://files.pythonhosted.org/packages/9d/0a/d7060601834b1a0a84845d6ae2cd59be077aafa2133455062e47c9733024/cryptography-2.9.tar.gz"
-    sha256 "0cacd3ef5c604b8e5f59bf2582c076c98a37fe206b31430d0cd08138aff0986e"
+    url "https://files.pythonhosted.org/packages/56/3b/78c6816918fdf2405d62c98e48589112669f36711e50158a0c15d804c30d/cryptography-2.9.2.tar.gz"
+    sha256 "a0c30272fb4ddda5f5ffc1089d7405b7a71b0b0f51993cb4e5dbb4590b2fc229"
   end
 
   resource "hyperlink" do
@@ -63,11 +63,6 @@ class Deluge < Formula
     sha256 "4288e34705da077fada1111a24a0aa08bb1e76699c9ce49876af722441845654"
   end
 
-  # This isn't working as expected right now. It's semi-harmless given the
-  # limited userbase this formula has but keep eye on it.
-  # https://bugs.archlinux.org/task/65598
-  # https://dev.deluge-torrent.org/ticket/3342
-  # https://bbs.archlinux.org/viewtopic.php?pid=1887273#p1887273
   resource "idna" do
     url "https://files.pythonhosted.org/packages/cb/19/57503b5de719ee45e83472f339f617b0c01ad75cba44aba1e4c97c2b0abd/idna-2.9.tar.gz"
     sha256 "7588d1c14ae4c77d74036e8c22ff447b26d0fde8f007354fd48a7814db15b7cb"
@@ -79,8 +74,8 @@ class Deluge < Formula
   end
 
   resource "Mako" do
-    url "https://files.pythonhosted.org/packages/42/64/fc7c506d14d8b6ed363e7798ffec2dfe4ba21e14dda4cfab99f4430cba3a/Mako-1.1.2.tar.gz"
-    sha256 "3139c5d64aa5d175dbafb95027057128b5fbd05a40c53999f3905ceb53366d9d"
+    url "https://files.pythonhosted.org/packages/72/89/402d2b4589e120ca76a6aed8fee906a0f5ae204b50e455edd36eda6e778d/Mako-1.1.3.tar.gz"
+    sha256 "8195c8c1400ceb53496064314c6736719c6f25e7479cd24c77be3d9361cddc27"
   end
 
   resource "MarkupSafe" do
@@ -89,8 +84,8 @@ class Deluge < Formula
   end
 
   resource "Pillow" do
-    url "https://files.pythonhosted.org/packages/c7/04/c91bb0e495c1e8a09633ecb061fab32e276ace7cefcef5d12334cdd14cd2/Pillow-7.1.1.tar.gz"
-    sha256 "0f89ddc77cf421b8cd34ae852309501458942bf370831b4a9b406156b599a14e"
+    url "https://files.pythonhosted.org/packages/ce/ef/e793f6ffe245c960c42492d0bb50f8d14e2ba223f1922a5c3c81569cec44/Pillow-7.1.2.tar.gz"
+    sha256 "a0b49960110bc6ff5fead46013bcb8825d101026d466f3a4de3476defe0fb0dd"
   end
 
   resource "pyasn1" do
@@ -139,8 +134,8 @@ class Deluge < Formula
   end
 
   resource "six" do
-    url "https://files.pythonhosted.org/packages/21/9f/b251f7f8a76dec1d6651be194dfba8fb8d7781d10ab3987190de8391d08e/six-1.14.0.tar.gz"
-    sha256 "236bdbdce46e6e6a3d61a337c0f8b763ca1e8717c03b369e87a7ec7ce1319c0a"
+    url "https://files.pythonhosted.org/packages/6b/34/415834bfdafca3c5f451532e8a8d9ba89a21c9743a0c59fbd0205c7f9426/six-1.15.0.tar.gz"
+    sha256 "30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259"
   end
 
   resource "Twisted" do
@@ -155,6 +150,14 @@ class Deluge < Formula
 
   def install
     venv = virtualenv_create(libexec, "python3")
+
+    if build.stable?
+      # https://bugs.archlinux.org/task/65598
+      # https://dev.deluge-torrent.org/ticket/3342
+      # https://bbs.archlinux.org/viewtopic.php?pid=1887273#p1887273
+      # https://dev.deluge-torrent.org/changeset/d6c96d629183e8bab
+      inreplace "deluge/i18n/util.py", "names='ngettext'", "names=['ngettext']"
+    end
 
     resource("Pillow").stage do
       inreplace "setup.py" do |s|
