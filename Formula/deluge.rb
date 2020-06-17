@@ -12,7 +12,7 @@ class Deluge < Formula
   bottle do
     root_url "https://dl.bintray.com/domt4/crypto-bottles"
     cellar :any
-    sha256 "a919aa8b73ac45d106290550008b3eda9e85ed12df0e02299194ac811e85e672" => :catalina
+    sha256 "77edb5e028321447b5b71c0d3e05dcfe9821dcc54f2bf3ad05e7b0e24334836f" => :catalina
   end
 
   depends_on "intltool" => :build
