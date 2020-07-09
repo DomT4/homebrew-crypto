@@ -1,8 +1,8 @@
 class CurlMax < Formula
   desc "Feature-maximised version of cURL, using OpenSSL 1.1"
   homepage "https://curl.haxx.se/"
-  url "https://curl.haxx.se/download/curl-7.71.0.tar.xz"
-  sha256 "cdf18794393d8bead915312708a9e5d819c6e9919de14b20d5c8e7987abd9772"
+  url "https://curl.haxx.se/download/curl-7.71.1.tar.xz"
+  sha256 "40f83eda27cdbeb25cd4da48cefb639af1b9395d6026d2da1825bf059239658c"
 
   bottle do
     root_url "https://dl.bintray.com/domt4/crypto-bottles"
@@ -30,8 +30,8 @@ class CurlMax < Formula
 
   # Needed for nghttp2
   resource "libevent" do
-    url "https://github.com/libevent/libevent/releases/download/release-2.1.11-stable/libevent-2.1.11-stable.tar.gz"
-    sha256 "a65bac6202ea8c5609fd5c7e480e6d25de467ea1917c08290c521752f147283d"
+    url "https://github.com/libevent/libevent/releases/download/release-2.1.12-stable/libevent-2.1.12-stable.tar.gz"
+    sha256 "92e6de1be9ec176428fd2367677e61ceffc2ee1cb119035037a27d346b0403bb"
   end
 
   resource "nghttp2" do
