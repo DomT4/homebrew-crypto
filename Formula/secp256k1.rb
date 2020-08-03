@@ -2,11 +2,11 @@ class Secp256k1 < Formula
   desc "Optimized C library for EC operations on curve secp256k1"
   homepage "https://github.com/bitcoin-core/secp256k1"
   url "https://github.com/bitcoin-core/secp256k1.git",
-      :revision => "dbd41db16a0e91b2566820898a3ab2d7dad4fe00"
-  version "0.0.0.56" # Fake version number to make updates easier.
+      :revision => "6034a04fb1afe7d78dd367ec719d3ced9db2b05e"
+  version "0.0.0.57" # Fake version number to make updates easier.
   head "https://github.com/bitcoin-core/secp256k1.git"
 
-  option "with-enable-module-recovery", "Enable ECDSA pubkey recovery module"
+  option "without-enable-module-recovery", "Disable ECDSA pubkey recovery module"
 
   depends_on "automake" => :build
   depends_on "autoconf" => :build
