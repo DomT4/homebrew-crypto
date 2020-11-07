@@ -13,8 +13,8 @@ end
 class GitMax < Formula
   desc "Distributed revision control system"
   homepage "https://git-scm.com"
-  url "https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.28.0.tar.xz"
-  sha256 "dfa5d1a253aa451465478fe45c6a40ab8605b340fdb4c4e80b16d7f87708439d"
+  url "https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.29.2.tar.xz"
+  sha256 "f2fc436ebe657821a1360bcd1e5f4896049610082419143d60f6fa13c2f607c1"
   head "https://github.com/git/git.git", :shallow => false
 
   bottle do
@@ -23,7 +23,7 @@ class GitMax < Formula
   end
 
   depends_on GoRequirement => :build
-  depends_on "domt4/crypto/curl-max"
+  depends_on "domt4/crypto/curl-max" => :recommended
   depends_on "openssl@1.1"
   depends_on "pcre2"
   # So bindings can be found & used by Homebrew's Perl.
@@ -36,13 +36,13 @@ class GitMax < Formula
     :because => "git-max is a feature-heavy version of the git formula"
 
   resource "html" do
-    url "https://mirrors.edge.kernel.org/pub/software/scm/git/git-htmldocs-2.28.0.tar.xz"
-    sha256 "24feed3b584e2121418de9bde9f2e23fdcf78e4f914279787f669d3dc375bfe6"
+    url "https://mirrors.edge.kernel.org/pub/software/scm/git/git-htmldocs-2.29.2.tar.xz"
+    sha256 "f7c762cc5c8c5230885b76134cbc801f6149c29c812d3f276ff1914176a7dab8"
   end
 
   resource "man" do
-    url "https://mirrors.edge.kernel.org/pub/software/scm/git/git-manpages-2.28.0.tar.xz"
-    sha256 "665a7fa41f9a39248e48422dcf533e1a0133a4a6eddfc25ee55e28e42fc07cb7"
+    url "https://mirrors.edge.kernel.org/pub/software/scm/git/git-manpages-2.29.2.tar.xz"
+    sha256 "e2d44a2a30b9d43a770262f1328b77df2f532f16c2dcd235655e5c9bd39bd792"
   end
 
   def install
