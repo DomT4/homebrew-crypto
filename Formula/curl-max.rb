@@ -1,8 +1,8 @@
 class CurlMax < Formula
   desc "Feature-maximised version of cURL"
   homepage "https://curl.haxx.se/"
-  url "https://curl.haxx.se/download/curl-7.72.0.tar.bz2"
-  sha256 "ad91970864102a59765e20ce16216efc9d6ad381471f7accceceab7d905703ef"
+  url "https://curl.haxx.se/download/curl-7.73.0.tar.bz2"
+  sha256 "cf34fe0b07b800f1c01a499a6e8b2af548f6d0e044dca4a29d88a4bee146d131"
 
   bottle do
     root_url "https://dl.bintray.com/domt4/crypto-bottles"
