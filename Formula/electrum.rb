@@ -9,7 +9,7 @@ class Electrum < Formula
   depends_on "cython" => :build
   depends_on "pyqt"
   depends_on "protobuf"
-  depends_on "python@3.8" # This can be changed back to python at some point.
+  depends_on "python@3.9" # This can be changed back to python at some point.
   depends_on "secp256k1"
 
   # It's really annoying this is required because it makes the build *a lot*
