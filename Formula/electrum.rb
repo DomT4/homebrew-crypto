@@ -3,8 +3,8 @@ class Electrum < Formula
 
   desc "Bitcoin thin client"
   homepage "https://electrum.org"
-  url "https://download.electrum.org/4.0.2/Electrum-4.0.2.tar.gz"
-  sha256 "810bff7b0bb6b2d1da4d4a6421b94cc5b493fdeeb0c61b34b3ce38ed4dce2b16"
+  url "https://download.electrum.org/4.0.4/Electrum-4.0.4.tar.gz"
+  sha256 "bb56e1770c2022e70f885e48f42c64927e61bdc38b925daa8e1a85fbb82cac0d"
 
   depends_on "cython" => :build
   depends_on "pyqt"
@@ -17,8 +17,8 @@ class Electrum < Formula
   # it's possible to just go back to using the core pyqt Python bindings
   # without constantly hitting `ModuleNotFoundError: No module named 'PyQt5.sip'`.
   resource "PyQt5-sip" do
-    url "https://files.pythonhosted.org/packages/73/a0/0987d3c153b18fd5f7b190bdc71e8edd05ff65e9084efd1f4985c2b1dc0f/PyQt5_sip-12.8.0.tar.gz"
-    sha256 "0a34b6596bdd28d52da3a51fa8d9bb0b287bcb605c2512aa3251b9028cc71f4d"
+    url "https://files.pythonhosted.org/packages/73/8c/c662b7ebc4b2407d8679da68e11c2a2eb275f5f2242a92610f6e5024c1f2/PyQt5_sip-12.8.1.tar.gz"
+    sha256 "30e944db9abee9cc757aea16906d4198129558533eb7fadbe48c5da2bd18e0bd"
   end
   # END of above notes.
 
@@ -33,13 +33,13 @@ class Electrum < Formula
   end
 
   resource "aiohttp" do
-    url "https://files.pythonhosted.org/packages/00/94/f9fa18e8d7124d7850a5715a0b9c0584f7b9375d331d35e157cee50f27cc/aiohttp-3.6.2.tar.gz"
-    sha256 "259ab809ff0727d0e834ac5e8a283dc5e3e0ecc30c4d80b3cd17a4139ce1f326"
+    url "https://files.pythonhosted.org/packages/4f/b7/a382cf8440d9edfdf2c0125a1b4ad6954caf1d786225b2dede99b60f5ab2/aiohttp-3.7.2.tar.gz"
+    sha256 "c6da1af59841e6d43255d386a2c4bfb59c0a3b262bdb24325cc969d211be6070"
   end
 
   resource "aiohttp-socks" do
-    url "https://files.pythonhosted.org/packages/21/32/afa61fac464cf56ae668c3a45ea797e4e8d97bd4ec1088ef41317efac302/aiohttp_socks-0.5.3.tar.gz"
-    sha256 "f2f3f6979d7427207044d7127be1a5de412e9186d5f9ac05fdb688a239351652"
+    url "https://files.pythonhosted.org/packages/e8/14/27448875ae2475452cc6485ea51f36b45394041f1e1b588e977d8bb11fad/aiohttp_socks-0.5.5.tar.gz"
+    sha256 "2eb2059756bde34c55bb429541cbf2eba3fd53e36ac80875b461221e2858b04a"
   end
 
   resource "aiorpcX" do
@@ -53,8 +53,8 @@ class Electrum < Formula
   end
 
   resource "attrs" do
-    url "https://files.pythonhosted.org/packages/98/c3/2c227e66b5e896e15ccdae2e00bbc69aa46e9a8ce8869cc5fa96310bf612/attrs-19.3.0.tar.gz"
-    sha256 "f7b7ce16570fe9965acd6d30101a28f62fb4a7f9e926b3bbc9b61f8b04247e72"
+    url "https://files.pythonhosted.org/packages/f0/cb/80a4a274df7da7b8baf083249b0890a0579374c3d74b5ac0ee9291f912dc/attrs-20.3.0.tar.gz"
+    sha256 "832aa3cde19744e49938b91fea06d69ecb9e649c93ba974535d08ad92164f700"
   end
 
   resource "base58" do
@@ -63,8 +63,8 @@ class Electrum < Formula
   end
 
   resource "bitbox02" do
-    url "https://files.pythonhosted.org/packages/d3/ca/29ba8c94fe0e67ea8a72661a818f5c2f154c32da0f2e828c8bd14ba805c4/bitbox02-4.1.0.tar.gz"
-    sha256 "73a35594162f32897dd2b1880f0cfaa42922acd1c2d7f4cf3d94b8333329c931"
+    url "https://files.pythonhosted.org/packages/cb/72/15244df247bdfb32083cdf3a5d36cdb7dbaa170e59a5af363ee8eeba3309/bitbox02-5.0.0.tar.gz"
+    sha256 "97b43b97c9d59e2d0ba1b20894d0b83cf804c86c1464f7918f268ca72f0adc7b"
   end
 
   resource "bitstring" do
@@ -73,8 +73,8 @@ class Electrum < Formula
   end
 
   resource "btchip-python" do
-    url "https://files.pythonhosted.org/packages/a9/20/1eeda466e982965cab498aed7a624e16cadbca719be83603443ba582ce21/btchip-python-0.1.30.tar.gz"
-    sha256 "6869c67a712969ae86af23617f6418049076626f8a8c34d1000b1c58a9702ad7"
+    url "https://files.pythonhosted.org/packages/54/84/3060eb0f953bf90f7477b8838662170fab841fda4d17ffd9e6e58dd2d1d4/btchip-python-0.1.31.tar.gz"
+    sha256 "4167f3c6ea832dd189d447d0d7a8c2a968027671ae6f43c680192f2b72c39b2c"
   end
 
   resource "certifi" do
@@ -83,8 +83,8 @@ class Electrum < Formula
   end
 
   resource "cffi" do
-    url "https://files.pythonhosted.org/packages/54/1d/15eae71ab444bd88a1d69f19592dcf32b9e3166ecf427dd9243ef0d3b7bc/cffi-1.14.1.tar.gz"
-    sha256 "b2a2b0d276a136146e012154baefaea2758ef1f56ae9f4e01c612b0831e0bd2f"
+    url "https://files.pythonhosted.org/packages/cb/ae/380e33d621ae301770358eb11a896a34c34f30db188847a561e8e39ee866/cffi-1.14.3.tar.gz"
+    sha256 "f92f789e4f9241cd262ad7a555ca2c648a98178a953af117ef7fad46aa1d5591"
   end
 
   resource "chardet" do
@@ -108,8 +108,8 @@ class Electrum < Formula
   end
 
   resource "cryptography" do
-    url "https://files.pythonhosted.org/packages/bf/ac/552fc8729d90393845cc3a2062facf4a89dcbe206fa78771d60ddaae7554/cryptography-3.0.tar.gz"
-    sha256 "8e924dbc025206e97756e8903039662aa58aa9ba357d8e1d8fc29e3092322053"
+    url "https://files.pythonhosted.org/packages/94/5c/42de91c7fbdb817b2d9a4e64b067946eb38a4eb36c1a09c96c87a0f86a82/cryptography-3.2.1.tar.gz"
+    sha256 "d3d5e10be0cf2a12214ddee45c6bd203dab435e3d83b4560c03066eda600bfe3"
   end
 
   resource "dnspython" do
@@ -118,8 +118,8 @@ class Electrum < Formula
   end
 
   resource "ecdsa" do
-    url "https://files.pythonhosted.org/packages/e3/7c/b508ade1feb47cd79222e06d85e477f5cfc4fb0455ad3c70eb6330fc49aa/ecdsa-0.15.tar.gz"
-    sha256 "8f12ac317f8a1318efa75757ef0a651abe12e51fc1af8838fb91079445227277"
+    url "https://files.pythonhosted.org/packages/23/c3/81b0040f2976775d6685c3bb3748355bb2b725a9210a4ea50afc5a90e7d9/ecdsa-0.16.0.tar.gz"
+    sha256 "494c6a853e9ed2e9be33d160b41d47afc50a6629b993d2b9c5ad7bb226add892"
   end
 
   resource "helpdev" do
@@ -128,8 +128,8 @@ class Electrum < Formula
   end
 
   resource "hidapi" do
-    url "https://files.pythonhosted.org/packages/ee/e9/b2ec08690c280a0eaa4777bf829db6b5d269903d4e8e9ce82f079c837d5a/hidapi-0.9.0.post3.tar.gz"
-    sha256 "5a2442928f17ba742d9c53073f48b152051c5747d758d2fefd937543da5ab2e5"
+    url "https://files.pythonhosted.org/packages/52/4b/0d0fac70bd0a04949113a9ca50ba7b2344f547b9d85b0e7e5eded19d7d50/hidapi-0.10.0.post1.tar.gz"
+    sha256 "27c04d42a7187becf7a8309d4846aa4f235ac8b7dafd758335b109f5cbd3b962"
   end
 
   resource "idna" do
@@ -153,8 +153,8 @@ class Electrum < Formula
   end
 
   resource "multidict" do
-    url "https://files.pythonhosted.org/packages/65/d4/fabdcc5ee4451c8a8e177e27ddfd131a53a82ecc5a3b68468b7e9f8d70b4/multidict-4.7.6.tar.gz"
-    sha256 "fbb77a75e529021e7c4a8d4e823d88ef4d23674a202be4f5addffc72cbb91430"
+    url "https://files.pythonhosted.org/packages/d2/5a/e95b0f9ebacd42e094e229a9a0a9e44d02876abf64969d0cb07dadcf3c4a/multidict-5.0.0.tar.gz"
+    sha256 "1b324444299c3a49b601b1bf621fc21704e29066f6ac2b7d7e4034a4a18662a1"
   end
 
   resource "noiseprotocol" do
@@ -163,8 +163,8 @@ class Electrum < Formula
   end
 
   resource "protobuf" do
-    url "https://files.pythonhosted.org/packages/5f/8b/533bafcdd7f68f4a21f0371ba1f1d3a3c6de28c1a22bf58b75bea1de8ef4/protobuf-3.12.4.tar.gz"
-    sha256 "c99e5aea75b6f2b29c8d8da5bdc5f5ed8d9a5b4f15115c8316a3f0a850f94656"
+    url "https://files.pythonhosted.org/packages/25/ef/8f36bc7e4c3dcad241a9e7a51520d30712a7abc034343bed841ff4ea3289/protobuf-3.13.0.tar.gz"
+    sha256 "6a82e0c8bb2bf58f606040cc5814e07715b2094caeba281e2e7d0b0e2e397db5"
   end
 
   resource "pyaes" do
@@ -175,6 +175,11 @@ class Electrum < Formula
   resource "pycparser" do
     url "https://files.pythonhosted.org/packages/0f/86/e19659527668d70be91d0369aeaa055b4eb396b0f387a4f92293a20035bd/pycparser-2.20.tar.gz"
     sha256 "2d475327684562c3a96cc71adf7dc8c4f0565175cf86b6d7a404ff4c771f15f0"
+  end
+
+  resource "python-socks" do
+    url "https://files.pythonhosted.org/packages/03/ca/57fe5ce042a5606dfb74e8ed0db1970905026fe4e3731b55061795180aa4/python-socks-1.1.0.tar.gz"
+    sha256 "3b4e2aaa0d616b02e432470bdc1106eb734c6640da34e47efdd429693e6daff0"
   end
 
   resource "qrcode" do
@@ -193,8 +198,8 @@ class Electrum < Formula
   end
 
   resource "semver" do
-    url "https://files.pythonhosted.org/packages/aa/e8/cb894f70a52887f001aff5f264f68272c21fa58268495aca17df396c161f/semver-2.10.2.tar.gz"
-    sha256 "c0a4a9d1e45557297a722ee9bac3de2ec2ea79016b6ffcaca609b0bc62cf4276"
+    url "https://files.pythonhosted.org/packages/31/a9/b61190916030ee9af83de342e101f192bbb436c59be20a4cb0cdb7256ece/semver-2.13.0.tar.gz"
+    sha256 "fa0fe2722ee1c3f57eac478820c3a5ae2f624af8264cbdf9000c980ff7f75e3f"
   end
 
   resource "six" do
@@ -203,23 +208,23 @@ class Electrum < Formula
   end
 
   resource "trezor" do
-    url "https://files.pythonhosted.org/packages/d1/8d/f467c7a01f858a668940aadd160cee78505025a6ae73fa8bb3d685a45e2c/trezor-0.12.0.tar.gz"
-    sha256 "f6bc821bddec06e67a1abd0be1d9fbc61c59b08272c736522ae2f6b225bf9579"
+    url "https://files.pythonhosted.org/packages/40/bb/e5aff94fb22fcce0b57dd773b5fd1e8b7bdd16c4bc982755984b9a09bb7d/trezor-0.12.2.tar.gz"
+    sha256 "5bd226b829e5f6ad6c7263f5303f58b54e07b0f21263c4b8ba57981881071264"
   end
 
   resource "typing-extensions" do
-    url "https://files.pythonhosted.org/packages/6a/28/d32852f2af6b5ead85d396249d5bdf450833f3a69896d76eb480d9c5e406/typing_extensions-3.7.4.2.tar.gz"
-    sha256 "79ee589a3caca649a9bfd2a8de4709837400dfa00b6cc81962a1e6a1815969ae"
+    url "https://files.pythonhosted.org/packages/16/06/0f7367eafb692f73158e5c5cbca1aec798cdf78be5167f6415dd4205fa32/typing_extensions-3.7.4.3.tar.gz"
+    sha256 "99d4073b617d30288f569d3f13d2bd7548c3a7e4c8de87db09a9d29bb3a4a60c"
   end
 
   resource "urllib3" do
-    url "https://files.pythonhosted.org/packages/81/f4/87467aeb3afc4a6056e1fe86626d259ab97e1213b1dfec14c7cb5f538bf0/urllib3-1.25.10.tar.gz"
-    sha256 "91056c15fa70756691db97756772bb1eb9678fa585d9184f24534b100dc60f4a"
+    url "https://files.pythonhosted.org/packages/76/d9/bbbafc76b18da706451fa91bc2ebe21c0daf8868ef3c30b869ac7cb7f01d/urllib3-1.25.11.tar.gz"
+    sha256 "8d7eaa5a82a1cac232164990f04874c594c9453ec55eef02eab885aa02fc17a2"
   end
 
   resource "yarl" do
-    url "https://files.pythonhosted.org/packages/ac/dd/59768bb3fa08e8b23e91575bca3ff8d2edbfbceebec8c59eaa24c4215791/yarl-1.5.1.tar.gz"
-    sha256 "c22c75b5f394f3d47105045ea551e08a3e804dc7e01b37800ca35b58f856c3d6"
+    url "https://files.pythonhosted.org/packages/6d/0b/44006eb5b3b7898e54df4b7481839d22d15cf3fc4f0420394ad9e3bb214e/yarl-1.6.2.tar.gz"
+    sha256 "c45b49b59a5724869899798e1bbd447ac486215269511d3b76b4c235a1b766b6"
   end
 
   def install
