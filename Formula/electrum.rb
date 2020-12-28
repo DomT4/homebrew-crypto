@@ -6,6 +6,12 @@ class Electrum < Formula
   url "https://download.electrum.org/4.0.9/Electrum-4.0.9.tar.gz"
   sha256 "6a3fc11aa475fa4d1573d72116eeddae43a495443d8bfcba15c3a1139f8a72bb"
 
+  bottle do
+    root_url "https://dl.bintray.com/domt4/crypto-bottles"
+    cellar :any
+    sha256 "a2ea2859738a0005468cedaeb65e087b8dba008ca60d90ddd604915c8c578fe7" => :big_sur
+  end
+
   depends_on "cython" => :build
   depends_on "pyqt"
   depends_on "protobuf"
