@@ -91,7 +91,6 @@ class CurlMax < Formula
         --disable-examples
         --without-systemd
         --disable-hpack-tools
-        --enable-app
         --with-boost=#{Formula["boost"].opt_prefix}
         --enable-asio-lib
         --disable-python-bindings
