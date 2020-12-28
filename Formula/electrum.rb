@@ -3,13 +3,13 @@ class Electrum < Formula
 
   desc "Bitcoin thin client"
   homepage "https://electrum.org"
-  url "https://download.electrum.org/4.0.4/Electrum-4.0.4.tar.gz"
-  sha256 "bb56e1770c2022e70f885e48f42c64927e61bdc38b925daa8e1a85fbb82cac0d"
+  url "https://download.electrum.org/4.0.9/Electrum-4.0.9.tar.gz"
+  sha256 "6a3fc11aa475fa4d1573d72116eeddae43a495443d8bfcba15c3a1139f8a72bb"
 
   depends_on "cython" => :build
   depends_on "pyqt"
   depends_on "protobuf"
-  depends_on "python@3.9" # This can be changed back to python at some point.
+  depends_on "python"
   depends_on "secp256k1"
 
   # It's really annoying this is required because it makes the build *a lot*
@@ -33,8 +33,8 @@ class Electrum < Formula
   end
 
   resource "aiohttp" do
-    url "https://files.pythonhosted.org/packages/4f/b7/a382cf8440d9edfdf2c0125a1b4ad6954caf1d786225b2dede99b60f5ab2/aiohttp-3.7.2.tar.gz"
-    sha256 "c6da1af59841e6d43255d386a2c4bfb59c0a3b262bdb24325cc969d211be6070"
+    url "https://files.pythonhosted.org/packages/68/96/40a765d7d68028c5a6d169b2747ea3f4828ec91a358a63818d468380521c/aiohttp-3.7.3.tar.gz"
+    sha256 "9c1a81af067e72261c9cbe33ea792893e83bc6aa987bfbd6fdc1e5e7b22777c4"
   end
 
   resource "aiohttp-socks" do
@@ -43,8 +43,8 @@ class Electrum < Formula
   end
 
   resource "aiorpcX" do
-    url "https://files.pythonhosted.org/packages/62/90/0c181e61238d2ab58679f34f351fee98c965716884ccd9f84fedc7d3d0e1/aiorpcX-0.18.4.tar.gz"
-    sha256 "bec9c0feb328d62ba80b79931b07f7372c98f2891ad51300be0b7163d5ccfb4a"
+    url "https://files.pythonhosted.org/packages/81/fd/931795c7ffd19d4ace57d9997f0d848ad5c4d7a57e8af2705f88ad7364f9/aiorpcX-0.18.5.tar.gz"
+    sha256 "18eba632833b3ac75bbf7db67b32920129670b91919d7f54aeed35c813e8357a"
   end
 
   resource "async-timeout" do
@@ -63,8 +63,8 @@ class Electrum < Formula
   end
 
   resource "bitbox02" do
-    url "https://files.pythonhosted.org/packages/cb/72/15244df247bdfb32083cdf3a5d36cdb7dbaa170e59a5af363ee8eeba3309/bitbox02-5.0.0.tar.gz"
-    sha256 "97b43b97c9d59e2d0ba1b20894d0b83cf804c86c1464f7918f268ca72f0adc7b"
+    url "https://files.pythonhosted.org/packages/07/e5/6052fae79fed77bdeb88932a1773e2d7476a9bf84531ecf7b0a9c889c869/bitbox02-5.1.0.tar.gz"
+    sha256 "0562bc93d87afd89879e130c60c8dbfaffa8a1c3deff01201702939c9594d242"
   end
 
   resource "bitstring" do
@@ -78,13 +78,13 @@ class Electrum < Formula
   end
 
   resource "certifi" do
-    url "https://files.pythonhosted.org/packages/40/a7/ded59fa294b85ca206082306bba75469a38ea1c7d44ea7e1d64f5443d67a/certifi-2020.6.20.tar.gz"
-    sha256 "5930595817496dd21bb8dc35dad090f1c2cd0adfaf21204bf6732ca5d8ee34d3"
+    url "https://files.pythonhosted.org/packages/06/a9/cd1fd8ee13f73a4d4f491ee219deeeae20afefa914dfb4c130cfc9dc397a/certifi-2020.12.5.tar.gz"
+    sha256 "1a4995114262bffbc2413b159f2a1a480c969de6e6eb13ee966d470af86af59c"
   end
 
   resource "cffi" do
-    url "https://files.pythonhosted.org/packages/cb/ae/380e33d621ae301770358eb11a896a34c34f30db188847a561e8e39ee866/cffi-1.14.3.tar.gz"
-    sha256 "f92f789e4f9241cd262ad7a555ca2c648a98178a953af117ef7fad46aa1d5591"
+    url "https://files.pythonhosted.org/packages/66/6a/98e023b3d11537a5521902ac6b50db470c826c682be6a8c661549cb7717a/cffi-1.14.4.tar.gz"
+    sha256 "1a465cbe98a7fd391d47dce4b8f7e5b921e6cd805ef421d04f5f66ba8f06086c"
   end
 
   resource "chardet" do
@@ -108,18 +108,18 @@ class Electrum < Formula
   end
 
   resource "cryptography" do
-    url "https://files.pythonhosted.org/packages/94/5c/42de91c7fbdb817b2d9a4e64b067946eb38a4eb36c1a09c96c87a0f86a82/cryptography-3.2.1.tar.gz"
-    sha256 "d3d5e10be0cf2a12214ddee45c6bd203dab435e3d83b4560c03066eda600bfe3"
+    url "https://files.pythonhosted.org/packages/b7/82/f7a4ddc1af185936c1e4fa000942ffa8fb2d98cff26b75afa7b3c63391c4/cryptography-3.3.1.tar.gz"
+    sha256 "7e177e4bea2de937a584b13645cab32f25e3d96fc0bc4a4cf99c27dc77682be6"
   end
 
   resource "dnspython" do
-    url "https://files.pythonhosted.org/packages/ec/c5/14bcd63cb6d06092a004793399ec395405edf97c2301dfdc146dfbd5beed/dnspython-1.16.0.zip"
-    sha256 "36c5e8e38d4369a08b6780b7f27d790a292b2b08eea01607865bf0936c558e01"
+    url "https://files.pythonhosted.org/packages/67/d0/639a9b5273103a18c5c68a7a9fc02b01cffa3403e72d553acec444f85d5b/dnspython-2.0.0.zip"
+    sha256 "044af09374469c3a39eeea1a146e8cac27daec951f1f1f157b1962fc7cb9d1b7"
   end
 
   resource "ecdsa" do
-    url "https://files.pythonhosted.org/packages/23/c3/81b0040f2976775d6685c3bb3748355bb2b725a9210a4ea50afc5a90e7d9/ecdsa-0.16.0.tar.gz"
-    sha256 "494c6a853e9ed2e9be33d160b41d47afc50a6629b993d2b9c5ad7bb226add892"
+    url "https://files.pythonhosted.org/packages/1d/d4/0684a83b3c16a9d1446ace27a506cef1db9b23984ac7ed6aaf764fdd56e8/ecdsa-0.16.1.tar.gz"
+    sha256 "cfc046a2ddd425adbd1a78b3c46f0d1325c657811c0f45ecc3a0a6236c1e50ff"
   end
 
   resource "helpdev" do
@@ -128,8 +128,8 @@ class Electrum < Formula
   end
 
   resource "hidapi" do
-    url "https://files.pythonhosted.org/packages/52/4b/0d0fac70bd0a04949113a9ca50ba7b2344f547b9d85b0e7e5eded19d7d50/hidapi-0.10.0.post1.tar.gz"
-    sha256 "27c04d42a7187becf7a8309d4846aa4f235ac8b7dafd758335b109f5cbd3b962"
+    url "https://files.pythonhosted.org/packages/99/9b/5c41756461308a5b2d8dcbcd6eaa2f1c1bc60f0a6aa743b58cab756a92e1/hidapi-0.10.1.tar.gz"
+    sha256 "a1170b18050bc57fae3840a51084e8252fd319c0fc6043d68c8501deb0e25846"
   end
 
   resource "idna" do
@@ -143,8 +143,8 @@ class Electrum < Formula
   end
 
   resource "libusb1" do
-    url "https://files.pythonhosted.org/packages/27/5c/4d1ebbcfb19071832ac9b4e4674435f4a33e34b8d5186d4aac9ff374f83c/libusb1-1.8.tar.gz"
-    sha256 "240f65ac70ba3fab77749ec84a412e4e89624804cb80d6c9d394eef5af8878d6"
+    url "https://files.pythonhosted.org/packages/04/0f/747b168750575bf5a902e871cf3e732ab01155ee64ed383d5f06d8b961bc/libusb1-1.9.1.tar.gz"
+    sha256 "d03ef15248c8b8ce440f6be4248eaadc074fc2dc5edd36c48e6e78eef3999292"
   end
 
   resource "mnemonic" do
@@ -153,18 +153,18 @@ class Electrum < Formula
   end
 
   resource "multidict" do
-    url "https://files.pythonhosted.org/packages/d2/5a/e95b0f9ebacd42e094e229a9a0a9e44d02876abf64969d0cb07dadcf3c4a/multidict-5.0.0.tar.gz"
-    sha256 "1b324444299c3a49b601b1bf621fc21704e29066f6ac2b7d7e4034a4a18662a1"
+    url "https://files.pythonhosted.org/packages/1c/74/e8b46156f37ca56d10d895d4e8595aa2b344cff3c1fb3629ec97a8656ccb/multidict-5.1.0.tar.gz"
+    sha256 "25b4e5f22d3a37ddf3effc0710ba692cfc792c2b9edfb9c05aefe823256e84d5"
   end
 
   resource "noiseprotocol" do
-    url "https://files.pythonhosted.org/packages/a7/4c/2e45c4aa9c1f8055e8b11f327dbf5b125cd0bf60a3c2881dd420c1d01f69/noiseprotocol-0.3.0.tar.gz"
-    sha256 "81152e93910ac10ab392492a68dd6d8b1549f2d6fec7f85776f3119665f29809"
+    url "https://files.pythonhosted.org/packages/76/17/fcf8a90dcf36fe00b475e395f34d92f42c41379c77b25a16066f63002f95/noiseprotocol-0.3.1.tar.gz"
+    sha256 "b092a871b60f6a8f07f17950dc9f7098c8fe7d715b049bd4c24ee3752b90d645"
   end
 
   resource "protobuf" do
-    url "https://files.pythonhosted.org/packages/25/ef/8f36bc7e4c3dcad241a9e7a51520d30712a7abc034343bed841ff4ea3289/protobuf-3.13.0.tar.gz"
-    sha256 "6a82e0c8bb2bf58f606040cc5814e07715b2094caeba281e2e7d0b0e2e397db5"
+    url "https://files.pythonhosted.org/packages/12/ba/d6d9f1432663ab5623f761c86be11e7f2f6fb28348612f48fb082d3cfcea/protobuf-3.14.0.tar.gz"
+    sha256 "1d63eb389347293d8915fb47bee0951c7b5dab522a4a60118b9a18f33e21f8ce"
   end
 
   resource "pyaes" do
@@ -178,8 +178,8 @@ class Electrum < Formula
   end
 
   resource "python-socks" do
-    url "https://files.pythonhosted.org/packages/03/ca/57fe5ce042a5606dfb74e8ed0db1970905026fe4e3731b55061795180aa4/python-socks-1.1.0.tar.gz"
-    sha256 "3b4e2aaa0d616b02e432470bdc1106eb734c6640da34e47efdd429693e6daff0"
+    url "https://files.pythonhosted.org/packages/c0/15/8acf4a45d009fbf750690f4f3093afa796625456ebc320c79e2caa643425/python-socks-1.1.2.tar.gz"
+    sha256 "fa7513c9293d95d90b1da9e10b84fa53afcb4c0f67e9c141d9f479cde2d8af1a"
   end
 
   resource "qrcode" do
@@ -188,8 +188,8 @@ class Electrum < Formula
   end
 
   resource "requests" do
-    url "https://files.pythonhosted.org/packages/da/67/672b422d9daf07365259958912ba533a0ecab839d4084c487a5fe9a5405f/requests-2.24.0.tar.gz"
-    sha256 "b3559a131db72c33ee969480840fff4bb6dd111de7dd27c8ee1f820f4f00231b"
+    url "https://files.pythonhosted.org/packages/6b/47/c14abc08432ab22dc18b9892252efaf005ab44066de871e72a38d6af464b/requests-2.25.1.tar.gz"
+    sha256 "27973dd4a904a4f13b263a19c866c13b92a39ed1c964655f025f3f8d3d75b804"
   end
 
   resource "safet" do
@@ -218,13 +218,13 @@ class Electrum < Formula
   end
 
   resource "urllib3" do
-    url "https://files.pythonhosted.org/packages/76/d9/bbbafc76b18da706451fa91bc2ebe21c0daf8868ef3c30b869ac7cb7f01d/urllib3-1.25.11.tar.gz"
-    sha256 "8d7eaa5a82a1cac232164990f04874c594c9453ec55eef02eab885aa02fc17a2"
+    url "https://files.pythonhosted.org/packages/29/e6/d1a1d78c439cad688757b70f26c50a53332167c364edb0134cadd280e234/urllib3-1.26.2.tar.gz"
+    sha256 "19188f96923873c92ccb987120ec4acaa12f0461fa9ce5d3d0772bc965a39e08"
   end
 
   resource "yarl" do
-    url "https://files.pythonhosted.org/packages/6d/0b/44006eb5b3b7898e54df4b7481839d22d15cf3fc4f0420394ad9e3bb214e/yarl-1.6.2.tar.gz"
-    sha256 "c45b49b59a5724869899798e1bbd447ac486215269511d3b76b4c235a1b766b6"
+    url "https://files.pythonhosted.org/packages/97/e7/af7219a0fe240e8ef6bb555341a63c43045c21ab0392b4435e754b716fa1/yarl-1.6.3.tar.gz"
+    sha256 "8a9066529240171b68893d60dca86a763eae2139dd42f42106b03cf4b426bf10"
   end
 
   def install
