@@ -1,9 +1,8 @@
 class GnuWget < Formula
   desc "Internet file retriever built against LibreSSL"
   homepage "https://www.gnu.org/software/wget/"
-  url "https://ftp.gnu.org/gnu/wget/wget-1.20.3.tar.gz"
-  sha256 "31cccfc6630528db1c8e3a06f6decf2a370060b982841cfab2b8677400a5092e"
-  revision 2
+  url "https://ftp.gnu.org/gnu/wget/wget-1.21.tar.gz"
+  sha256 "b3bc1a9bd0c19836c9709c318d41c19c11215a07514f49f89b40b9d50ab49325"
 
   head do
     url "https://git.savannah.gnu.org/git/wget.git"
@@ -17,12 +16,15 @@ class GnuWget < Formula
   option "with-default-names", "Do not prepend 'l' to the binary"
 
   depends_on "pkg-config" => :build
-  depends_on "pod2man" => :build if MacOS.version <= :snow_leopard
   depends_on "libressl"
   depends_on "libidn2" => :recommended
   depends_on "gpgme" => :optional
   depends_on "libmetalink" => :optional
   depends_on "pcre" => :optional
+
+  # commit ref, https://git.savannah.gnu.org/cgit/gnulib.git/patch/?id=6a76832db224ac5671599ce332717f985a2addc7
+  # remove in next release
+  patch :DATA
 
   def install
     args = %W[
@@ -61,3 +63,16 @@ class GnuWget < Formula
     system bin/"lwget", "-O", "/dev/null", "https://duckduckgo.com"
   end
 end
+
+__END__
+diff --git a/lib/utime.c b/lib/utime.c
+index bf7d7c5..3372179 100644
+--- a/lib/utime.c
++++ b/lib/utime.c
+@@ -261,6 +261,7 @@ utime (const char *name, const struct utimbuf *ts)
+
+ #else
+
++# include <errno.h>
+ # include <sys/stat.h>
+ # include "filename.h"
