@@ -1,12 +1,13 @@
 class GoRequirement < Requirement
   fatal true
 
-  satisfy(:build_env => false) { which("go") }
+  satisfy(build_env: false) { which("go") }
 
-  def message; <<~EOS
-    git-max requires golang to compile:
-      brew install go
-  EOS
+  def message
+    <<~EOS
+      git-max requires golang to compile:
+        brew install go
+    EOS
   end
 end
 
@@ -15,7 +16,7 @@ class GitMax < Formula
   homepage "https://git-scm.com"
   url "https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.30.0.tar.xz"
   sha256 "55735021109565721af805af382c45cce73c3cfaa59daad22443d1477d334d19"
-  head "https://github.com/git/git.git", :shallow => false
+  head "https://github.com/git/git.git", shallow: false
 
   bottle do
     root_url "https://dl.bintray.com/domt4/crypto-bottles"
@@ -23,19 +24,19 @@ class GitMax < Formula
   end
 
   depends_on GoRequirement => :build
-  depends_on "domt4/crypto/curl-max" => :recommended
   depends_on "openssl@1.1"
   depends_on "pcre2"
+  depends_on "domt4/crypto/curl-max" => :recommended
+  depends_on "gettext" => :recommended
   # So bindings can be found & used by Homebrew's Perl.
   depends_on "perl" => :recommended
-  depends_on "gettext" => :recommended
   depends_on "tcl-tk" => :recommended
   depends_on "subversion" => :optional
 
   conflicts_with "git",
-    :because => "git-max is a feature-heavy version of the git formula"
+    because: "git-max is a feature-heavy version of the git formula"
   conflicts_with "git-gui",
-    :because => "git-max installs the Tcl/Tk UI by default"
+    because: "git-max installs the Tcl/Tk UI by default"
 
   resource "html" do
     url "https://mirrors.edge.kernel.org/pub/software/scm/git/git-htmldocs-2.30.0.tar.xz"
@@ -58,9 +59,9 @@ class GitMax < Formula
     ENV["PYTHON_PATH"] = which("python")
     ENV["PERL_PATH"] = which("perl")
 
-    perl_version = Utils.popen_read("perl --version")[/v(\d+\.\d+)(?:\.\d+)?/, 1]
+    perl_version = Utils.safe_popen_read("perl", "--version")[/v(\d+\.\d+)(?:\.\d+)?/, 1]
     # If building with a non-system Perl search everywhere declared in @INC.
-    perl_inc = Utils.popen_read("perl -e 'print join\":\",@INC'").sub(":.", "")
+    perl_inc = Utils.safe_popen_read("perl -e 'print join\":\",@INC'").sub(":.", "")
 
     if build.with? "subversion"
       ENV["PERLLIB_EXTRA"] = %W[
