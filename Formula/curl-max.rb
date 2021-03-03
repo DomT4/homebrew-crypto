@@ -1,8 +1,8 @@
 class CurlMax < Formula
   desc "Feature-maximised version of cURL"
-  homepage "https://curl.haxx.se/"
-  url "https://curl.haxx.se/download/curl-7.74.0.tar.bz2"
-  sha256 "0f4d63e6681636539dc88fa8e929f934cd3a840c46e0bf28c73be11e521b77a5"
+  homepage "https://curl.se"
+  url "https://curl.se/download/curl-7.75.0.tar.bz2"
+  sha256 "50552d4501c178e4cc68baaecc487f466a3d6d19bbf4e50a01869effb316d026"
 
   bottle do
     root_url "https://dl.bintray.com/domt4/crypto-bottles"
@@ -35,8 +35,8 @@ class CurlMax < Formula
   end
 
   resource "nghttp2" do
-    url "https://github.com/nghttp2/nghttp2/releases/download/v1.42.0/nghttp2-1.42.0.tar.xz"
-    sha256 "c5a7f09020f31247d0d1609078a75efadeccb7e5b86fc2e4389189b1b431fe63"
+    url "https://github.com/nghttp2/nghttp2/releases/download/v1.43.0/nghttp2-1.43.0.tar.xz"
+    sha256 "f7d54fa6f8aed29f695ca44612136fa2359013547394d5dffeffca9e01a26b0f"
 
     unless OS.mac?
       patch do
