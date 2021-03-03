@@ -6,7 +6,7 @@ class CurlMax < Formula
 
   bottle do
     root_url "https://dl.bintray.com/domt4/crypto-bottles"
-    sha256 "58f352d1dde501a20a080bf28b1f5c82b2e23d7aa93e2aafeef7f59d0abff19c" => :big_sur
+    sha256 big_sur: "8b2fee85c3163386c58934ae848816254d4b4447c92d3ea3150bfc14ee84bdb3"
   end
 
   keg_only :provided_by_macos
