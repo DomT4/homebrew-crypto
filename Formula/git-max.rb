@@ -128,6 +128,10 @@ class GitMax < Formula
     end
 
     cd "contrib/persistent-https" do
+      # https://blog.golang.org/go116-module-changes
+      # https://github.com/golang/go/issues/31997#issuecomment-789289263
+      # Likely to break when Go 1.17 is released unless Git update this tool.
+      ENV["GO111MODULE"] = "auto"
       system "make"
       git_core.install "git-remote-persistent-http",
                        "git-remote-persistent-https",
