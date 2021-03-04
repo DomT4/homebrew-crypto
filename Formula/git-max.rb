@@ -18,6 +18,11 @@ class GitMax < Formula
   sha256 "f988a8a095089978dab2932af4edb22b4d7d67d67b81aaa1986fa29ef45d9467"
   head "https://github.com/git/git.git", shallow: false
 
+  bottle do
+    root_url "https://dl.bintray.com/domt4/crypto-bottles"
+    sha256 big_sur: "b6ad5c20484e05544478de4d33c65edf567f0673b9b1d05049e681c836171846"
+  end
+
   depends_on GoRequirement => :build
   depends_on "openssl@1.1"
   depends_on "pcre2"
