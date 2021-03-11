@@ -19,8 +19,8 @@ class GitMax < Formula
   head "https://github.com/git/git.git", shallow: false
 
   bottle do
-    root_url "https://dl.bintray.com/domt4/crypto-bottles"
-    sha256 big_sur: "b6ad5c20484e05544478de4d33c65edf567f0673b9b1d05049e681c836171846"
+    root_url "https://dl.cloudsmith.io/public/homebrew-crypto/homebrew-crypto/raw/files"
+    sha256 big_sur: "9e00297c5fc0452ba1f2b6c71de6b006a53a3642447c97def89e7fe293d2757f"
   end
 
   depends_on GoRequirement => :build
