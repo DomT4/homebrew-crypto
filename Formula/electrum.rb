@@ -8,9 +8,8 @@ class Electrum < Formula
   revision 1
 
   bottle do
-    root_url "https://dl.bintray.com/domt4/crypto-bottles"
-    cellar :any
-    sha256 "a2ea2859738a0005468cedaeb65e087b8dba008ca60d90ddd604915c8c578fe7" => :big_sur
+    root_url "https://dl.cloudsmith.io/public/homebrew-crypto/homebrew-crypto/raw/files"
+    sha256 big_sur: "0c5ed185361db018414638a8767c5c2e87e3cfc794049097fb452a1b670bf2bd"
   end
 
   depends_on "cython" => :build
