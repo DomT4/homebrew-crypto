@@ -53,6 +53,7 @@ class GnuWget < Formula
 
   def caveats
     return if build.with? "default-names"
+
     <<~EOS
       The binary is prepended with a 'l' so this can be used
       alongside Homebrew's `wget` without conflict.

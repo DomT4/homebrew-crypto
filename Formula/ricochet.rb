@@ -7,10 +7,10 @@ class Ricochet < Formula
   head "https://github.com/ricochet-im/ricochet.git"
 
   depends_on "pkg-config" => :build
-  depends_on "qt"
+  depends_on "libevent"
   depends_on "openssl@1.1"
   depends_on "protobuf"
-  depends_on "libevent" # For Tor
+  depends_on "qt" # For Tor
 
   resource "tor" do
     url "https://www.torproject.org/dist/tor-0.4.5.6.tar.gz"
@@ -42,12 +42,13 @@ class Ricochet < Formula
     end
   end
 
-  def caveats; <<~EOS
-    Configuration files will be automatically generated upon first run.
+  def caveats
+    <<~EOS
+      Configuration files will be automatically generated upon first run.
 
-    You may wish to backup #{opt_libexec}/config.ricochet to somewhere that
-    will persist across updates such as #{var}/ricochet.
-  EOS
+      You may wish to backup #{opt_libexec}/config.ricochet to somewhere that
+      will persist across updates such as #{var}/ricochet.
+    EOS
   end
 
   test do

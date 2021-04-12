@@ -3,7 +3,7 @@ class Bearssl < Formula
   homepage "https://bearssl.org/index.html"
   url "https://bearssl.org/bearssl-0.6.tar.gz"
   sha256 "6705bba1714961b41a728dfc5debbe348d2966c117649392f8c8139efc83ff14"
-  head "https://www.bearssl.org/git/BearSSL", :using => :git
+  head "https://www.bearssl.org/git/BearSSL", using: :git
 
   depends_on "doxygen" => :build
   depends_on "graphviz" => :build

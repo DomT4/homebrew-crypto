@@ -7,12 +7,11 @@ class Deluge < Formula
   sha256 "bd26950f417de2a5b26827d989935a30e770f880c22cb59ca69f781cdc9a14c9"
   revision 4
 
-  head "https://git.deluge-torrent.org/deluge", :branch => "develop"
+  head "https://git.deluge-torrent.org/deluge", branch: "develop"
 
   bottle do
     root_url "https://dl.bintray.com/domt4/crypto-bottles"
-    cellar :any
-    sha256 "77edb5e028321447b5b71c0d3e05dcfe9821dcc54f2bf3ad05e7b0e24334836f" => :catalina
+    sha256 cellar: :any, catalina: "77edb5e028321447b5b71c0d3e05dcfe9821dcc54f2bf3ad05e7b0e24334836f"
   end
 
   depends_on "intltool" => :build

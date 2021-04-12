@@ -7,15 +7,20 @@ class Bopenssh < Formula
   sha256 "f52f3f41d429aa9918e38cf200af225ccdd8e66f052da572870c89737646ec25"
 
   depends_on "pkg-config" => :build
-  depends_on "libfido2" => :recommended
-  depends_on "ldns" => :recommended
   # Prefer to use LibreSSL but since Homebrew uses OpenSSL@1.1 with
   # libfido2/ldns let's not mandate a second cryptographic library.
   depends_on "openssl@1.1"
+  depends_on "ldns" => :recommended
+  depends_on "libfido2" => :recommended
 
-  conflicts_with "openssh", :because => "this formula installs the same files"
+  conflicts_with "openssh", because: "this formula installs the same files"
 
   # Both these patches are applied by Apple.
+  resource "com.openssh.sshd.sb" do
+    url "https://opensource.apple.com/source/OpenSSH/OpenSSH-240.40.1/com.openssh.sshd.sb"
+    sha256 "a273f86360ea5da3910cfa4c118be931d10904267605cdd4b2055ced3a829774"
+  end
+
   patch do
     url "https://raw.githubusercontent.com/Homebrew/patches/1860b0a74/openssh/patch-sandbox-darwin.c-apple-sandbox-named-external.diff"
     sha256 "d886b98f99fd27e3157b02b5b57f3fb49f43fd33806195970d4567f12be66e71"
@@ -24,11 +29,6 @@ class Bopenssh < Formula
   patch do
     url "https://raw.githubusercontent.com/Homebrew/patches/d8b2d8c2/openssh/patch-sshd.c-apple-sandbox-named-external.diff"
     sha256 "3505c58bf1e584c8af92d916fe5f3f1899a6b15cc64a00ddece1dc0874b2f78f"
-  end
-
-  resource "com.openssh.sshd.sb" do
-    url "https://opensource.apple.com/source/OpenSSH/OpenSSH-240.40.1/com.openssh.sshd.sb"
-    sha256 "a273f86360ea5da3910cfa4c118be931d10904267605cdd4b2055ced3a829774"
   end
 
   def install

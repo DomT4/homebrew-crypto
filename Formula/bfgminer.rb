@@ -8,12 +8,12 @@ class Bfgminer < Formula
 
   depends_on "pkg-config" => :build
   depends_on "yasm" => :build
-  depends_on "curl" => :recommended
   depends_on "hidapi"
   depends_on "jansson"
-  depends_on "libmicrohttpd"
   depends_on "libevent"
+  depends_on "libmicrohttpd"
   depends_on "libusb"
+  depends_on "curl" => :recommended
 
   resource "uthash" do
     url "https://github.com/troydhanson/uthash/archive/v2.0.2.tar.gz"

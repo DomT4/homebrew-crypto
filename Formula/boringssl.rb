@@ -1,12 +1,13 @@
 class GoRequirement < Requirement
   fatal true
 
-  satisfy(:build_env => false) { which("go") }
+  satisfy(build_env: false) { which("go") }
 
-  def message; <<~EOS
-    boringssl requires golang to compile:
-      brew install go
-  EOS
+  def message
+    <<~EOS
+      boringssl requires golang to compile:
+        brew install go
+    EOS
   end
 end
 
@@ -14,7 +15,7 @@ class Boringssl < Formula
   desc "Google fork of OpenSSL"
   homepage "https://boringssl.googlesource.com/boringssl"
   url "https://boringssl.googlesource.com/boringssl.git",
-      :revision => "bf5021a6b8a4859d04966998e84fcbff16bffd78"
+      revision: "bf5021a6b8a4859d04966998e84fcbff16bffd78"
   version "0.0.0.117" # Fake version so we can update the formula regularly.
   head "https://boringssl.googlesource.com/boringssl.git"
 

@@ -17,8 +17,8 @@ class Electrum < Formula
   # build. We could use `CRYPTOGRAPHY_DONT_BUILD_RUST=1` but that seems to be
   # a hack rather than something upstream want to support indefinitely.
   depends_on "rust" => :build
-  depends_on "pyqt@5" # Check contrib/requirements/requirements-binaries-mac.txt
   depends_on "protobuf"
+  depends_on "pyqt@5" # Check contrib/requirements/requirements-binaries-mac.txt
   depends_on "python"
   depends_on "secp256k1"
 
