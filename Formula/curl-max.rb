@@ -6,8 +6,8 @@ class CurlMax < Formula
   license "curl"
 
   bottle do
-    root_url "https://dl.bintray.com/domt4/crypto-bottles"
-    sha256 big_sur: "8b2fee85c3163386c58934ae848816254d4b4447c92d3ea3150bfc14ee84bdb3"
+    root_url "https://dl.cloudsmith.io/public/homebrew-crypto/homebrew-crypto/raw/files"
+    sha256 arm64_big_sur: "05dffd825a848ccc4867f61d5fce885f12dffee563e9de9c736847fa29b4699c"
   end
 
   keg_only :provided_by_macos
