@@ -1,6 +1,4 @@
-# homebrew-crypto
-
-[![Build Status](https://travis-ci.org/DomT4/homebrew-crypto.svg?branch=master)](https://travis-ci.org/DomT4/homebrew-crypto)
+# Homebrew Crypto
 
 Various often experimental or unstable cryptographic-related formulae.
 
@@ -10,10 +8,10 @@ Just `brew tap domt4/crypto` and then `brew install <formula>`.
 
 You can also install via URL:
 
-```
+```bash
 brew install https://raw.githubusercontent.com/DomT4/homebrew-crypto/master/Formula/<formula>.rb
 ```
-Troubleshooting:
---------------------------------
+
+## Troubleshooting
 
 If you encounter any errors, feel free to file an issue. A `brew gist-logs <formula>` is often handy. Thanks!
