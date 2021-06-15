@@ -6,7 +6,7 @@ class CurlMax < Formula
   license "curl"
 
   bottle do
-    root_url "https://dl.cloudsmith.io/public/homebrew-crypto/homebrew-crypto/raw/files"
+    root_url "https://dl.cloudsmith.io/public/homebrew-crypto/homebrew-crypto/raw/files/"
     sha256 arm64_big_sur: "4807435462905a6f8537ae29cc5cb5f0b07f9fb810d31a1572b43fcfecaa09c8"
   end
 
