@@ -14,8 +14,8 @@ end
 class GitMax < Formula
   desc "Distributed revision control system"
   homepage "https://git-scm.com"
-  url "https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.31.1.tar.xz"
-  sha256 "9f61417a44d5b954a5012b6f34e526a3336dcf5dd720e2bb7ada92ad8b3d6680"
+  url "https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.32.0.tar.xz"
+  sha256 "68a841da3c4389847ecd3301c25eb7e4a51d07edf5f0168615ad6179e3a83623"
   license "GPL-2.0-only"
   head "https://github.com/git/git.git", shallow: false
 
@@ -40,13 +40,13 @@ class GitMax < Formula
     because: "git-max installs the Tcl/Tk UI by default"
 
   resource "html" do
-    url "https://mirrors.edge.kernel.org/pub/software/scm/git/git-htmldocs-2.31.1.tar.xz"
-    sha256 "ae94a6b128d1972a8b4041af9fc529ece96a9f2a13952ff843262ccb7bc1642c"
+    url "https://mirrors.edge.kernel.org/pub/software/scm/git/git-htmldocs-2.32.0.tar.xz"
+    sha256 "821bd3b5dfd31040bf9ed38ef02df3dcf063546127f07d59ec9669274e8b8818"
   end
 
   resource "man" do
-    url "https://mirrors.edge.kernel.org/pub/software/scm/git/git-manpages-2.31.1.tar.xz"
-    sha256 "5d0d443c57155da2f201584d4c8c5ad10a0a24ff3af3a7a77cdc8f56dddac702"
+    url "https://mirrors.edge.kernel.org/pub/software/scm/git/git-manpages-2.32.0.tar.xz"
+    sha256 "19e3cb0425c94d4ad82984f41522e77c8e35093e15a891f8e7195617201f6ac1"
   end
 
   def install
