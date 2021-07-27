@@ -3,8 +3,8 @@ class Electrum < Formula
 
   desc "Bitcoin thin client"
   homepage "https://electrum.org"
-  url "https://download.electrum.org/4.1.2/Electrum-4.1.2.tar.gz"
-  sha256 "13ae70064a0eba5eed6e0d74fa2cee5d06b1e750bc283ecd28533a4ddadaa616"
+  url "https://download.electrum.org/4.1.5/Electrum-4.1.5.tar.gz"
+  sha256 "91472e281f604a7a687faa4b339bf5e484bd2bec82a495ea45bfa014e52719a1"
 
   bottle do
     root_url "https://dl.cloudsmith.io/public/homebrew-crypto/homebrew-crypto/raw/files/"
@@ -77,8 +77,8 @@ class Electrum < Formula
   end
 
   resource "bitstring" do
-    url "https://files.pythonhosted.org/packages/c3/fc/ffac2c199d2efe1ec5111f55efeb78f5f2972456df6939fea849f103f9f5/bitstring-3.1.7.tar.gz"
-    sha256 "fdf3eb72b229d2864fb507f8f42b1b2c57af7ce5fec035972f9566de440a864a"
+    url "https://files.pythonhosted.org/packages/4c/b1/80d58eeb21c9d4ca739770558d61f6adacb13aa4908f4f55e0974cbd25ee/bitstring-3.1.9.tar.gz"
+    sha256 "a5848a3f63111785224dca8bb4c0a75b62ecdef56a042c8d6be74b16f7e860e7"
   end
 
   resource "btchip-python" do
@@ -142,8 +142,8 @@ class Electrum < Formula
   end
 
   resource "idna" do
-    url "https://files.pythonhosted.org/packages/ea/b7/e0e3c1c467636186c39925827be42f16fee389dc404ac29e930e9136be70/idna-2.10.tar.gz"
-    sha256 "b307872f855b18632ce0c21c5e45be78c0ea7ae4c15c828c20788b26921eb3f6"
+    url "https://files.pythonhosted.org/packages/cb/38/4c4d00ddfa48abe616d7e572e02a04273603db446975ab46bbcd36552005/idna-3.2.tar.gz"
+    sha256 "467fbad99067910785144ce333826c71fb0e63a425657295239737f7ecd125f3"
   end
 
   resource "keepkey" do
@@ -192,8 +192,8 @@ class Electrum < Formula
   end
 
   resource "qrcode" do
-    url "https://files.pythonhosted.org/packages/19/d5/6c7d4e103d94364d067636417a77a6024219c58cd6e9f428ece9b5061ef9/qrcode-6.1.tar.gz"
-    sha256 "505253854f607f2abf4d16092c61d4e9d511a3b4392e60bff957a68592b04369"
+    url "https://files.pythonhosted.org/packages/99/6f/3914ab406164775a6293ebe001e57d23e38c09d51f3909c45bd132684927/qrcode-7.2.tar.gz"
+    sha256 "153ad96f5892e6fe2f3699296240976ac3a6d068e2eb48bbfc64b4c4c4d675ea"
   end
 
   resource "requests" do
