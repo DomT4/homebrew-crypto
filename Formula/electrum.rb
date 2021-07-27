@@ -8,7 +8,7 @@ class Electrum < Formula
 
   bottle do
     root_url "https://dl.cloudsmith.io/public/homebrew-crypto/homebrew-crypto/raw/files/"
-    sha256 arm64_big_sur: "bb2407d761c5545f3f72214308ee17cc103465f597b7a2665f61d5718f139925"
+    sha256 arm64_big_sur: "24818be52857f5393569b3a696651641c983183570cb2f93022a6dcb63ad9c3f"
   end
 
   depends_on "cython" => :build
