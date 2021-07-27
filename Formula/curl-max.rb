@@ -1,8 +1,8 @@
 class CurlMax < Formula
   desc "Feature-maximised version of cURL"
   homepage "https://curl.se"
-  url "https://curl.se/download/curl-7.77.0.tar.bz2"
-  sha256 "6c0c28868cb82593859fc43b9c8fdb769314c855c05cf1b56b023acf855df8ea"
+  url "https://curl.se/download/curl-7.78.0.tar.bz2"
+  sha256 "98530b317dc95ccb324bbe4f834f07bb642fbc393b794ddf3434f246a71ea44a"
   license "curl"
 
   bottle do
@@ -24,7 +24,6 @@ class CurlMax < Formula
   depends_on "jemalloc"
   depends_on "libev"
   depends_on "libidn2"
-  depends_on "libmetalink"
   depends_on "libpsl"
   depends_on "openssl@1.1"
   depends_on "rtmpdump"
@@ -36,8 +35,8 @@ class CurlMax < Formula
   end
 
   resource "nghttp2" do
-    url "https://github.com/nghttp2/nghttp2/releases/download/v1.43.0/nghttp2-1.43.0.tar.xz"
-    sha256 "f7d54fa6f8aed29f695ca44612136fa2359013547394d5dffeffca9e01a26b0f"
+    url "https://github.com/nghttp2/nghttp2/releases/download/v1.44.0/nghttp2-1.44.0.tar.xz"
+    sha256 "5699473b29941e8dafed10de5c8cb37a3581edf62ba7d04b911ca247d4de3c5d"
 
     unless OS.mac?
       patch do
@@ -128,7 +127,6 @@ class CurlMax < Formula
       --with-gssapi
       --with-libidn2
       --with-librtmp
-      --with-libmetalink
       --with-libpsl
       --with-libssh2
     ]
