@@ -1,8 +1,8 @@
 class CurlMax < Formula
   desc "Feature-maximised version of cURL"
   homepage "https://curl.se"
-  url "https://curl.se/download/curl-7.78.0.tar.bz2"
-  sha256 "98530b317dc95ccb324bbe4f834f07bb642fbc393b794ddf3434f246a71ea44a"
+  url "https://curl.se/download/curl-7.79.0.tar.bz2"
+  sha256 "d607a677f473f79f96c964100327125a6204a39d835dc00dab7fc0129b959f42"
   license "curl"
 
   bottle do
@@ -48,8 +48,8 @@ class CurlMax < Formula
   end
 
   resource "libssh2" do
-    url "https://libssh2.org/download/libssh2-1.9.0.tar.gz"
-    sha256 "d5fb8bd563305fd1074dda90bd053fb2d29fc4bce048d182f96eaa466dfadafd"
+    url "https://www.libssh2.org/download/libssh2-1.10.0.tar.gz"
+    sha256 "2d64e90f3ded394b91d3a2e774ca203a4179f69aebee03003e5a6fa621e41d51"
   end
 
   resource "libxml2" do
@@ -119,6 +119,7 @@ class CurlMax < Formula
       --disable-dependency-tracking
       --disable-silent-rules
       --prefix=#{prefix}
+      --with-default-ssl-backend=openssl
       --with-ssl=#{Formula["openssl@1.1"].opt_prefix}
       --with-ca-bundle=#{etc}/openssl@1.1/cert.pem
       --with-ca-path=#{etc}/openssl@1.1/certs
@@ -134,6 +135,7 @@ class CurlMax < Formula
 
     system "./configure", *args
     system "make", "install"
+    system "make", "install", "-C", "scripts"
     libexec.install "lib/mk-ca-bundle.pl"
   end
 
