@@ -1,13 +1,13 @@
 class CurlMax < Formula
   desc "Feature-maximised version of cURL"
   homepage "https://curl.se"
-  url "https://curl.se/download/curl-7.79.0.tar.bz2"
-  sha256 "d607a677f473f79f96c964100327125a6204a39d835dc00dab7fc0129b959f42"
+  url "https://curl.se/download/curl-7.79.1.tar.bz2"
+  sha256 "de62c4ab9a9316393962e8b94777a570bb9f71feb580fb4475e412f2f9387851"
   license "curl"
 
   bottle do
     root_url "https://dl.cloudsmith.io/public/homebrew-crypto/homebrew-crypto/raw/files/"
-    sha256 arm64_big_sur: "ae2271b574b6fb9f961d27bd7aa3007f958a584c78e29ba155569386d5f89ed7"
+    sha256 arm64_monterey: "dc3e21d4c95a3dd3a98b4deecbda9e2f068fee6dface6fd7501a48d0b1c3b9ce"
   end
 
   keg_only :provided_by_macos
@@ -25,8 +25,17 @@ class CurlMax < Formula
   depends_on "libev"
   depends_on "libidn2"
   depends_on "libpsl"
+  depends_on "openldap"
   depends_on "openssl@1.1"
   depends_on "rtmpdump"
+  depends_on "zstd"
+
+  # Fix link error on x86_64 macOS Monterey.
+  # Remove with the next version.
+  patch do
+    url "https://github.com/curl/curl/commit/20e980f85b0ea67b0821a807e73d57b281462564.patch?full_index=1"
+    sha256 "80071d9fb836fa859243a6deef00a5142c0c7f1124802f679bd8b7514fefa903"
+  end
 
   # Needed for nghttp2
   resource "libevent" do
@@ -35,8 +44,8 @@ class CurlMax < Formula
   end
 
   resource "nghttp2" do
-    url "https://github.com/nghttp2/nghttp2/releases/download/v1.44.0/nghttp2-1.44.0.tar.xz"
-    sha256 "5699473b29941e8dafed10de5c8cb37a3581edf62ba7d04b911ca247d4de3c5d"
+    url "https://github.com/nghttp2/nghttp2/releases/download/v1.46.0/nghttp2-1.46.0.tar.xz"
+    sha256 "1a68cc4a5732afb735baf50aaac3cb3a6771e49f744bd5db6c49ab5042f12a43"
 
     unless OS.mac?
       patch do
