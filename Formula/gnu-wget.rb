@@ -1,8 +1,8 @@
 class GnuWget < Formula
   desc "Internet file retriever built against LibreSSL"
   homepage "https://www.gnu.org/software/wget/"
-  url "https://ftp.gnu.org/gnu/wget/wget-1.21.1.tar.gz"
-  sha256 "59ba0bdade9ad135eda581ae4e59a7a9f25e3a4bde6a5419632b31906120e26e"
+  url "https://ftp.gnu.org/gnu/wget/wget-1.21.2.tar.gz"
+  sha256 "e6d4c76be82c676dd7e8c61a29b2ac8510ae108a810b5d1d18fc9a1d2c9a2497"
   license "GPL-3.0-or-later"
 
   head do
@@ -22,6 +22,7 @@ class GnuWget < Formula
   depends_on "gpgme" => :optional
   depends_on "libmetalink" => :optional
   depends_on "pcre" => :optional
+  depends_on "pcre2" => :optional
 
   def install
     args = %W[
@@ -30,10 +31,12 @@ class GnuWget < Formula
       --with-ssl=openssl
       --with-libssl-prefix=#{Formula["libressl"].opt_prefix}
       --disable-debug
+      --without-included-regex
     ]
 
     args << "--program-prefix=l" if build.without? "default-names"
     args << "--disable-pcre" if build.without? "pcre"
+    args << "--disable-pcre2" if build.without? "pcre2"
     args << "--with-metalink" if build.with? "libmetalink"
     args << "--with-gpgme-prefix=#{Formula["gpgme"].opt_prefix}" if build.with? "gpgme"
 
