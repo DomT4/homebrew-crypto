@@ -15,8 +15,8 @@ class Boringssl < Formula
   desc "Google fork of OpenSSL"
   homepage "https://boringssl.googlesource.com/boringssl"
   url "https://boringssl.googlesource.com/boringssl.git",
-      revision: "c1571feb5faf5cce844354c63d0f3e842464bea3"
-  version "0.0.0.119" # Fake version so we can update the formula regularly.
+      revision: "81502beeddc5f116d44d0898c6c4a33057198db8"
+  version "0.0.0.120" # Fake version so we can update the formula regularly.
   head "https://boringssl.googlesource.com/boringssl.git"
 
   keg_only <<~EOS
@@ -36,20 +36,13 @@ class Boringssl < Formula
     end
 
     mkdir "build" do
-      system "cmake", "-GNinja", "..", "-DBUILD_SHARED_LIBS=1", *std_cmake_args
+      system "cmake", "-GNinja", "..", *std_cmake_args
       system "ninja"
       system "go", "run", buildpath/"util/all_tests.go"
 
-      # Workaround https://github.com/Homebrew/brew/issues/4792.
-      libcrypto = MachO::MachOFile.new(buildpath/"build/crypto/libcrypto.dylib").dylib_id
-      MachO::Tools.change_install_name("tool/bssl", libcrypto, "#{opt_lib}/libcrypto.dylib")
-      libssl = MachO::MachOFile.new(buildpath/"build/ssl/libssl.dylib").dylib_id
-      MachO::Tools.change_install_name("tool/bssl", libssl, "#{opt_lib}/libssl.dylib")
-      MachO::Tools.change_install_name("ssl/libssl.dylib", libcrypto, "#{opt_lib}/libcrypto.dylib")
-
       # There's no real Makefile as such. We have to handle this manually.
       bin.install "tool/bssl"
-      lib.install "crypto/libcrypto.dylib", "ssl/libssl.dylib"
+      lib.install "crypto/libcrypto.a", "ssl/libssl.a"
     end
     include.install Dir["include/*"]
   end
