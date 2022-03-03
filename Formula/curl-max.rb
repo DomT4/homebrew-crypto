@@ -1,8 +1,8 @@
 class CurlMax < Formula
   desc "Feature-maximised version of cURL"
   homepage "https://curl.se"
-  url "https://curl.se/download/curl-7.80.0.tar.bz2"
-  sha256 "dd0d150e49cd950aff35e16b628edf04927f0289df42883750cf952bb858189c"
+  url "https://curl.se/download/curl-7.81.0.tar.bz2"
+  sha256 "1e7a38d7018ec060f1f16df839854f0889e94e122c4cfa5d3a37c2dc56f1e258"
   license "curl"
 
   bottle do
@@ -37,8 +37,8 @@ class CurlMax < Formula
   end
 
   resource "nghttp2" do
-    url "https://github.com/nghttp2/nghttp2/releases/download/v1.46.0/nghttp2-1.46.0.tar.xz"
-    sha256 "1a68cc4a5732afb735baf50aaac3cb3a6771e49f744bd5db6c49ab5042f12a43"
+    url "https://github.com/nghttp2/nghttp2/releases/download/v1.47.0/nghttp2-1.47.0.tar.xz"
+    sha256 "68271951324554c34501b85190f22f2221056db69f493afc3bbac8e7be21e7cc"
 
     unless OS.mac?
       patch do
