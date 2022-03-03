@@ -8,8 +8,8 @@ class Deluge < Formula
   head "https://git.deluge-torrent.org/deluge", branch: "develop"
 
   bottle do
-    root_url "https://dl.bintray.com/domt4/crypto-bottles"
-    sha256 cellar: :any, catalina: "77edb5e028321447b5b71c0d3e05dcfe9821dcc54f2bf3ad05e7b0e24334836f"
+    root_url "https://dl.cloudsmith.io/public/homebrew-crypto/homebrew-crypto/raw/files"
+    sha256 arm64_monterey: "6eee78864eaff15dd2d45e702b3ca094dcad6ebf96d0fe4ab29145dcf339da87"
   end
 
   depends_on "intltool" => :build
