@@ -21,7 +21,7 @@ class GitMax < Formula
 
   bottle do
     root_url "https://dl.cloudsmith.io/public/homebrew-crypto/homebrew-crypto/raw/files"
-    sha256 arm64_monterey: "839600f50886457ce2492855d46673a34c7de488d1724b6a65d5d90a6e733d7d"
+    sha256 arm64_monterey: "8efc6a1c48f2b7be369eca70cde8968569a7db058d37967bf1c4d929c6f8ff24"
   end
 
   depends_on GoRequirement => :build
