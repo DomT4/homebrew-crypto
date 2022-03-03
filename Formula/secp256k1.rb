@@ -2,11 +2,9 @@ class Secp256k1 < Formula
   desc "Optimized C library for EC operations on curve secp256k1"
   homepage "https://github.com/bitcoin-core/secp256k1"
   url "https://github.com/bitcoin-core/secp256k1.git",
-      revision: "8fa41201bde8844f79198401c60ec57fa84517e3"
-  version "0.0.0.63" # Fake version number to make updates easier.
+      revision: "ac83be33d0956faf6b7f61a60ab524ef7d6a473a"
+  version "0.0.0.64" # Fake version number to make updates easier.
   head "https://github.com/bitcoin-core/secp256k1.git"
-
-  option "without-enable-module-recovery", "Disable ECDSA pubkey recovery module"
 
   depends_on "autoconf" => :build
   depends_on "automake" => :build
@@ -15,16 +13,15 @@ class Secp256k1 < Formula
   depends_on "gmp"
 
   def install
-    args = %W[
-      prefix=#{prefix}
-      --disable-silent-rules
-    ]
-    args << "--enable-module-recovery" if build.with? "enable-module-recovery"
-
     system "./autogen.sh"
-    system "./configure", *args
+    system "./configure", "prefix=#{prefix}", "--disable-silent-rules", "--enable-dev-mode"
     system "make"
     system "make", "check"
     system "make", "install"
+    libexec.install Dir["*_example"]
+  end
+
+  test do
+    assert_match "Is the signature valid? true", shell_output(libexec/"schnorr_example")
   end
 end
