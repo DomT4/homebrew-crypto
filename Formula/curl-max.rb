@@ -8,7 +8,7 @@ class CurlMax < Formula
 
   bottle do
     root_url "https://dl.cloudsmith.io/public/homebrew-crypto/homebrew-crypto/raw/files/"
-    sha256 arm64_monterey: "fa836fa0d03e67cfa480d2c38d38ef1d32fc1f349b6a4255032183cc19ec8370"
+    sha256 arm64_monterey: "38b3f73b8ba6669e425431cac5efb256e7320ce2a7d3fad551356f40cb86a9c6"
   end
 
   keg_only :provided_by_macos
