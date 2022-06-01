@@ -14,10 +14,10 @@ end
 class GitMax < Formula
   desc "Distributed revision control system"
   homepage "https://git-scm.com"
-  url "https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.35.1.tar.xz"
-  sha256 "d768528e6443f65a203036266f1ca50f9d127ba89751e32ead37117ed9191080"
+  url "https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.36.1.tar.xz"
+  sha256 "405d4a0ff6e818d1f12b3e92e1ac060f612adcb454f6299f70583058cb508370"
   license "GPL-2.0-only"
-  head "https://github.com/git/git.git"
+  head "https://github.com/git/git.git", branch: "master"
 
   bottle do
     root_url "https://dl.cloudsmith.io/public/homebrew-crypto/homebrew-crypto/raw/files"
@@ -40,13 +40,13 @@ class GitMax < Formula
     because: "git-max installs the Tcl/Tk UI by default"
 
   resource "html" do
-    url "https://mirrors.edge.kernel.org/pub/software/scm/git/git-htmldocs-2.35.1.tar.xz"
-    sha256 "ca2f0bd4a9d24d9b6b3a021f11b8eacee863948c67a4cc0ff6d7adef8137ea18"
+    url "https://mirrors.edge.kernel.org/pub/software/scm/git/git-htmldocs-2.36.1.tar.xz"
+    sha256 "f2a44ee1acfc1b8e2ce9a90ae767226c862d5a6596bed0404de70fdef8e67c8d"
   end
 
   resource "man" do
-    url "https://mirrors.edge.kernel.org/pub/software/scm/git/git-manpages-2.35.1.tar.xz"
-    sha256 "e4e3a751f2c05959222c3ea2f0f09481700eca8f915d1398bb270eb6846c3803"
+    url "https://mirrors.edge.kernel.org/pub/software/scm/git/git-manpages-2.36.1.tar.xz"
+    sha256 "b1e6e651333283bfe2abbdf10baa858f61c5ec9d3caacb30f44888d78d964e6f"
   end
 
   def install
