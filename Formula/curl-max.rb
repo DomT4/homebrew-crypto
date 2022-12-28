@@ -1,15 +1,10 @@
 class CurlMax < Formula
   desc "Feature-maximised version of cURL"
   homepage "https://curl.se"
-  url "https://curl.se/download/curl-7.83.1.tar.bz2"
-  mirror "https://github.com/curl/curl/releases/download/curl-7_83_1/curl-7.83.1.tar.bz2"
-  sha256 "f539a36fb44a8260ec5d977e4e0dbdd2eee29ed90fcedaa9bc3c9f78a113bff0"
+  url "https://curl.se/download/curl-7.87.0.tar.bz2"
+  mirror "https://github.com/curl/curl/releases/download/curl-7_84_0/curl-7.87.0.tar.bz2"
+  sha256 "5d6e128761b7110946d1276aff6f0f266f2b726f5e619f7e0a057a474155f307"
   license "curl"
-
-  bottle do
-    root_url "https://dl.cloudsmith.io/public/homebrew-crypto/homebrew-crypto/raw/files/"
-    sha256 arm64_monterey: "38b3f73b8ba6669e425431cac5efb256e7320ce2a7d3fad551356f40cb86a9c6"
-  end
 
   keg_only :provided_by_macos
 
@@ -26,9 +21,7 @@ class CurlMax < Formula
   depends_on "libev"
   depends_on "libidn2"
   depends_on "libpsl"
-  depends_on "openldap"
-  depends_on "openssl@1.1"
-  depends_on "rtmpdump"
+  depends_on "openssl@3"
   depends_on "zstd"
 
   # Needed for nghttp2
@@ -38,8 +31,8 @@ class CurlMax < Formula
   end
 
   resource "nghttp2" do
-    url "https://github.com/nghttp2/nghttp2/releases/download/v1.47.0/nghttp2-1.47.0.tar.xz"
-    sha256 "68271951324554c34501b85190f22f2221056db69f493afc3bbac8e7be21e7cc"
+    url "https://github.com/nghttp2/nghttp2/releases/download/v1.51.0/nghttp2-1.51.0.tar.xz"
+    sha256 "66aa76d97c143f42295405a31413e5e7d157968dad9f957bb4b015b598882e6b"
 
     unless OS.mac?
       patch do
@@ -50,19 +43,37 @@ class CurlMax < Formula
     end
   end
 
+  # Not in use yet but working towards it; want to ensure keeps building successfully.
+  resource "nghttp3" do
+    url "https://github.com/ngtcp2/nghttp3/releases/download/v0.8.0/nghttp3-0.8.0.tar.xz"
+    sha256 "360dff3a914136a3394cd4fe52cb2c7df2528ddbbd8a61231538bf46ab74b2d7"
+  end
+
+  # Regular version from brew still on openssl@1.1; need to vendor to use openssl@3 here.
+  resource "openldap" do
+    url "https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.6.3.tgz"
+    sha256 "d2a2a1d71df3d77396b1c16ad7502e674df446e06072b0e5a4e941c3d06c0d46"
+
+    # Fix -flat_namespace being used on Big Sur and later.
+    patch do
+      url "https://raw.githubusercontent.com/Homebrew/formula-patches/03cf8088210822aa2c1ab544ed58ea04c897d9c4/libtool/configure-big_sur.diff"
+      sha256 "35acd6aebc19843f1a2b3a63e880baceb0f5278ab1ace661e57a502d9d78c93c"
+    end
+  end
+
   resource "libssh2" do
     url "https://www.libssh2.org/download/libssh2-1.10.0.tar.gz"
     sha256 "2d64e90f3ded394b91d3a2e774ca203a4179f69aebee03003e5a6fa621e41d51"
   end
 
   resource "libxml2" do
-    url "http://xmlsoft.org/sources/libxml2-2.9.12.tar.gz"
-    sha256 "c8d6681e38c56f172892c85ddc0852e1fd4b53b4209e7f4ebf17f7e2eae71d92"
+    url "https://download.gnome.org/sources/libxml2/2.10/libxml2-2.10.3.tar.xz"
+    sha256 "5d2cc3d78bec3dbe212a9d7fa629ada25a7da928af432c93060ff5c17ee28a9c"
   end
 
   def install
     vendor = libexec/"vendor"
-    ENV.prepend_path "PKG_CONFIG_PATH", Formula["openssl@1.1"].opt_lib/"pkgconfig"
+    ENV.prepend_path "PKG_CONFIG_PATH", Formula["openssl@3"].opt_lib/"pkgconfig"
     ENV.prepend_path "PKG_CONFIG_PATH", vendor/"lib/pkgconfig"
     ENV.prepend_path "PATH", vendor/"bin"
 
@@ -106,6 +117,13 @@ class CurlMax < Formula
       system "make", "install"
     end
 
+    resource("nghttp3").stage do
+      system "./configure", "--prefix=#{vendor}", "--disable-silent-rules"
+      system "make"
+      system "make", "check"
+      system "make", "install"
+    end
+
     resource("libssh2").stage do
       system "./configure", "--prefix=#{vendor}",
                             "--disable-debug",
@@ -113,8 +131,52 @@ class CurlMax < Formula
                             "--disable-silent-rules",
                             "--disable-examples-build",
                             "--with-libz",
-                            "--with-libssl-prefix=#{Formula["openssl@1.1"].opt_prefix}"
+                            "--with-libssl-prefix=#{Formula["openssl@3"].opt_prefix}"
       system "make", "install"
+    end
+
+    resource("openldap").stage do
+      args = %W[
+        --disable-dependency-tracking
+        --prefix=#{vendor}
+        --sysconfdir=#{vendor}/etc
+        --localstatedir=#{vendor}/var
+        --enable-accesslog
+        --enable-auditlog
+        --enable-bdb=no
+        --enable-constraint
+        --enable-dds
+        --enable-deref
+        --enable-dyngroup
+        --enable-dynlist
+        --enable-hdb=no
+        --enable-memberof
+        --enable-ppolicy
+        --enable-proxycache
+        --enable-refint
+        --enable-retcode
+        --enable-seqmod
+        --enable-translucent
+        --enable-unique
+        --enable-valsort
+        --without-systemd
+      ]
+
+      if OS.linux? || MacOS.version >= :ventura
+        # Disable manpage generation, because it requires groff which has a huge
+        # dependency tree on Linux and isn't included on macOS since Ventura.
+        inreplace "Makefile.in" do |s|
+          subdirs = s.get_make_var("SUBDIRS").split - ["doc"]
+          s.change_make_var! "SUBDIRS", subdirs.join(" ")
+        end
+      end
+
+      system "./configure", *args
+      system "make", "install"
+      (vendor/"var/run").mkpath
+
+      chmod 0755, Dir[vendor/"etc/openldap/*"]
+      chmod 0755, Dir[vendor/"etc/openldap/schema/*"]
     end
 
     args = %W[
@@ -123,18 +185,17 @@ class CurlMax < Formula
       --disable-silent-rules
       --prefix=#{prefix}
       --with-default-ssl-backend=openssl
-      --with-ssl=#{Formula["openssl@1.1"].opt_prefix}
-      --with-ca-bundle=#{etc}/openssl@1.1/cert.pem
-      --with-ca-path=#{etc}/openssl@1.1/certs
+      --with-ssl=#{Formula["openssl@3"].opt_prefix}
+      --with-ca-bundle=#{etc}/openssl@3/cert.pem
+      --with-ca-path=#{etc}/openssl@3/certs
       --enable-ares=#{Formula["c-ares"].opt_prefix}
       --with-brotli
       --with-gssapi
       --with-libidn2
-      --with-librtmp
       --with-libpsl
       --with-libssh2
+      --enable-ldap
     ]
-    args << "--disable-ldap" unless OS.mac?
 
     system "./configure", *args
     system "make", "install"
