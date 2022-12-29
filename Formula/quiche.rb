@@ -1,8 +1,8 @@
 class Quiche < Formula
   desc "Savoury implementation of the QUIC transport protocol and HTTP/3"
   homepage "https://github.com/cloudflare/quiche"
-  url "https://github.com/cloudflare/quiche/archive/refs/tags/0.12.0.tar.gz"
-  sha256 "62b6c03ca67682d1bcbe7cc04b816a97fa382810f6e58c01811791148d94b238"
+  url "https://github.com/cloudflare/quiche/archive/refs/tags/0.16.0.tar.gz"
+  sha256 "eff71b34b1598faf9560b3c80c498cad08871a79b87902e32f2f9d2f04f89d86"
   license "BSD-2-Clause"
 
   depends_on "boringssl" => :build
@@ -12,7 +12,7 @@ class Quiche < Formula
 
   resource "uthash" do
     url "https://github.com/troydhanson/uthash.git",
-        revision: "44a66fe8e008c0a7f1c5af96f4a4cdf304b8bc81"
+        revision: "ca98384ce7f30beb216f9a0bc88a3b4340ead729"
   end
 
   def install
