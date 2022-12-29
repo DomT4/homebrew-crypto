@@ -2,7 +2,7 @@ class CurlMax < Formula
   desc "Feature-maximised version of cURL"
   homepage "https://curl.se"
   url "https://curl.se/download/curl-7.87.0.tar.bz2"
-  mirror "https://github.com/curl/curl/releases/download/curl-7_84_0/curl-7.87.0.tar.bz2"
+  mirror "https://github.com/curl/curl/releases/download/curl-7_87_0/curl-7.87.0.tar.bz2"
   sha256 "5d6e128761b7110946d1276aff6f0f266f2b726f5e619f7e0a057a474155f307"
   license "curl"
 
