@@ -1,9 +1,9 @@
-class Secp256k1 < Formula
+class Libsecp256k1 < Formula
   desc "Optimized C library for EC operations on curve secp256k1"
   homepage "https://github.com/bitcoin-core/secp256k1"
-  url "https://github.com/bitcoin-core/secp256k1.git",
-      revision: "ac83be33d0956faf6b7f61a60ab524ef7d6a473a"
-  version "0.0.0.64" # Fake version number to make updates easier.
+  url "https://github.com/bitcoin-core/secp256k1/archive/refs/tags/v0.2.0.tar.gz"
+  sha256 "6cb0fd596e6b1a671f96e9ed7e65a047960def73de024e7b39f45a78ab4fc8df"
+  license "MIT"
   head "https://github.com/bitcoin-core/secp256k1.git"
 
   depends_on "autoconf" => :build
@@ -11,6 +11,8 @@ class Secp256k1 < Formula
   depends_on "libtool" => :build
   depends_on "pkg-config" => :build
   depends_on "gmp"
+
+  keg_only "this formula installs the same core libraries as the formula in homebrew/core"
 
   def install
     system "./autogen.sh"
