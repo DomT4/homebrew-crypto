@@ -21,8 +21,8 @@ class CurlMax < Formula
   depends_on "libev"
   depends_on "libidn2"
   depends_on "libpsl"
-  depends_on "openssl@3"
   depends_on "openldap"
+  depends_on "openssl@3"
   depends_on "zstd"
 
   # Needed for nghttp2
