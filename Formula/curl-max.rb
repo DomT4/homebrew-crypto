@@ -1,9 +1,9 @@
 class CurlMax < Formula
   desc "Feature-maximised version of cURL"
   homepage "https://curl.se"
-  url "https://curl.se/download/curl-7.87.0.tar.bz2"
-  mirror "https://github.com/curl/curl/releases/download/curl-7_87_0/curl-7.87.0.tar.bz2"
-  sha256 "5d6e128761b7110946d1276aff6f0f266f2b726f5e619f7e0a057a474155f307"
+  url "https://curl.se/download/curl-8.11.1.tar.bz2"
+  mirror "https://github.com/curl/curl/releases/download/curl-8_11_1/curl-8.11.1.tar.bz2"
+  sha256 "e9773ad1dfa21aedbfe8e1ef24c9478fa780b1b3d4f763c98dd04629b5e43485"
   license "curl"
 
   keg_only :provided_by_macos
@@ -22,6 +22,7 @@ class CurlMax < Formula
   depends_on "libidn2"
   depends_on "libpsl"
   depends_on "openssl@3"
+  depends_on "openldap"
   depends_on "zstd"
 
   # Needed for nghttp2
@@ -31,44 +32,28 @@ class CurlMax < Formula
   end
 
   resource "nghttp2" do
-    url "https://github.com/nghttp2/nghttp2/releases/download/v1.51.0/nghttp2-1.51.0.tar.xz"
-    sha256 "66aa76d97c143f42295405a31413e5e7d157968dad9f957bb4b015b598882e6b"
-
-    unless OS.mac?
-      patch do
-        # Fix: shrpx_api_downstream_connection.cc:57:3: error: array must be initialized with a brace-enclosed initializer
-        url "https://gist.githubusercontent.com/iMichka/5dda45fbad3e70f52a6b4e7dfd382969/raw/19797e17926922bdd1ef21a47e162d8be8e2ca65/nghttp2?full_index=1"
-        sha256 "0759d448d4b419911c12fa7d5cbf1df2d6d41835c9077bf3accf9eac58f24f12"
-      end
-    end
+    url "https://github.com/nghttp2/nghttp2/releases/download/v1.64.0/nghttp2-1.64.0.tar.xz"
+    sha256 "88bb94c9e4fd1c499967f83dece36a78122af7d5fb40da2019c56b9ccc6eb9dd"
   end
 
-  # Not in use yet but working towards it; want to ensure keeps building successfully.
+  resource "ngtcp2" do
+    url "https://github.com/ngtcp2/ngtcp2/releases/download/v1.10.0/ngtcp2-1.10.0.tar.xz"
+    sha256 "4f8dc1d61957205d01c3d6aa6f1c96c7b2bac1feea71fdaf972d86db5f6465df"
+  end
+
   resource "nghttp3" do
-    url "https://github.com/ngtcp2/nghttp3/releases/download/v0.8.0/nghttp3-0.8.0.tar.xz"
-    sha256 "360dff3a914136a3394cd4fe52cb2c7df2528ddbbd8a61231538bf46ab74b2d7"
-  end
-
-  # Regular version from brew still on openssl@1.1; need to vendor to use openssl@3 here.
-  resource "openldap" do
-    url "https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-2.6.3.tgz"
-    sha256 "d2a2a1d71df3d77396b1c16ad7502e674df446e06072b0e5a4e941c3d06c0d46"
-
-    # Fix -flat_namespace being used on Big Sur and later.
-    patch do
-      url "https://raw.githubusercontent.com/Homebrew/formula-patches/03cf8088210822aa2c1ab544ed58ea04c897d9c4/libtool/configure-big_sur.diff"
-      sha256 "35acd6aebc19843f1a2b3a63e880baceb0f5278ab1ace661e57a502d9d78c93c"
-    end
+    url "https://github.com/ngtcp2/nghttp3/releases/download/v1.7.0/nghttp3-1.7.0.tar.xz"
+    sha256 "b4eb6bceb99293d9a9df2031c1aad166af3d57b3e33655aca0699397b6f0d751"
   end
 
   resource "libssh2" do
-    url "https://www.libssh2.org/download/libssh2-1.10.0.tar.gz"
-    sha256 "2d64e90f3ded394b91d3a2e774ca203a4179f69aebee03003e5a6fa621e41d51"
+    url "https://libssh2.org/download/libssh2-1.11.1.tar.xz"
+    sha256 "9954cb54c4f548198a7cbebad248bdc87dd64bd26185708a294b2b50771e3769"
   end
 
   resource "libxml2" do
-    url "https://download.gnome.org/sources/libxml2/2.10/libxml2-2.10.3.tar.xz"
-    sha256 "5d2cc3d78bec3dbe212a9d7fa629ada25a7da928af432c93060ff5c17ee28a9c"
+    url "https://download.gnome.org/sources/libxml2/2.13/libxml2-2.13.0.tar.xz"
+    sha256 "d5a2f36bea96e1fb8297c6046fb02016c152d81ed58e65f3d20477de85291bc9"
   end
 
   def install
@@ -82,6 +67,14 @@ class CurlMax < Formula
                             "--prefix=#{vendor}",
                             "--without-python",
                             "--without-lzma"
+      system "make", "install"
+    end
+
+    # This isn't actually being used for anything yet but going to keep
+    # building it so that I know it DOES build when we need it.
+    resource("ngtcp2").stage do
+      system "./configure", "--disable-dependency-tracking",
+                            "--prefix=#{vendor}"
       system "make", "install"
     end
 
@@ -135,50 +128,6 @@ class CurlMax < Formula
       system "make", "install"
     end
 
-    resource("openldap").stage do
-      args = %W[
-        --disable-dependency-tracking
-        --prefix=#{vendor}
-        --sysconfdir=#{vendor}/etc
-        --localstatedir=#{vendor}/var
-        --enable-accesslog
-        --enable-auditlog
-        --enable-bdb=no
-        --enable-constraint
-        --enable-dds
-        --enable-deref
-        --enable-dyngroup
-        --enable-dynlist
-        --enable-hdb=no
-        --enable-memberof
-        --enable-ppolicy
-        --enable-proxycache
-        --enable-refint
-        --enable-retcode
-        --enable-seqmod
-        --enable-translucent
-        --enable-unique
-        --enable-valsort
-        --without-systemd
-      ]
-
-      if OS.linux? || MacOS.version >= :ventura
-        # Disable manpage generation, because it requires groff which has a huge
-        # dependency tree on Linux and isn't included on macOS since Ventura.
-        inreplace "Makefile.in" do |s|
-          subdirs = s.get_make_var("SUBDIRS").split - ["doc"]
-          s.change_make_var! "SUBDIRS", subdirs.join(" ")
-        end
-      end
-
-      system "./configure", *args
-      system "make", "install"
-      (vendor/"var/run").mkpath
-
-      chmod 0755, Dir[vendor/"etc/openldap/*"]
-      chmod 0755, Dir[vendor/"etc/openldap/schema/*"]
-    end
-
     args = %W[
       --disable-debug
       --disable-dependency-tracking
@@ -195,6 +144,8 @@ class CurlMax < Formula
       --with-libpsl
       --with-libssh2
       --enable-ldap
+      --with-nghttp3
+      --with-openssl-quic
     ]
 
     system "./configure", *args
